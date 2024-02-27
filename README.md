@@ -37,4 +37,4 @@ Fake a server api
 
 ### Deploy Tools
 
-#### [vercel] (https://vercel.com/)
+#### [vercel](https://vercel.com/)
