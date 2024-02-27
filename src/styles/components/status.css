@@ -1,0 +1,14 @@
+.status {
+  padding: 4px 12px;
+  border: 1px solid #df0404;
+  border-radius: 4px;
+  color: #df0404;
+  background-color: #ffc5c5;
+}
+
+.status-active {
+  padding: 4px 18px;
+  border-color: #008767;
+  color: #008767;
+  background-color: #16c09861;
+}
