@@ -1,0 +1,32 @@
+{
+  "name": "javascript-practice",
+  "version": "1.0.0",
+  "description": "Just example for learning javascript",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "start-server": "json-server --watch db.json --port 3004"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronlechiht/Javascript-Training.git"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "javascript",
+    "training"
+  ],
+  "author": "ron.lechi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ronlechiht/Javascript-Training/issues"
+  },
+  "homepage": "https://github.com/ronlechiht/Javascript-Training#readme",
+  "devDependencies": {
+    "parcel": "latest"
+  },
+  "dependencies": {
+    "json-server": "latest"
+  }
+}

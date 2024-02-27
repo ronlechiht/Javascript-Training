@@ -1,0 +1,14 @@
+/* Import base */
+@import url("bases/reset.css");
+@import url("bases/base.css");
+
+/* Import component */
+@import url("components/modal.css");
+@import url("components/button.css");
+@import url("components/menu-item.css");
+@import url("components/status.css");
+
+/* Import section */
+@import url("sections/dashboard.css");
+@import url("sections/general-information.css");
+@import url("sections/customers-table.css");

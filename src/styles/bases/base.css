@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'poppins-regular';
+  src: url(../../assets/fonts/Poppins-Regular.ttf);
+  font-display: swap;
+}
+
+body {
+  font-family: 'poppins-regular', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #fafbff;
+}
