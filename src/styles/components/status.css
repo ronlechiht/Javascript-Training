@@ -1,14 +1,14 @@
 .status {
-  padding: 4px 12px;
+  padding: 4px 0;
   border: 1px solid #df0404;
   border-radius: 4px;
   color: #df0404;
   background-color: #ffc5c5;
+  text-align: center;
 }
 
 .status-active {
-  padding: 4px 18px;
-  border-color: #008767;
+  border-color: #00b087;
   color: #008767;
   background-color: #16c09861;
 }
