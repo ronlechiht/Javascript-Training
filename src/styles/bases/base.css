@@ -11,3 +11,8 @@ body {
   font-weight: 500;
   background-color: #fafbff;
 }
+
+.main-container {
+  display: flex;
+  height: 100vh;
+}
