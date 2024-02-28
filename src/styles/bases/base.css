@@ -12,7 +12,14 @@ body {
   background-color: #fafbff;
 }
 
-.main-container {
+main {
   display: flex;
   height: 100vh;
+}
+
+.main-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 54px 63px 0;
 }

@@ -7,6 +7,7 @@
 @import url("components/button.css");
 @import url("components/menu-item.css");
 @import url("components/status.css");
+@import url("components/container.css");
 
 /* Import section */
 @import url("sections/dashboard.css");
