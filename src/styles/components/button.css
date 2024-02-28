@@ -1,0 +1,16 @@
+.btn {
+  width: 264px;
+  height: 62px;
+  color: #fff;
+  font-size: 20px;
+  line-height: 24px;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #377dff;
+}
+
+.btn-secondary {
+  background-color: #b5b7c0
+}

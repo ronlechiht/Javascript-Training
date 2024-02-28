@@ -1,0 +1,17 @@
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 8px;
+  color: #9197b3;
+  font-weight: 400;
+}
+
+.menu-item-active {
+  background-color: #5932ea;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 500;
+}
+
+
