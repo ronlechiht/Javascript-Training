@@ -13,6 +13,55 @@
 
   <body>
     <main>
+      <div class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">add customer</h3>
+            <img src="./assets/images/modal/close-btn.png" alt="modal close button">
+          </div>
+          <div class="inputs-field">
+            <div class="input-item">
+              <label for="name-input" class="input-label">customer name<span class="required"> *</span></label>
+              <input type="text" name="name-input" class="input-field">
+            </div>
+            <div class="input-item">
+              <label for="company-input" class="input-label">company<span class="required"> *</span></label>
+              <input type="text" name="company-input" class="input-field">
+            </div>
+            <div class="input-item">
+              <label for="phone-input" class="input-label">phone number<span class="required"> *</span></label>
+              <input type="text" name="phone-input" class="input-field">
+            </div>
+            <div class="input-item">
+              <label for="email-input" class="input-label">email<span class="required"> *</span></label>
+              <input type="text" name="email-input" class="input-field">
+            </div>
+            <div class="input-item">
+              <label for="country-input" class="input-label">country<span class="required"> *</span></label>
+              <select name="country-input" class="input-field">
+                <option value=""></option>
+                <option value="cambodia">Cambodia</option>
+                <option value="laos">Laos</option>
+                <option value="malaysia">Malaysia</option>
+                <option value="myanmar">Myanmar</option>
+                <option value="thailand">Thailand</option>
+                <option value="vietnam">Vietnam</option>
+              </select>
+            </div>
+            <div class="input-item status-item">
+              <label for="status-input" class="input-label">status</label>
+              <div class="switch">
+                <input type="checkbox">
+                <span class="slider-round"></span>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary">submit</button>
+            <button class="btn btn-secondary">cancel</button>
+          </div>
+        </div>
+      </div>
       <div class="nav-container">
         <h1 class="dashboard-title">
           <img src="./assets/images/dashboard/dashboard-logo.webp" alt="logo" />

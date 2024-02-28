@@ -103,6 +103,7 @@ input, select {
     vertical-align:middle;
     border: none;
     padding: 0;
+    background-color: #fff;
 }
 
 button {

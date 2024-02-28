@@ -88,3 +88,9 @@
   justify-content: end;
   column-gap: 12px;
 }
+
+.modal-footer {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
