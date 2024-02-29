@@ -101,4 +101,10 @@ hr {
 
 input, select {
     vertical-align:middle;
+    border: none;
+    padding: 0;
+}
+
+button {
+  border: none;
 }

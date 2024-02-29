@@ -1,8 +1,10 @@
 .nav-container {
   background-color: #fff;
-  width: 306px;
+  width: 17%;
+  height: 100vh;
   box-shadow: 10px 0px 10px rgba(226, 236, 249, 0.5);
   padding: 36px 28px;
+  position: fixed;
 }
 
 .dashboard-title {
