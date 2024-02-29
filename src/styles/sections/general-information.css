@@ -1,0 +1,44 @@
+.general-information {
+  margin-top: 141px;
+  padding: 33px 121px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.total-customers, .active-now {
+  display: flex;
+  column-gap: 30px;
+  align-items: center;
+}
+
+.information-title {
+  font-weight: 400;
+  color: #acacac;
+  text-transform: capitalize;
+}
+
+.quantity {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.growth {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #292d32;
+}
+
+.customers-images {
+  margin-left: 10px;
+}
+
+.customers-images > img {
+  margin-left: -10px;
+}
+
+.divider {
+  width: 1px;
+  background: #f0f0f0;
+}
