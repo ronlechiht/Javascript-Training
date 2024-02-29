@@ -1,0 +1,29 @@
+.snackbar {
+  visibility: hidden;
+  line-height: 24px;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 16px;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  width: fit-content;
+  position: fixed;
+  margin-top: 1%;
+  margin-left: 60%;
+}
+
+.failed {
+  background-color: #ff715b;
+}
+
+.successful {
+  background-color: #00ac4f;
+}
+
+.update-successful {
+  background-color: #00ac4f;
+  margin: 0;
+  align-self: flex-end;
+}

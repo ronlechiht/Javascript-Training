@@ -21,6 +21,14 @@
   column-gap: 15px;
 }
 
+.add-customer-btn {
+  align-self: center;
+}
+
+.add-customer-btn:hover {
+  cursor: pointer;
+}
+
 .search-container {
   display: flex;
 }
@@ -87,10 +95,4 @@
   display: flex;
   justify-content: end;
   column-gap: 12px;
-}
-
-.modal-footer {
-  margin-top: 100px;
-  display: flex;
-  justify-content: center;
 }

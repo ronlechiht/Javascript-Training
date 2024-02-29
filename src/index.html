@@ -14,51 +14,98 @@
   <body>
     <main>
       <div class="modal">
+        <div class="snackbar failed">
+          <img src="./assets/images/snackbar/failed.webp" alt="failed icon" />
+          Something went wrong
+        </div>
+        <div class="snackbar successful">
+          <img
+            src="./assets/images/snackbar/successful.webp"
+            alt="successful icon"
+          />
+          Add customer sucessfully
+        </div>
         <div class="modal-content">
           <div class="modal-header">
             <h3 class="modal-title">add customer</h3>
-            <img src="./assets/images/modal/close-btn.png" alt="modal close button">
+            <img
+              src="./assets/images/modal/close-btn.png"
+              alt="modal close button"
+              class="modal-close-btn"
+            />
           </div>
           <div class="inputs-field">
             <div class="input-item">
-              <label for="name-input" class="input-label">customer name<span class="required"> *</span></label>
-              <input type="text" name="name-input" class="input-field">
+              <label for="name-input" class="input-label">
+                customer name
+                <span class="required">*</span>
+              </label>
+              <input type="text" name="name-input" class="input-field" />
+              <p class="validate-alert alert-name">
+                The customer name is required
+              </p>
             </div>
             <div class="input-item">
-              <label for="company-input" class="input-label">company<span class="required"> *</span></label>
-              <input type="text" name="company-input" class="input-field">
+              <label for="company-input" class="input-label">
+                company
+                <span class="required">*</span>
+              </label>
+              <input type="text" name="company-input" class="input-field" />
+              <p class="validate-alert alert-company">
+                The company name is required
+              </p>
             </div>
             <div class="input-item">
-              <label for="phone-input" class="input-label">phone number<span class="required"> *</span></label>
-              <input type="text" name="phone-input" class="input-field">
+              <label for="phone-input" class="input-label">
+                phone number
+                <span class="required">*</span>
+              </label>
+              <input type="text" name="phone-input" class="input-field" />
+              <p class="validate-alert alert-phone-1">
+                The phone number is required
+              </p>
+              <p class="validate-alert alert-phone-2">
+                The phone number invalid. Enter phone number in this format: (123) 456-7890
+              </p>
             </div>
             <div class="input-item">
-              <label for="email-input" class="input-label">email<span class="required"> *</span></label>
-              <input type="text" name="email-input" class="input-field">
+              <label for="email-input" class="input-label">
+                email
+                <span class="required">*</span>
+              </label>
+              <input type="text" name="email-input" class="input-field" />
+              <p class="validate-alert alert-email-1">The email is required</p>
+              <p class="validate-alert alert-email-2">The email invalid</p>
             </div>
             <div class="input-item">
-              <label for="country-input" class="input-label">country<span class="required"> *</span></label>
+              <label for="country-input" class="input-label">
+                country
+                <span class="required">*</span>
+              </label>
               <select name="country-input" class="input-field">
                 <option value=""></option>
-                <option value="cambodia">Cambodia</option>
-                <option value="laos">Laos</option>
-                <option value="malaysia">Malaysia</option>
-                <option value="myanmar">Myanmar</option>
-                <option value="thailand">Thailand</option>
-                <option value="vietnam">Vietnam</option>
+                <option value="Cambodia">Cambodia</option>
+                <option value="Laos">Laos</option>
+                <option value="Malaysia">Malaysia</option>
+                <option value="Myanmar">Myanmar</option>
+                <option value="Thailand">Thailand</option>
+                <option value="Vietnam">Vietnam</option>
               </select>
+              <p class="validate-alert alert-country">
+                The country is required
+              </p>
             </div>
             <div class="input-item status-item">
               <label for="status-input" class="input-label">status</label>
-              <div class="switch">
-                <input type="checkbox">
+              <label class="switch">
+                <input type="checkbox" name="status-input" />
                 <span class="slider-round"></span>
-              </div>
+              </label>
             </div>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-primary">submit</button>
-            <button class="btn btn-secondary">cancel</button>
+            <button class="btn btn-primary submit-btn">submit</button>
+            <button class="btn btn-secondary cancel-btn">cancel</button>
           </div>
         </div>
       </div>
@@ -154,6 +201,13 @@
       </div>
 
       <div class="main-container">
+        <div class="snackbar update-successful">
+          <img
+            src="./assets/images/snackbar/successful.webp"
+            alt="successful icon"
+          />
+          Customer information has been successfully updated
+        </div>
         <div class="container general-information">
           <div class="total-customers">
             <img
@@ -208,6 +262,7 @@
               <img
                 src="./assets/images/customers-table/add-icon.webp"
                 alt="add icon"
+                class="add-customer-btn"
               />
               <div class="search-container">
                 <button class="search-btn">
@@ -256,7 +311,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status status-active">Active</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -266,7 +325,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status">Inactive</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -276,7 +339,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status status-active">Active</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -286,7 +353,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status">Inactive</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -296,7 +367,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status status-active">Active</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -306,7 +381,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status">Inactive</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -316,7 +395,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status status-active">Active</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -326,13 +409,23 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status">Inactive</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
             </div>
             <div class="table-footer">
-              <img src="./assets/images/customers-table/previous-pagination.png" alt="previous button">
-              <img src="./assets/images/customers-table/next-pagination.png" alt="next button">
+              <img
+                src="./assets/images/customers-table/previous-pagination.png"
+                alt="previous button"
+              />
+              <img
+                src="./assets/images/customers-table/next-pagination.png"
+                alt="next button"
+              />
             </div>
           </div>
         </div>

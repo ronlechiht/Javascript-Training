@@ -1,3 +1,13 @@
 {
-  "customers": []
+  "customers": [
+    {
+      "id": "3422",
+      "name": "Le Chi Ron",
+      "company": "Agility",
+      "phone": "(123) 456-7890",
+      "email": "ronlechi@gmail.com",
+      "country": "Vietnam",
+      "status": true
+    }
+  ]
 }

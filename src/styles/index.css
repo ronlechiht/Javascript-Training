@@ -4,6 +4,7 @@
 
 /* Import component */
 @import url("components/modal.css");
+@import url("components/snackbar.css");
 @import url("components/button.css");
 @import url("components/menu-item.css");
 @import url("components/status.css");
