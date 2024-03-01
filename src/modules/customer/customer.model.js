@@ -12,7 +12,7 @@ export class CustomerModel {
 
 export class CustomerManagerModel {
   constructor() {
-    this.customersApi = 'http://localhost:3004/customers'
+    this.customersApi = 'https://customers-json-server.vercel.app/customers'
   }
 
   async addCustomer(data) {
