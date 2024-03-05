@@ -3,7 +3,8 @@ export class CustomerController {
     this.customerManagerModel = customerManagerModel
     this.customerView = customerView
 
-    this.customerView.bindOpenCloseModal()
+    this.customerView.bindOpenModal()
+    this.customerView.bindCloseModal()
     this.customerView.bindAddCustomer(this.handleAddCustomer)
   }
 

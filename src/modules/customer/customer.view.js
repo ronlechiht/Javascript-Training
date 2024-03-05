@@ -34,14 +34,14 @@ export class CustomerView {
     this.cancelBtn = this.form.querySelector('.cancel-btn')
   }
 
-  validatePhoneNumber(phoneNumber) {
-    var re = /\(\d{3}\)\s\d{3}-\d{4}/
-    return re.test(phoneNumber)
+  displayModal (modal) {
+    modal.style.visibility = 'visible'
   }
 
-  validateEmail (email) {
-    var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-    return re.test(email)
+  hideModal (modal) {
+    modal.style.visibility = 'hidden'
+    this.errorMessageHide()
+    this.resetInput()
   }
 
   errorMessageDisplay (inputField, message) {
@@ -56,6 +56,24 @@ export class CustomerView {
     this.alerts.forEach((message) => {
       message.style.visibility = 'hidden'
     })
+  }
+
+  displaySnackbar(snackbar) {
+    document.querySelector(snackbar).style.visibility = 'visible'
+    setTimeout(
+      () => (document.querySelector(snackbar).style.visibility = 'hidden'),
+      3000
+    )
+  }
+
+  validatePhoneNumber(phoneNumber) {
+    var re = /\(\d{3}\)\s\d{3}-\d{4}/
+    return re.test(phoneNumber)
+  }
+
+  validateEmail (email) {
+    var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+    return re.test(email)
   }
 
   validateForm(customer) {
@@ -95,14 +113,6 @@ export class CustomerView {
     return isValidate
   }
 
-  displaySnackbar(snackbar) {
-    document.querySelector(snackbar).style.visibility = 'visible'
-    setTimeout(
-      () => (document.querySelector(snackbar).style.visibility = 'hidden'),
-      3000
-    )
-  }
-
   resetInput() {
     this.name.value = ''
     this.company.value = ''
@@ -112,17 +122,19 @@ export class CustomerView {
     this.status.checked = false
   }
 
-  bindOpenCloseModal () {
+  bindOpenModal () {
     this.addCustomerBtn.onclick = () => {
-      this.modal.style.visibility = 'visible'
+      this.displayModal(this.modal)
     }
+  }
 
+  bindCloseModal () {
     this.closeModalBtn.onclick = () => {
-      this.modal.style.visibility = 'hidden'
+      this.hideModal(this.modal)
     }
 
     this.cancelBtn.onclick = () => {
-      this.modal.style.visibility = 'hidden'
+      this.hideModal(this.modal)
     }
   }
 
