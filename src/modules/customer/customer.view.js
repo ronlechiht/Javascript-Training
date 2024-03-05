@@ -1,32 +1,37 @@
 export class CustomerView {
   constructor() {
-    //Get inputs field
-    this.inputFields = document.querySelectorAll('.input-field')
-    this.name = document.querySelector('input[name="name-input"]')
-    this.company = document.querySelector('input[name="company-input"]')
-    this.phone = document.querySelector('input[name="phone-input"]')
-    this.email = document.querySelector('input[name="email-input"]')
-    this.country = document.querySelector('select[name="country-input"]')
-    this.status = document.querySelector('input[name="status-input"]')
-
-    //Get alert messages
-    this.alerts = document.querySelectorAll('.validate-alert')
-    this.alertName = document.querySelector('.alert-name')
-    this.alertCompany = document.querySelector('.alert-company')
-    this.alertPhone1 = document.querySelector('.alert-phone-1')
-    this.alertPhone2 = document.querySelector('.alert-phone-2')
-    this.alertEmail1 = document.querySelector('.alert-email-1')
-    this.alertEmail2 = document.querySelector('.alert-email-2')
-    this.alertCountry = document.querySelector('.alert-country')
+    //Get add customer button
+    this.addCustomerBtn = document.querySelector('.add-customer-btn')
 
     //Get add customer modal
     this.modal = document.querySelector('.modal')
+    this.closeModalBtn = this.modal.querySelector('.modal-close-btn')
+
+    //Get submit form
+    this.form = this.modal.querySelector('.submit-form')
+
+    //Get input field
+    this.inputFields = this.form.querySelectorAll('.input-field')
+    this.name = this.form.querySelector('input[name="name-input"]')
+    this.company = this.form.querySelector('input[name="company-input"]')
+    this.phone = this.form.querySelector('input[name="phone-input"]')
+    this.email = this.form.querySelector('input[name="email-input"]')
+    this.country = this.form.querySelector('select[name="country-input"]')
+    this.status = this.form.querySelector('input[name="status-input"]')
+
+    //Get alert messages
+    this.alerts = this.form.querySelectorAll('.validate-alert')
+    this.alertName = this.form.querySelector('.alert-name')
+    this.alertCompany = this.form.querySelector('.alert-company')
+    this.alertPhone1 = this.form.querySelector('.alert-phone-1')
+    this.alertPhone2 = this.form.querySelector('.alert-phone-2')
+    this.alertEmail1 = this.form.querySelector('.alert-email-1')
+    this.alertEmail2 = this.form.querySelector('.alert-email-2')
+    this.alertCountry = this.form.querySelector('.alert-country')
 
     //Get button
-    this.addCustomerBtn = document.querySelector('.add-customer-btn')
-    this.closeModalBtn = document.querySelector('.modal-close-btn')
-    this.submitBtn = document.querySelector('.submit-btn')
-    this.cancelBtn = document.querySelector('.cancel-btn')
+    this.submitBtn = this.form.querySelector('.submit-btn')
+    this.cancelBtn = this.form.querySelector('.cancel-btn')
   }
 
   validatePhoneNumber(phoneNumber) {
@@ -122,14 +127,16 @@ export class CustomerView {
   }
 
   bindAddCustomer(handler) {
-    this.submitBtn.onclick = () => {
+    this.submitBtn.onclick = (event) => {
+      event.preventDefault();
+      const addFormData = new FormData(this.form, this.submitBtn)
       const customer = {
-        name: this.name.value,
-        company: this.company.value,
-        phone: this.phone.value,
-        email: this.email.value,
-        country: this.country.value,
-        status: this.status.checked,
+        name: addFormData.get('name-input'),
+        company: addFormData.get('company-input'),
+        phone: addFormData.get('phone-input'),
+        email: addFormData.get('email-input'),
+        country: addFormData.get('country-input'),
+        status: addFormData.get('status-input'),
       }
       this.errorMessageHide();
       handler(customer)

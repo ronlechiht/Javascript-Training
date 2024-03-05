@@ -7,13 +7,16 @@ export class CustomerController {
     this.customerView.bindAddCustomer(this.handleAddCustomer)
   }
 
-  handleAddCustomer = (customer) => {
+  handleAddCustomer = async (customer) => {
     if (this.customerView.validateForm(customer)) {
-      this.customerManagerModel.addCustomer(customer)
-      this.customerView.displaySnackbar('.successful')
-      this.customerView.resetInput()
-    } else {
-      this.customerView.displaySnackbar('.failed')
+      try {
+        await this.customerManagerModel.addCustomer(customer)
+        this.customerView.displaySnackbar('.successful')
+        this.customerView.resetInput()
+      }
+      catch (error) {
+        this.customerView.displaySnackbar('.failed')
+      }
     }
   }
 }

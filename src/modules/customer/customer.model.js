@@ -1,3 +1,5 @@
+import {Service} from '../../service/service.js'
+
 export class CustomerModel {
   constructor({ id, name, company, phone, email, country, status }) {
     this.id = id
@@ -12,16 +14,10 @@ export class CustomerModel {
 
 export class CustomerManagerModel {
   constructor() {
-    this.customersApi = 'https://customers-json-server.vercel.app/customers'
+    this.customersApi = 'http://localhost:3004/customers'
   }
 
   async addCustomer(data) {
-    fetch(this.customersApi, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+    await Service.post(this.customersApi,data)
   }
 }

@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 
-.inputs-field {
+.submit-form {
   margin-top: 50px;
   display: grid;
   grid-template-columns: auto auto;
@@ -128,9 +128,6 @@ input:checked + .slider-round:before {
   transform: translateX(26px);
 }
 
-.modal-footer {
-  margin-top: 100px;
-  display: flex;
-  justify-content: center;
-  column-gap: 61px;
+.submit-btn {
+  justify-self: right;
 }
