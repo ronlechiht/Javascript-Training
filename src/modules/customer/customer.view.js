@@ -44,11 +44,6 @@ export class CustomerView {
     this.resetInput()
   }
 
-  errorMessageDisplay (inputField, message) {
-    inputField.style.borderColor = '#ff0000'
-    message.style.visibility = 'visible'
-  }
-
   errorMessageHide () {
     this.inputFields.forEach((inputField) => {
       inputField.style.borderColor = '#eee'
@@ -56,6 +51,15 @@ export class CustomerView {
     this.alerts.forEach((message) => {
       message.style.visibility = 'hidden'
     })
+  }
+
+  resetInput() {
+    this.name.value = ''
+    this.company.value = ''
+    this.phone.value = ''
+    this.email.value = ''
+    this.country.value = ''
+    this.status.checked = false
   }
 
   displaySnackbar(snackbar) {
@@ -66,60 +70,57 @@ export class CustomerView {
     )
   }
 
+  validateEmptiness(string) {
+    if (string!=='') return ''
+    else return 'required'
+  }
+
   validatePhoneNumber(phoneNumber) {
-    var re = /\(\d{3}\)\s\d{3}-\d{4}/
-    return re.test(phoneNumber)
+    let re = /\(\d{3}\)\s\d{3}-\d{4}$/
+    if (re.test(phoneNumber)) return ''
+    else return 'invalid'
   }
 
   validateEmail (email) {
-    var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-    return re.test(email)
+    let re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+    if (re.test(email)) return ''
+    else return 'invalid'
+  }
+
+  validationSchema = {
+    'name': [this.validateEmptiness],
+    'company': [this.validateEmptiness],
+    'phone': [this.validateEmptiness, this.validatePhoneNumber],
+    'email': [this.validateEmptiness, this.validateEmail],
+    'country': [this.validateEmptiness]
   }
 
   validateForm(customer) {
-    let isValidate = true
+    let errors = {}
 
-    if (customer.name === '') {
-      this.errorMessageDisplay(this.name, this.alertName)
-      isValidate = false
+    for (let key in customer) {
+      if(this.validationSchema.hasOwnProperty(key)) {
+        let error = ''
+        const customerProperty = customer[key]
+        const validators = this.validationSchema[key]
+        for (let validator of validators) {
+          error = validator(customerProperty)
+          if (error !== '') break
+        }
+        if (error !== '') errors[key] = error
+      }
     }
 
-    if (customer.company === '') {
-      this.errorMessageDisplay(this.company, this.alertCompany)
-      isValidate = false
-    }
-
-    if (customer.phone === '') {
-      this.errorMessageDisplay(this.phone, this.alertPhone1)
-      isValidate = false
-    } else if (!this.validatePhoneNumber(customer.phone)) {
-      this.errorMessageDisplay(this.phone, this.alertPhone2)
-      isValidate = false
-    }
-
-    if (customer.email === '') {
-      this.errorMessageDisplay(this.email, this.alertEmail1)
-      isValidate = false
-    } else if (!this.validateEmail(customer.email)) {
-      this.errorMessageDisplay(this.email, this.alertEmail2)
-      isValidate = false
-    }
-
-    if (customer.country === '') {
-      this.errorMessageDisplay(this.country, this.alertCountry)
-      isValidate = false
-    }
-
-    return isValidate
+    return errors
   }
 
-  resetInput() {
-    this.name.value = ''
-    this.company.value = ''
-    this.phone.value = ''
-    this.email.value = ''
-    this.country.value = ''
-    this.status.checked = false
+  displayFormErrors(errors) {
+    for (let key in errors) {
+      let inputField = this.form.querySelector('.'+key)
+      inputField.style.borderColor = '#ff0000'
+      let errorMessage = this.form.querySelector('.'+key+'-'+errors[key])
+      errorMessage.style.visibility = 'visible'
+    }
   }
 
   bindOpenModal () {

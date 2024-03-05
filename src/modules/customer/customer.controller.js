@@ -9,7 +9,8 @@ export class CustomerController {
   }
 
   handleAddCustomer = async (customer) => {
-    if (this.customerView.validateForm(customer)) {
+    const errors = this.customerView.validateForm(customer)
+    if (Object.keys(errors).length === 0) {
       try {
         await this.customerManagerModel.addCustomer(customer)
         this.customerView.displaySnackbar('.successful')
@@ -18,6 +19,6 @@ export class CustomerController {
       catch (error) {
         this.customerView.displaySnackbar('.failed')
       }
-    }
+    } else this.customerView.displayFormErrors(errors)
   }
 }

@@ -14,7 +14,7 @@ export class CustomerModel {
 
 export class CustomerManagerModel {
   constructor() {
-    this.customersApi = 'http://localhost:3004/customers'
+    this.customersApi = process.env.API_URL
   }
 
   async addCustomer(data) {

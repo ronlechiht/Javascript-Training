@@ -40,8 +40,8 @@
                 customer name
                 <span class="required">*</span>
               </label>
-              <input type="text" name="name-input" class="input-field" />
-              <p class="validate-alert alert-name">
+              <input type="text" name="name-input" class="input-field name" />
+              <p class="validate-alert name-required">
                 The customer name is required
               </p>
             </div>
@@ -50,8 +50,8 @@
                 company
                 <span class="required">*</span>
               </label>
-              <input type="text" name="company-input" class="input-field" />
-              <p class="validate-alert alert-company">
+              <input type="text" name="company-input" class="input-field company" />
+              <p class="validate-alert company-required">
                 The company name is required
               </p>
             </div>
@@ -60,11 +60,11 @@
                 phone number
                 <span class="required">*</span>
               </label>
-              <input type="text" name="phone-input" class="input-field" />
-              <p class="validate-alert alert-phone-1">
+              <input type="text" name="phone-input" class="input-field phone" />
+              <p class="validate-alert phone-required">
                 The phone number is required
               </p>
-              <p class="validate-alert alert-phone-2">
+              <p class="validate-alert phone-invalid">
                 The phone number invalid. Enter phone number in this format: (123) 456-7890
               </p>
             </div>
@@ -73,16 +73,16 @@
                 email
                 <span class="required">*</span>
               </label>
-              <input type="text" name="email-input" class="input-field" />
-              <p class="validate-alert alert-email-1">The email is required</p>
-              <p class="validate-alert alert-email-2">The email invalid</p>
+              <input type="text" name="email-input" class="input-field email" />
+              <p class="validate-alert email-required">The email is required</p>
+              <p class="validate-alert email-invalid">The email invalid</p>
             </div>
             <div class="input-item">
               <label for="country-input" class="input-label">
                 country
                 <span class="required">*</span>
               </label>
-              <select name="country-input" class="input-field">
+              <select name="country-input" class="input-field country">
                 <option value=""></option>
                 <option value="Cambodia">Cambodia</option>
                 <option value="Laos">Laos</option>
@@ -91,7 +91,7 @@
                 <option value="Thailand">Thailand</option>
                 <option value="Vietnam">Vietnam</option>
               </select>
-              <p class="validate-alert alert-country">
+              <p class="validate-alert country-required">
                 The country is required
               </p>
             </div>
