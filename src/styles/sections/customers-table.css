@@ -21,6 +21,14 @@
   column-gap: 15px;
 }
 
+.add-customer-btn {
+  align-self: center;
+}
+
+.add-customer-btn:hover {
+  cursor: pointer;
+}
+
 .search-container {
   display: flex;
 }

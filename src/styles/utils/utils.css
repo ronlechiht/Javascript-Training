@@ -1,0 +1,7 @@
+.visibility-visible {
+  visibility: visible;
+}
+
+.error-field {
+  border-color: #ff0000;
+}

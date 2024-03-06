@@ -8,11 +8,93 @@
     <title>Javascript Practice</title>
 
     <link rel="stylesheet" href="styles/index.css" />
-    <script type="module" src="index.js"></script>
+    <script type="module" src="js/index.js"></script>
   </head>
 
   <body>
     <main>
+      <div class="modal">
+        <div class="snackbar failed">
+          <img src="./assets/images/snackbar/failed.webp" alt="failed icon" />
+          Something went wrong
+        </div>
+        <div class="snackbar successful">
+          <img
+            src="./assets/images/snackbar/successful.webp"
+            alt="successful icon"
+          />
+          Add customer sucessfully
+        </div>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">add customer</h3>
+            <img
+              src="./assets/images/modal/close-btn.png"
+              alt="modal close button"
+              class="modal-close-btn"
+            />
+          </div>
+          <form class="submit-form">
+            <div class="input-item">
+              <label for="name" class="input-label">
+                customer name
+                <span class="required">*</span>
+              </label>
+              <input type="text" name="name" class="input-field name" />
+              <p class="error-message name-message"></p>
+            </div>
+            <div class="input-item">
+              <label for="company" class="input-label">
+                company
+                <span class="required">*</span>
+              </label>
+              <input type="text" name="company" class="input-field company" />
+              <p class="error-message company-message"></p>
+            </div>
+            <div class="input-item">
+              <label for="phone" class="input-label">
+                phone number
+                <span class="required">*</span>
+              </label>
+              <input type="text" name="phone" class="input-field phone" />
+              <p class="error-message phone-message"></p>
+            </div>
+            <div class="input-item">
+              <label for="email" class="input-label">
+                email
+                <span class="required">*</span>
+              </label>
+              <input type="text" name="email" class="input-field email" />
+              <p class="error-message email-message"></p>
+            </div>
+            <div class="input-item">
+              <label for="country" class="input-label">
+                country
+                <span class="required">*</span>
+              </label>
+              <select name="country" class="input-field country">
+                <option value=""></option>
+                <option value="Cambodia">Cambodia</option>
+                <option value="Laos">Laos</option>
+                <option value="Malaysia">Malaysia</option>
+                <option value="Myanmar">Myanmar</option>
+                <option value="Thailand">Thailand</option>
+                <option value="Vietnam">Vietnam</option>
+              </select>
+              <p class="error-message country-message"></p>
+            </div>
+            <div class="input-item status-item">
+              <label for="status" class="input-label">status</label>
+              <label class="switch">
+                <input type="checkbox" name="status" />
+                <span class="slider-round"></span>
+              </label>
+            </div>
+            <button class="btn btn-primary submit-btn" type="submit">submit</button>
+            <button class="btn btn-secondary cancel-btn" type="button">cancel</div>
+          </form>
+        </div>
+      </div>
       <div class="nav-container">
         <h1 class="dashboard-title">
           <img src="./assets/images/dashboard/dashboard-logo.webp" alt="logo" />
@@ -105,6 +187,13 @@
       </div>
 
       <div class="main-container">
+        <div class="snackbar update-successful">
+          <img
+            src="./assets/images/snackbar/successful.webp"
+            alt="successful icon"
+          />
+          Customer information has been successfully updated
+        </div>
         <div class="container general-information">
           <div class="total-customers">
             <img
@@ -159,6 +248,7 @@
               <img
                 src="./assets/images/customers-table/add-icon.webp"
                 alt="add icon"
+                class="add-customer-btn"
               />
               <div class="search-container">
                 <button class="search-btn">
@@ -207,7 +297,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status status-active">Active</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -217,7 +311,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status">Inactive</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -227,7 +325,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status status-active">Active</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -237,7 +339,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status">Inactive</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -247,7 +353,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status status-active">Active</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -257,7 +367,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status">Inactive</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -267,7 +381,11 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status status-active">Active</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
               <div class="customer">
@@ -277,13 +395,23 @@
                 <p class="email">jane@microsoft.com</p>
                 <p class="country">United States</p>
                 <p class="status">Inactive</p>
-                <img src="./assets/images/customers-table/three-dots-icon.png" alt="three dots icon" class="three-dots-btn">
+                <img
+                  src="./assets/images/customers-table/three-dots-icon.png"
+                  alt="three dots icon"
+                  class="three-dots-btn"
+                />
               </div>
               <div class="customer-divider"></div>
             </div>
             <div class="table-footer">
-              <img src="./assets/images/customers-table/previous-pagination.png" alt="previous button">
-              <img src="./assets/images/customers-table/next-pagination.png" alt="next button">
+              <img
+                src="./assets/images/customers-table/previous-pagination.png"
+                alt="previous button"
+              />
+              <img
+                src="./assets/images/customers-table/next-pagination.png"
+                alt="next button"
+              />
             </div>
           </div>
         </div>

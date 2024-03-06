@@ -1,3 +1,31 @@
 {
-  "customers": []
+  "customers": [
+    {
+      "id": "0782",
+      "name": "sadfasdf",
+      "company": "asfdas",
+      "phone": "(123) 456-7890",
+      "email": "zvzxcv@zcvc.xcv",
+      "country": "Cambodia",
+      "status": null
+    },
+    {
+      "id": "9a63",
+      "name": "zcvzxzcvxz",
+      "company": "zxcvzxcvxz",
+      "phone": "(012) 345-6789",
+      "email": "xcvxzcvzxc@cxvzcv.zxc",
+      "country": "Laos",
+      "status": null
+    },
+    {
+      "id": "1bdb",
+      "name": "zxcvxzcvxzcv",
+      "company": "xzcvxzcvxz",
+      "phone": "(123) 456-7890",
+      "email": "zxcvxzcvxc@dafsdf.xzc",
+      "country": "Cambodia",
+      "status": null
+    }
+  ]
 }
