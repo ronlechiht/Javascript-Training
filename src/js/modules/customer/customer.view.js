@@ -2,6 +2,10 @@ import { snackbarDelay, errorMessageList } from '../../constants/constants'
 
 import { validateForm } from '../../utils/validation'
 
+import { createElement, createThreeDotsBtn } from '../../utils/dom'
+
+import { search, sort } from '../../utils/feature'
+
 export class CustomerView {
   constructor() {
     //Get add customer button
@@ -21,6 +25,24 @@ export class CustomerView {
     //Get button
     this.submitBtn = this.form.querySelector('.submit-btn')
     this.cancelBtn = this.form.querySelector('.cancel-btn')
+
+    //Get general information
+    this.customersQuantity = document.querySelector('.customers-quantity')
+    this.activeQuantity = document.querySelector('.active-quantity')
+
+    //Get search input
+    this.searchInput = document.querySelector('.search-input')
+
+    //Get sort type
+    this.sortOption = document.querySelector('.sort-option-list')
+
+    //Get customers table
+    this.customersTable = document.querySelector('.table-body')
+
+    //Get pagination
+    this.previousBtn = document.querySelector('.previous-btn')
+    this.nextBtn = document.querySelector('.next-btn')
+    this.pagination = 0
   }
 
   displayModal(modal) {
@@ -68,6 +90,64 @@ export class CustomerView {
     }
   }
 
+  renderCustomersTable(customers, pagination) {
+    while (this.customersTable.firstChild) {
+      this.customersTable.removeChild(this.customersTable.firstChild)
+    }
+
+    const activeCustomers = customers.filter(
+      (customer) => customer.status === 'on'
+    )
+
+    const searchValue = this.searchInput.value.toLowerCase()
+    const _customers = search(customers, searchValue)
+
+    const sortType = this.sortOption.value
+    const __customers = sort(_customers, sortType)
+
+    let count = __customers.length - pagination * 8 - 1
+
+    for (let i = 0; i <= Math.min(count, 7); i++) {
+      let customer = __customers[pagination * 8 + i]
+
+      let customerRow = createElement('div', 'customer')
+      for (let key in customer) {
+        if (key === 'id') continue
+        if (key !== 'status') {
+          let customerProperty = createElement('p')
+          customerProperty.innerHTML = customer[key]
+          customerRow.appendChild(customerProperty)
+        } else {
+          let customerStatus = createElement('p', 'status-tag')
+          if (customer.status === 'on') {
+            customerStatus.classList.add('status-active')
+            customerStatus.innerHTML = 'Active'
+          } else {
+            customerStatus.innerHTML = 'Inactive'
+          }
+          customerRow.appendChild(customerStatus)
+        }
+      }
+
+      let threeDotsBtn = createThreeDotsBtn('three-dots-btn')
+      threeDotsBtn.id = customer.id
+      customerRow.appendChild(threeDotsBtn)
+
+      this.customersTable.appendChild(customerRow)
+      let customerDivider = createElement('div', 'customer-divider')
+      this.customersTable.appendChild(customerDivider)
+    }
+
+    if (pagination === 0) this.previousBtn.classList.add('visibility-hidden')
+    else this.previousBtn.classList.remove('visibility-hidden')
+
+    if (count < 8) this.nextBtn.classList.add('visibility-hidden')
+    else this.nextBtn.classList.remove('visibility-hidden')
+
+    this.customersQuantity.innerHTML = customers.length
+    this.activeQuantity.innerHTML = activeCustomers.length
+  }
+
   bindOpenModal() {
     this.addCustomerBtn.onclick = () => {
       this.displayModal(this.modal)
@@ -92,6 +172,7 @@ export class CustomerView {
         acc[key] = addFormData.get(key)
         return acc
       }, {})
+      if (!customer.status) customer.status = '~off'
 
       this.errorMessageHide()
       const errors = validateForm(customer)
@@ -108,6 +189,32 @@ export class CustomerView {
       } catch (error) {
         this.displaySnackbar('.failed')
       }
+    }
+  }
+
+  bindSearchOnChanged(handler) {
+    this.searchInput.onkeyup = () => {
+      this.pagination = 0
+      handler(this.pagination)
+    }
+  }
+
+  bindSortOnChanged(handler) {
+    this.sortOption.onchange = () => {
+      this.pagination = 0
+      handler(this.pagination)
+    }
+  }
+
+  bindPagination(handler) {
+    this.nextBtn.onclick = () => {
+      this.pagination += 1
+      handler(this.pagination)
+    }
+
+    this.previousBtn.onclick = () => {
+      this.pagination -= 1
+      handler(this.pagination)
     }
   }
 }

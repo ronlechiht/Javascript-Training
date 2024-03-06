@@ -2,6 +2,10 @@
   visibility: visible;
 }
 
+.visibility-hidden {
+  visibility: hidden;
+}
+
 .error-field {
   border-color: #ff0000;
 }

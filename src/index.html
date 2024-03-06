@@ -202,7 +202,7 @@
             />
             <div class="total-customers-information">
               <p class="information-title">total customers</p>
-              <p class="quantity">0</p>
+              <p class="quantity customers-quantity">0</p>
               <div class="growth">this month</div>
             </div>
           </div>
@@ -214,7 +214,7 @@
             />
             <div class="active-now-information">
               <p class="information-title">active now</p>
-              <p class="quantity">0</p>
+              <p class="quantity active-quantity">0</p>
               <div class="customers-images">
                 <img
                   src="./assets/images/general-information/customer-1.webp"
@@ -264,20 +264,25 @@
                   class="search-input"
                 />
               </div>
-              <select class="sort-option-list">
-                <option value="sort-name" class="sort-option">
-                  Sort by: Name
-                </option>
-                <option value="sort-company" class="sort-option">
-                  Sort by: Company
-                </option>
-                <option value="sort-email" class="sort-option">
-                  Sort by: Email
-                </option>
-                <option value="sort-status" class="sort-option">
-                  Sort by: Status
-                </option>
-              </select>
+              <div class="sort-customers">
+                <p class="sort-option-label">Sort by:</p>
+                <select class="sort-option-list">
+                  <option value="none" class="sort-option">
+                  </option>
+                  <option value="name" class="sort-option">
+                    Name
+                  </option>
+                  <option value="company" class="sort-option">
+                    Company
+                  </option>
+                  <option value="email" class="sort-option">
+                    Email
+                  </option>
+                  <option value="status" class="sort-option">
+                    Status
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
           <div class="section-body">
@@ -290,127 +295,17 @@
               <h4 class="table-heading">status</h4>
             </div>
             <div class="table-body">
-              <div class="customer">
-                <p class="customer-name">Jane Cooper</p>
-                <p class="company">Microsoft</p>
-                <p class="phone-number">(225) 255-0118</p>
-                <p class="email">jane@microsoft.com</p>
-                <p class="country">United States</p>
-                <p class="status status-active">Active</p>
-                <img
-                  src="./assets/images/customers-table/three-dots-icon.png"
-                  alt="three dots icon"
-                  class="three-dots-btn"
-                />
-              </div>
-              <div class="customer-divider"></div>
-              <div class="customer">
-                <p class="customer-name">Jane Cooper</p>
-                <p class="company">Microsoft</p>
-                <p class="phone-number">(225) 255-0118</p>
-                <p class="email">jane@microsoft.com</p>
-                <p class="country">United States</p>
-                <p class="status">Inactive</p>
-                <img
-                  src="./assets/images/customers-table/three-dots-icon.png"
-                  alt="three dots icon"
-                  class="three-dots-btn"
-                />
-              </div>
-              <div class="customer-divider"></div>
-              <div class="customer">
-                <p class="customer-name">Jane Cooper</p>
-                <p class="company">Microsoft</p>
-                <p class="phone-number">(225) 255-0118</p>
-                <p class="email">jane@microsoft.com</p>
-                <p class="country">United States</p>
-                <p class="status status-active">Active</p>
-                <img
-                  src="./assets/images/customers-table/three-dots-icon.png"
-                  alt="three dots icon"
-                  class="three-dots-btn"
-                />
-              </div>
-              <div class="customer-divider"></div>
-              <div class="customer">
-                <p class="customer-name">Jane Cooper</p>
-                <p class="company">Microsoft</p>
-                <p class="phone-number">(225) 255-0118</p>
-                <p class="email">jane@microsoft.com</p>
-                <p class="country">United States</p>
-                <p class="status">Inactive</p>
-                <img
-                  src="./assets/images/customers-table/three-dots-icon.png"
-                  alt="three dots icon"
-                  class="three-dots-btn"
-                />
-              </div>
-              <div class="customer-divider"></div>
-              <div class="customer">
-                <p class="customer-name">Jane Cooper</p>
-                <p class="company">Microsoft</p>
-                <p class="phone-number">(225) 255-0118</p>
-                <p class="email">jane@microsoft.com</p>
-                <p class="country">United States</p>
-                <p class="status status-active">Active</p>
-                <img
-                  src="./assets/images/customers-table/three-dots-icon.png"
-                  alt="three dots icon"
-                  class="three-dots-btn"
-                />
-              </div>
-              <div class="customer-divider"></div>
-              <div class="customer">
-                <p class="customer-name">Jane Cooper</p>
-                <p class="company">Microsoft</p>
-                <p class="phone-number">(225) 255-0118</p>
-                <p class="email">jane@microsoft.com</p>
-                <p class="country">United States</p>
-                <p class="status">Inactive</p>
-                <img
-                  src="./assets/images/customers-table/three-dots-icon.png"
-                  alt="three dots icon"
-                  class="three-dots-btn"
-                />
-              </div>
-              <div class="customer-divider"></div>
-              <div class="customer">
-                <p class="customer-name">Jane Cooper</p>
-                <p class="company">Microsoft</p>
-                <p class="phone-number">(225) 255-0118</p>
-                <p class="email">jane@microsoft.com</p>
-                <p class="country">United States</p>
-                <p class="status status-active">Active</p>
-                <img
-                  src="./assets/images/customers-table/three-dots-icon.png"
-                  alt="three dots icon"
-                  class="three-dots-btn"
-                />
-              </div>
-              <div class="customer-divider"></div>
-              <div class="customer">
-                <p class="customer-name">Jane Cooper</p>
-                <p class="company">Microsoft</p>
-                <p class="phone-number">(225) 255-0118</p>
-                <p class="email">jane@microsoft.com</p>
-                <p class="country">United States</p>
-                <p class="status">Inactive</p>
-                <img
-                  src="./assets/images/customers-table/three-dots-icon.png"
-                  alt="three dots icon"
-                  class="three-dots-btn"
-                />
-              </div>
-              <div class="customer-divider"></div>
             </div>
             <div class="table-footer">
               <img
                 src="./assets/images/customers-table/previous-pagination.png"
                 alt="previous button"
+                class="previous-btn"
               />
               <img
                 src="./assets/images/customers-table/next-pagination.png"
                 alt="next button"
+                class="next-btn"
               />
             </div>
           </div>
