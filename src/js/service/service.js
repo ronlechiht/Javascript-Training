@@ -7,5 +7,5 @@ export const HttpService = {
       },
       body: JSON.stringify(data),
     })
-  }
+  },
 }

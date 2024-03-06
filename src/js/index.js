@@ -1,7 +1,10 @@
 import {
   CustomerModel,
   CustomerView,
-  CustomerController
+  CustomerController,
 } from './modules/customer/index.js'
 
-const customerApp = new CustomerController(new CustomerModel (), new CustomerView ())
+const customerApp = new CustomerController(
+  new CustomerModel(),
+  new CustomerView()
+)

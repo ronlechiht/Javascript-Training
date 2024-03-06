@@ -1,9 +1,6 @@
-import {
-  snackbarDelay,
-  errorMessageList,
-} from "../../constants/constants"
+import { snackbarDelay, errorMessageList } from '../../constants/constants'
 
-import { validateForm } from "../../utils/validation"
+import { validateForm } from '../../utils/validation'
 
 export class CustomerView {
   constructor() {
@@ -26,24 +23,24 @@ export class CustomerView {
     this.cancelBtn = this.form.querySelector('.cancel-btn')
   }
 
-  displayModal (modal) {
+  displayModal(modal) {
     modal.classList.add('visibility-visible')
   }
 
-  hideModal (modal) {
+  hideModal(modal) {
     modal.classList.remove('visibility-visible')
     this.errorMessageHide()
     this.resetInput()
   }
 
-  errorMessageHide () {
+  errorMessageHide() {
     this.inputFields.forEach((inputField) => {
       inputField.classList.remove('error-field')
       inputField.nextElementSibling.innerHTML = ''
     })
   }
 
-  resetInput () {
+  resetInput() {
     this.inputFields.forEach((inputField) => {
       inputField.value = ''
     })
@@ -51,29 +48,33 @@ export class CustomerView {
     this.status.checked = false
   }
 
-  displaySnackbar (snackbar) {
+  displaySnackbar(snackbar) {
     document.querySelector(snackbar).classList.add('visibility-visible')
     setTimeout(
-      () => (document.querySelector(snackbar).classList.remove('visibility-visible')),
+      () =>
+        document.querySelector(snackbar).classList.remove('visibility-visible'),
       snackbarDelay
     )
   }
 
   displayFormErrors(errors) {
     for (let key in errors) {
-      let inputField = this.form.querySelector('.'+key)
+      let customerProperty = key
+      let errorType = errors[key]
+      let inputField = this.form.querySelector('.' + key)
       inputField.classList.add('error-field')
-      inputField.nextElementSibling.innerHTML = errorMessageList[key][errors[key]]
+      let errorMessage = inputField.nextElementSibling
+      errorMessage.innerHTML = errorMessageList[customerProperty][errorType]
     }
   }
 
-  bindOpenModal () {
+  bindOpenModal() {
     this.addCustomerBtn.onclick = () => {
       this.displayModal(this.modal)
     }
   }
 
-  bindCloseModal () {
+  bindCloseModal() {
     this.closeModalBtn.onclick = () => {
       this.hideModal(this.modal)
     }
@@ -85,26 +86,27 @@ export class CustomerView {
 
   bindAddCustomer(handler) {
     this.submitBtn.onclick = (event) => {
-      event.preventDefault();
+      event.preventDefault()
       const addFormData = new FormData(this.form, this.submitBtn)
-      let customer = {}
-      for (let key of addFormData.keys()) {
-        customer[key] = addFormData.get(key)
-      }
+      const customer = [...addFormData.keys()].reduce((acc, key) => {
+        acc[key] = addFormData.get(key)
+        return acc
+      }, {})
+
       this.errorMessageHide()
       const errors = validateForm(customer)
-      if (Object.keys(errors).length === 0) {
-        try {
-          handler(customer)
-          this.displaySnackbar('.successful')
-          this.resetInput()
-        }
-        catch (error) {
-          this.displaySnackbar('.failed')
-        }
-      }
-      else {
+
+      if (Object.keys(errors).length) {
         this.displayFormErrors(errors)
+        return
+      }
+
+      try {
+        handler(customer)
+        this.displaySnackbar('.successful')
+        this.resetInput()
+      } catch (error) {
+        this.displaySnackbar('.failed')
       }
     }
   }
