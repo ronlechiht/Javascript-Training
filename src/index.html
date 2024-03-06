@@ -8,7 +8,7 @@
     <title>Javascript Practice</title>
 
     <link rel="stylesheet" href="styles/index.css" />
-    <script type="module" src="index.js"></script>
+    <script type="module" src="js/index.js"></script>
   </head>
 
   <body>
@@ -36,53 +36,43 @@
           </div>
           <form class="submit-form">
             <div class="input-item">
-              <label for="name-input" class="input-label">
+              <label for="name" class="input-label">
                 customer name
                 <span class="required">*</span>
               </label>
-              <input type="text" name="name-input" class="input-field name" />
-              <p class="validate-alert name-required">
-                The customer name is required
-              </p>
+              <input type="text" name="name" class="input-field name" />
+              <p class="error-message name-message"></p>
             </div>
             <div class="input-item">
-              <label for="company-input" class="input-label">
+              <label for="company" class="input-label">
                 company
                 <span class="required">*</span>
               </label>
-              <input type="text" name="company-input" class="input-field company" />
-              <p class="validate-alert company-required">
-                The company name is required
-              </p>
+              <input type="text" name="company" class="input-field company" />
+              <p class="error-message company-message"></p>
             </div>
             <div class="input-item">
-              <label for="phone-input" class="input-label">
+              <label for="phone" class="input-label">
                 phone number
                 <span class="required">*</span>
               </label>
-              <input type="text" name="phone-input" class="input-field phone" />
-              <p class="validate-alert phone-required">
-                The phone number is required
-              </p>
-              <p class="validate-alert phone-invalid">
-                The phone number invalid. Enter phone number in this format: (123) 456-7890
-              </p>
+              <input type="text" name="phone" class="input-field phone" />
+              <p class="error-message phone-message"></p>
             </div>
             <div class="input-item">
-              <label for="email-input" class="input-label">
+              <label for="email" class="input-label">
                 email
                 <span class="required">*</span>
               </label>
-              <input type="text" name="email-input" class="input-field email" />
-              <p class="validate-alert email-required">The email is required</p>
-              <p class="validate-alert email-invalid">The email invalid</p>
+              <input type="text" name="email" class="input-field email" />
+              <p class="error-message email-message"></p>
             </div>
             <div class="input-item">
-              <label for="country-input" class="input-label">
+              <label for="country" class="input-label">
                 country
                 <span class="required">*</span>
               </label>
-              <select name="country-input" class="input-field country">
+              <select name="country" class="input-field country">
                 <option value=""></option>
                 <option value="Cambodia">Cambodia</option>
                 <option value="Laos">Laos</option>
@@ -91,14 +81,12 @@
                 <option value="Thailand">Thailand</option>
                 <option value="Vietnam">Vietnam</option>
               </select>
-              <p class="validate-alert country-required">
-                The country is required
-              </p>
+              <p class="error-message country-message"></p>
             </div>
             <div class="input-item status-item">
-              <label for="status-input" class="input-label">status</label>
+              <label for="status" class="input-label">status</label>
               <label class="switch">
-                <input type="checkbox" name="status-input" />
+                <input type="checkbox" name="status" />
                 <span class="slider-round"></span>
               </label>
             </div>

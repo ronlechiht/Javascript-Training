@@ -14,3 +14,6 @@
 @import url("sections/dashboard.css");
 @import url("sections/general-information.css");
 @import url("sections/customers-table.css");
+
+/*Import utils */
+@import url("utils/utils.css");

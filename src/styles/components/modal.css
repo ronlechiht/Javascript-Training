@@ -65,8 +65,7 @@
   font-size: 20px;
 }
 
-.validate-alert {
-  visibility: hidden;
+.error-message {
   position: absolute;
   margin-top: 9px;
   font-size: 12px;

@@ -1,101 +1,30 @@
 {
   "customers": [
     {
-      "id": "3422",
-      "name": "Le Chi Ron",
-      "company": "Agility",
+      "id": "0782",
+      "name": "sadfasdf",
+      "company": "asfdas",
       "phone": "(123) 456-7890",
-      "email": "ronlechi@gmail.com",
-      "country": "Vietnam",
-      "status": true
-    },
-    {
-      "id": "3497",
-      "name": "Le Chi Ron",
-      "company": "Agility",
-      "phone": "(123) 456-7890",
-      "email": "lechiron@gmail.com",
-      "country": "Vietnam",
-      "status": false
-    },
-    {
-      "id": "f769",
-      "name": "Le Chi Ron",
-      "company": "Agility",
-      "phone": "(123) 456-7890",
-      "email": "lechiron@gami.com",
-      "country": "Vietnam",
-      "status": true
-    },
-    {
-      "id": "7f7c",
-      "name": "Le Chi Ron",
-      "company": "Agilit",
-      "phone": "(123) 456-7890",
-      "email": "ronlechi@gmail.com",
-      "country": "Vietnam",
-      "status": false
-    },
-    {
-      "id": "5d47",
-      "name": "Ron Le Chi ",
-      "company": "sdfsdf",
-      "phone": "(123) 456-7890",
-      "email": "dsfasd@dsaf.xc",
+      "email": "zvzxcv@zcvc.xcv",
       "country": "Cambodia",
-      "status": false
+      "status": null
     },
     {
-      "id": "7392",
-      "name": "Le Chi Ron",
-      "company": "sdfafd",
-      "phone": "(123) 456-7890",
-      "email": "sdaf@asdf.zxc",
+      "id": "9a63",
+      "name": "zcvzxzcvxz",
+      "company": "zxcvzxcvxz",
+      "phone": "(012) 345-6789",
+      "email": "xcvxzcvzxc@cxvzcv.zxc",
       "country": "Laos",
-      "status": false
+      "status": null
     },
     {
-      "id": "7e02",
-      "name": "zcxvzxvc",
-      "company": "zvzxvxzcv",
+      "id": "1bdb",
+      "name": "zxcvxzcvxzcv",
+      "company": "xzcvxzcvxz",
       "phone": "(123) 456-7890",
-      "email": "zcvzxczxv@zzcvcv.zvc",
+      "email": "zxcvxzcvxc@dafsdf.xzc",
       "country": "Cambodia",
-      "status": null
-    },
-    {
-      "id": "8b9f",
-      "name": "xcvzxcvzxvc",
-      "company": "zxcvzxcvvc",
-      "phone": "(123) 456-7890",
-      "email": "zvczxczxv@zvzxc.cvc",
-      "country": "Laos"
-    },
-    {
-      "id": "3e48",
-      "name": "sadfasdsfd",
-      "company": "asdfadf",
-      "phone": "(123) 456-7890",
-      "email": "cvxcvxz@zcvcv.cvv",
-      "country": "Vietnam",
-      "status": "on"
-    },
-    {
-      "id": "6ded",
-      "name": "Le Chi Ron",
-      "company": "Agility",
-      "phone": "(123) 456-7890",
-      "email": "ronlechi@gmail.com",
-      "country": "Vietnam",
-      "status": null
-    },
-    {
-      "id": "ddb6",
-      "name": "zxcvxcv",
-      "company": "zczxvxzv",
-      "phone": "(123) 456-7889",
-      "email": "zcvxzcv@cvzxx.xcv",
-      "country": "Myanmar",
       "status": null
     }
   ]
