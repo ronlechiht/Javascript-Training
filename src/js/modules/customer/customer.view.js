@@ -2,9 +2,11 @@ import { snackbarDelay, errorMessageList } from '../../constants/constants'
 
 import { validateForm } from '../../utils/validation'
 
-import { createElement, createThreeDotsBtn } from '../../utils/dom'
+import { createElement } from '../../utils/dom'
 
 import { search, sort } from '../../utils/feature'
+
+import { createDropdownBtn, createDropdownMenu } from '../../utils/dropdown'
 
 export class CustomerView {
   constructor() {
@@ -129,9 +131,19 @@ export class CustomerView {
         }
       }
 
-      let threeDotsBtn = createThreeDotsBtn('three-dots-btn')
-      threeDotsBtn.id = customer.id
-      customerRow.appendChild(threeDotsBtn)
+      let dropDownMenuContainer = createElement(
+        'div',
+        'dropdown-menu-container'
+      )
+
+      let dropdownBtn = createDropdownBtn()
+      dropdownBtn.id = customer.id
+      dropDownMenuContainer.appendChild(dropdownBtn)
+
+      let dropDownMenu = createDropdownMenu()
+      dropDownMenuContainer.appendChild(dropDownMenu)
+
+      customerRow.appendChild(dropDownMenuContainer)
 
       this.customersTable.appendChild(customerRow)
       let customerDivider = createElement('div', 'customer-divider')
