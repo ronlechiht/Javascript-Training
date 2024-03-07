@@ -1,5 +1,7 @@
 import { createElement } from './dom'
 
+import { CustomerView } from '../modules/customer/customer.model'
+
 export function createDropdownBtn() {
   let dropdownBtn = createElement('div', 'dropdown-btn')
   let dot1 = createElement('div', 'dot')
@@ -30,6 +32,7 @@ export function createDropdownMenu() {
   let dropdownMenu = createElement('ul', 'dropdown-menu')
   let editOption = createElement('li', 'edit-customer')
   editOption.innerHTML = 'Edit'
+  editOption.onclick = 'openEditModal()'
   let removeOption = createElement('li', 'remove-customer')
   removeOption.innerHTML = 'Remove'
   dropdownMenu.append(editOption, removeOption)

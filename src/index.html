@@ -13,21 +13,29 @@
 
   <body>
     <main>
-      <div class="modal">
-        <div class="snackbar failed">
+      <div class="modal add-update-modal">
+        <div class="snackbar failed add-update-failed">
           <img src="./assets/images/snackbar/failed.webp" alt="failed icon" />
           Something went wrong
         </div>
-        <div class="snackbar successful">
+        <div class="snackbar successful add-successful">
           <img
             src="./assets/images/snackbar/successful.webp"
             alt="successful icon"
           />
           Add customer sucessfully
         </div>
+        <div class="snackbar successful update-successful">
+          <img
+            src="./assets/images/snackbar/successful.webp"
+            alt="successful icon"
+          />
+          Customer information has been successfully updated
+        </div>
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title">add customer</h3>
+            <h3 class="modal-title add-title">Add Customer</h3>
+            <h3 class="modal-title update-title">Update Customer</h3>
             <img
               src="./assets/images/modal/close-btn.png"
               alt="modal close button"
@@ -90,9 +98,40 @@
                 <span class="slider-round"></span>
               </label>
             </div>
-            <button class="btn btn-primary submit-btn" type="submit">submit</button>
+            <div class="submit-btn-group">
+              <button class="btn btn-primary submit-btn" type="submit">submit</button>
+              <button class="btn btn-primary submit-update-btn" type="submit">submit</button>
+            </div>
             <button class="btn btn-secondary cancel-btn" type="button">cancel</div>
           </form>
+        </div>
+      </div>
+      <div class="modal remove-modal">
+        <div class="snackbar failed remove-failed">
+          <img src="./assets/images/snackbar/failed.webp" alt="failed icon" />
+          Something went wrong
+        </div>
+        <div class="snackbar successful remove-successful">
+          <img
+            src="./assets/images/snackbar/successful.webp"
+            alt="successful icon"
+          />
+          Remove customer sucessfully
+        </div>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Do you want to remove this customer?</h3>
+            <img
+              src="./assets/images/modal/close-btn.png"
+              alt="modal close button"
+              class="remove-modal-close-btn"
+            />
+          </div>
+
+          <div class="remove-btn-group">
+            <button class="btn btn-primary accept-remove-btn" type="button">yes</button>
+            <button class="btn btn-secondary deny-remove-btn" type="button">no</button>
+          </div>
         </div>
       </div>
       <div class="nav-container">
@@ -187,13 +226,6 @@
       </div>
 
       <div class="main-container">
-        <div class="snackbar update-successful">
-          <img
-            src="./assets/images/snackbar/successful.webp"
-            alt="successful icon"
-          />
-          Customer information has been successfully updated
-        </div>
         <div class="container general-information">
           <div class="total-customers">
             <img

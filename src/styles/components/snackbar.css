@@ -21,9 +21,3 @@
 .successful {
   background-color: #00ac4f;
 }
-
-.update-successful {
-  background-color: #00ac4f;
-  margin: 0;
-  align-self: flex-end;
-}

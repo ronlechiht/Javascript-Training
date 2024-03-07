@@ -25,13 +25,21 @@
 }
 
 .modal-title {
+  visibility: hidden;
   font-size: 36px;
   font-weight: 600;
   line-height: 54px;
-  text-transform: capitalize;
+}
+
+.update-title {
+  position: absolute;
 }
 
 .modal-close-btn:hover {
+  cursor: pointer;
+}
+
+.remove-modal-close-btn:hover {
   cursor: pointer;
 }
 
@@ -127,6 +135,22 @@ input:checked + .slider-round:before {
   transform: translateX(26px);
 }
 
-.submit-btn {
+.submit-btn-group {
+  display: flex;
   justify-self: right;
+}
+
+.submit-btn, .submit-update-btn {
+  visibility: hidden;
+}
+
+.submit-update-btn {
+  position: absolute;
+}
+
+.remove-btn-group {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  column-gap: 60px;
 }

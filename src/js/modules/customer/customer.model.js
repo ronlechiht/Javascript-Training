@@ -9,4 +9,14 @@ export class CustomerModel {
   async addCustomer(data) {
     await HttpService.post(customerApi, data)
   }
+
+  async editCustomer(id, data) {
+    const path = customerApi + '/' + id
+    await HttpService.put(path, data)
+  }
+
+  async deleteCustomer(id) {
+    const path = customerApi + '/' + id
+    await HttpService.delete(path)
+  }
 }

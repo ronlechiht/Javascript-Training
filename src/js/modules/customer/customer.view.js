@@ -6,16 +6,25 @@ import { createElement } from '../../utils/dom'
 
 import { search, sort } from '../../utils/feature'
 
-import { createDropdownBtn, createDropdownMenu } from '../../utils/dropdown'
+import { createDropdownBtn } from '../../utils/dropdown'
 
 export class CustomerView {
   constructor() {
     //Get add customer button
     this.addCustomerBtn = document.querySelector('.add-customer-btn')
 
-    //Get add customer modal
-    this.modal = document.querySelector('.modal')
+    //Get modal
+    this.modal = document.querySelector('.add-update-modal')
     this.closeModalBtn = this.modal.querySelector('.modal-close-btn')
+    this.removeModal = document.querySelector('.remove-modal')
+    this.closeRemoveModalBtn = this.removeModal.querySelector(
+      '.remove-modal-close-btn'
+    )
+
+    //Get modal title
+    this.addTitle = this.modal.querySelector('.add-title')
+    this.updateTitle = this.modal.querySelector('.update-title')
+    this.removeTitle = this.removeModal.querySelector('.modal-title')
 
     //Get submit form
     this.form = this.modal.querySelector('.submit-form')
@@ -26,7 +35,10 @@ export class CustomerView {
 
     //Get button
     this.submitBtn = this.form.querySelector('.submit-btn')
+    this.submitUpdateBtn = this.form.querySelector('.submit-update-btn')
     this.cancelBtn = this.form.querySelector('.cancel-btn')
+    this.acceptRemoveBtn = this.removeModal.querySelector('.accept-remove-btn')
+    this.denyRemoveBtn = this.removeModal.querySelector('.deny-remove-btn')
 
     //Get general information
     this.customersQuantity = document.querySelector('.customers-quantity')
@@ -47,14 +59,43 @@ export class CustomerView {
     this.pagination = 0
   }
 
-  displayModal(modal) {
-    modal.classList.add('visibility-visible')
+  displayModal() {
+    this.modal.classList.add('visibility-visible')
+    this.addTitle.classList.add('visibility-visible')
+    this.submitBtn.classList.add('visibility-visible')
   }
 
-  hideModal(modal) {
-    modal.classList.remove('visibility-visible')
+  displayEditModal(customer) {
+    this.modal.classList.add('visibility-visible')
+    this.updateTitle.classList.add('visibility-visible')
+    this.submitUpdateBtn.classList.add('visibility-visible')
+    this.submitUpdateBtn.id = customer.id
+    for (let inputField of this.inputFields) {
+      let key = inputField.name
+      inputField.value = customer[key]
+    }
+    this.status.checked = customer.status === 'on'
+  }
+
+  displayRemoveModal(id) {
+    this.removeModal.classList.add('visibility-visible')
+    this.removeTitle.classList.add('visibility-visible')
+    this.acceptRemoveBtn.id = id
+  }
+
+  hideModal() {
+    this.modal.classList.remove('visibility-visible')
+    this.addTitle.classList.remove('visibility-visible')
+    this.updateTitle.classList.remove('visibility-visible')
+    this.submitBtn.classList.remove('visibility-visible')
+    this.submitUpdateBtn.classList.remove('visibility-visible')
     this.errorMessageHide()
     this.resetInput()
+  }
+
+  hideRemoveModal() {
+    this.removeModal.classList.remove('visibility-visible')
+    this.removeTitle.classList.remove('visibility-visible')
   }
 
   errorMessageHide() {
@@ -131,19 +172,32 @@ export class CustomerView {
         }
       }
 
-      let dropDownMenuContainer = createElement(
+      let dropdownMenuContainer = createElement(
         'div',
         'dropdown-menu-container'
       )
 
       let dropdownBtn = createDropdownBtn()
       dropdownBtn.id = customer.id
-      dropDownMenuContainer.appendChild(dropdownBtn)
+      dropdownMenuContainer.appendChild(dropdownBtn)
 
-      let dropDownMenu = createDropdownMenu()
-      dropDownMenuContainer.appendChild(dropDownMenu)
+      let dropdownMenu = createElement('ul', 'dropdown-menu')
+      let editOption = createElement('li', 'edit-customer')
+      editOption.innerHTML = 'Edit'
+      editOption.onclick = (e) => {
+        e.target.parentNode.classList.remove('visibility-visible')
+        this.displayEditModal(customer)
+      }
+      let removeOption = createElement('li', 'remove-customer')
+      removeOption.innerHTML = 'Remove'
+      removeOption.onclick = (e) => {
+        e.target.parentNode.classList.remove('visibility-visible')
+        this.displayRemoveModal(customer.id)
+      }
+      dropdownMenu.append(editOption, removeOption)
+      dropdownMenuContainer.appendChild(dropdownMenu)
 
-      customerRow.appendChild(dropDownMenuContainer)
+      customerRow.appendChild(dropdownMenuContainer)
 
       this.customersTable.appendChild(customerRow)
       let customerDivider = createElement('div', 'customer-divider')
@@ -162,44 +216,87 @@ export class CustomerView {
 
   bindOpenModal() {
     this.addCustomerBtn.onclick = () => {
-      this.displayModal(this.modal)
+      this.displayModal()
     }
   }
 
   bindCloseModal() {
     this.closeModalBtn.onclick = () => {
-      this.hideModal(this.modal)
+      this.hideModal()
     }
 
     this.cancelBtn.onclick = () => {
-      this.hideModal(this.modal)
+      this.hideModal()
     }
+
+    this.closeRemoveModalBtn.onclick = () => {
+      this.hideRemoveModal()
+    }
+
+    this.denyRemoveBtn.onclick = () => {
+      this.hideRemoveModal()
+    }
+  }
+
+  getFormData() {
+    const formData = new FormData(this.form)
+    const customer = [...formData.keys()].reduce((acc, key) => {
+      acc[key] = formData.get(key)
+      return acc
+    }, {})
+    if (!customer.status) customer.status = '~off'
+
+    this.errorMessageHide()
+    const errors = validateForm(customer)
+
+    if (Object.keys(errors).length) {
+      this.displayFormErrors(errors)
+      return
+    }
+    return customer
   }
 
   bindAddCustomer(handler) {
     this.submitBtn.onclick = (event) => {
       event.preventDefault()
-      const addFormData = new FormData(this.form, this.submitBtn)
-      const customer = [...addFormData.keys()].reduce((acc, key) => {
-        acc[key] = addFormData.get(key)
-        return acc
-      }, {})
-      if (!customer.status) customer.status = '~off'
-
-      this.errorMessageHide()
-      const errors = validateForm(customer)
-
-      if (Object.keys(errors).length) {
-        this.displayFormErrors(errors)
-        return
-      }
+      const customer = this.getFormData()
+      if (!customer) return
 
       try {
         handler(customer)
-        this.displaySnackbar('.successful')
+        this.displaySnackbar('.add-successful')
         this.resetInput()
       } catch (error) {
-        this.displaySnackbar('.failed')
+        this.displaySnackbar('.add-update-failed')
+      }
+    }
+  }
+
+  bindEditCustomer(handler) {
+    this.submitUpdateBtn.onclick = (event) => {
+      event.preventDefault()
+      const id = this.submitUpdateBtn.id
+      const customer = this.getFormData()
+      if (!customer) return
+
+      try {
+        handler(customer, id)
+        this.displaySnackbar('.update-successful')
+      } catch (error) {
+        this.displaySnackbar('.add-update-failed')
+      }
+    }
+  }
+
+  bindDeleteCustomer(handler) {
+    this.acceptRemoveBtn.onclick = () => {
+      const id = this.acceptRemoveBtn.id
+      try {
+        handler(id)
+        this.hideRemoveModal()
+        this.displaySnackbar('.remove-successful')
+      } catch (error) {
+        this.displaySnackbar('.remove-failed')
       }
     }
   }

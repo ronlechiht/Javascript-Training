@@ -7,6 +7,8 @@ export class CustomerController {
     this.customerView.bindOpenModal()
     this.customerView.bindCloseModal()
     this.customerView.bindAddCustomer(this.handleAddCustomer)
+    this.customerView.bindEditCustomer(this.handleEditCustomer)
+    this.customerView.bindDeleteCustomer(this.handleDeleteCustomer)
     this.customerView.bindSearchOnChanged(debounce(this.handleReloadTable))
     this.customerView.bindSortOnChanged(this.handleReloadTable)
     this.customerView.bindPagination(this.handleReloadTable)
@@ -24,6 +26,16 @@ export class CustomerController {
 
   handleAddCustomer = async (customer) => {
     await this.customerModel.addCustomer(customer)
+    this.displayCustomersTable(this.customerView.pagination)
+  }
+
+  handleEditCustomer = async (customer, id) => {
+    await this.customerModel.editCustomer(id, customer)
+    this.displayCustomersTable(this.customerView.pagination)
+  }
+
+  handleDeleteCustomer = async (id) => {
+    await this.customerModel.deleteCustomer(id)
     this.displayCustomersTable(this.customerView.pagination)
   }
 

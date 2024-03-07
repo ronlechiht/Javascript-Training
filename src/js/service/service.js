@@ -17,4 +17,23 @@ export const HttpService = {
       body: JSON.stringify(data),
     })
   },
+
+  async put(path, data) {
+    await fetch(path, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+  },
+
+  async delete(path) {
+    await fetch(path, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  },
 }
