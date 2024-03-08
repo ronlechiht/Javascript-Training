@@ -146,6 +146,15 @@ export class CustomerView {
     this.nextBtn.classList.add('visibility-hidden')
   }
 
+  renderGeneralInformation(customers) {
+    const activeCustomers = customers.filter(
+      (customer) => customer.status === 'on'
+    )
+
+    this.customersQuantity.innerHTML = customers.length
+    this.activeQuantity.innerHTML = activeCustomers.length
+  }
+
   renderCustomersTable(customers, pagination) {
     while (this.customersTable.firstChild) {
       this.customersTable.removeChild(this.customersTable.firstChild)
@@ -155,10 +164,6 @@ export class CustomerView {
       this.displayEmptyNotification(listEmptyMessage)
       return
     }
-
-    const activeCustomers = customers.filter(
-      (customer) => customer.status === 'on'
-    )
 
     let _customers = JSON.parse(JSON.stringify(customers))
     const searchValue = this.searchInput.value.toLowerCase()
@@ -237,9 +242,6 @@ export class CustomerView {
 
     if (count < 8) this.nextBtn.classList.add('visibility-hidden')
     else this.nextBtn.classList.remove('visibility-hidden')
-
-    this.customersQuantity.innerHTML = customers.length
-    this.activeQuantity.innerHTML = activeCustomers.length
   }
 
   bindOpenModal() {
@@ -282,6 +284,14 @@ export class CustomerView {
       return
     }
     return customer
+  }
+
+  bindFirstLoad(handler) {
+    try {
+      handler()
+    } catch (error) {
+      this.displaySnackbar('.get-failed')
+    }
   }
 
   bindAddCustomer(handler) {

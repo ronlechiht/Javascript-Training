@@ -1,7 +1,6 @@
 import { debounce } from '../../utils/utils'
 export class CustomerController {
   constructor(customerModel, customerView) {
-    this.customers = {}
     this.customerModel = customerModel
     this.customerView = customerView
 
@@ -13,36 +12,33 @@ export class CustomerController {
     this.customerView.bindSearchOnChanged(debounce(this.handleReloadTable))
     this.customerView.bindSortOnChanged(this.handleReloadTable)
     this.customerView.bindPagination(this.handleReloadTable)
-    this.getCustomersData(0)
+    this.customerView.bindFirstLoad(this.handleFirstLoad)
   }
 
-  async getCustomersData(pagination) {
-    try {
-      this.customers = await this.customerModel.getAllCustomers()
-      this.displayCustomersTable(pagination)
-    } catch (error) {
-      this.customerView.displaySnackbar('.get-failed')
-    }
-  }
-
-  displayCustomersTable(pagination) {
-    this.customerView.renderCustomersTable(this.customers, pagination)
+  handleFirstLoad = async () => {
+    this.customerModel.customers = await this.customerModel.getAllCustomers()
+    this.customerView.renderGeneralInformation(this.customerModel.customers)
+    this.customerView.renderCustomersTable(this.customerModel.customers, 0)
   }
 
   handleAddCustomer = async (customer) => {
     await this.customerModel.addCustomer(customer)
-    this.getCustomersData(this.customerView.pagination)
+    this.customerView.bindFirstLoad(this.handleFirstLoad)
   }
 
   handleEditCustomer = async (customer, id) => {
     await this.customerModel.editCustomer(id, customer)
-    this.getCustomersData(this.customerView.pagination)
+    this.customerView.bindFirstLoad(this.handleFirstLoad)
   }
 
   handleDeleteCustomer = async (id) => {
     await this.customerModel.deleteCustomer(id)
-    this.getCustomersData(this.customerView.pagination)
+    this.customerView.bindFirstLoad(this.handleFirstLoad)
   }
 
-  handleReloadTable = (pagination) => this.displayCustomersTable(pagination)
+  handleReloadTable = (pagination) =>
+    this.customerView.renderCustomersTable(
+      this.customerModel.customers,
+      pagination
+    )
 }
