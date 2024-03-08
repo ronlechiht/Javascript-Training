@@ -21,7 +21,7 @@ export class CustomerController {
       this.customers = await this.customerModel.getAllCustomers()
       this.displayCustomersTable(pagination)
     } catch (error) {
-      console.log(error)
+      this.customerView.displaySnackbar('.get-failed')
     }
   }
 

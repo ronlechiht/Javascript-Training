@@ -21,3 +21,7 @@
 .successful {
   background-color: #00ac4f;
 }
+
+.get-failed {
+  margin-left: 50%;
+}
