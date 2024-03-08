@@ -1,11 +1,9 @@
 import { HttpService } from '../../service/service.js'
 import { customerApi } from '../../constants/constants.js'
-import { search, sort } from '../../utils/feature.js'
 
 export class CustomerModel {
   constructor() {
     this.customers = {}
-    this._customers = {}
   }
 
   async getAllCustomers() {
@@ -24,9 +22,5 @@ export class CustomerModel {
   async deleteCustomer(id) {
     const path = customerApi + '/' + id
     await HttpService.delete(path)
-  }
-
-  searchCustomers(input) {
-    this._customers = search(this.customers, input)
   }
 }
