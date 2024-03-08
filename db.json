@@ -1,42 +1,6 @@
 {
   "customers": [
     {
-      "name": "Le Chi Ron",
-      "company": "Agility",
-      "phone": "(094) 107-3731",
-      "email": "lechiron@gmail.com",
-      "country": "Vietnam",
-      "status": "on",
-      "id": "74cb"
-    },
-    {
-      "id": "6bc0",
-      "name": "Le Chi Ron",
-      "company": "Agility",
-      "phone": "(094) 107-3731",
-      "email": "lechiron@gmail.com",
-      "country": "Vietnam",
-      "status": "on"
-    },
-    {
-      "id": "0804",
-      "name": "rgf ssd f",
-      "company": "asdfasdf",
-      "phone": "(091) 120-1245",
-      "email": "cgsaew@sasdg.cbb",
-      "country": "Malaysia",
-      "status": "~off"
-    },
-    {
-      "name": "ds asdasdfdsf",
-      "company": "asdfasdf",
-      "phone": "(213) 234-1234",
-      "email": "aweiru@nandf.cva",
-      "country": "Laos",
-      "status": "on",
-      "id": "2e5d"
-    },
-    {
       "id": "5c2c",
       "name": "asdfasdfasfd",
       "company": "asdfasdfadf",
@@ -52,6 +16,87 @@
       "phone": "(123) 456-7890",
       "email": "zxcvzcv@sdfasdf.zcv",
       "country": "Laos",
+      "status": "on"
+    },
+    {
+      "id": "1ff6",
+      "name": "hjgnbdfgnxcvnx",
+      "company": "cvndfghgfn",
+      "phone": "(324) 213-1355",
+      "email": "xcvbsdfg@sdgsr.scb",
+      "country": "Cambodia",
+      "status": "~off"
+    },
+    {
+      "id": "15ab",
+      "name": "cvbsgvdf",
+      "company": "dfgdfb",
+      "phone": "(123) 123-1234",
+      "email": "sdfgret@asda.zcv",
+      "country": "Myanmar",
+      "status": "on"
+    },
+    {
+      "id": "efdc",
+      "name": "vbncvbsdfg",
+      "company": "cvbzdfg",
+      "phone": "(123) 151-1355",
+      "email": "sdfhvb@aseadf.zcv",
+      "country": "Laos",
+      "status": "on"
+    },
+    {
+      "id": "d27a",
+      "name": "nmdfghdfgb",
+      "company": "sfgsfdg",
+      "phone": "(099) 134-1355",
+      "email": "dfghd@sdfgg.xcb",
+      "country": "Thailand",
+      "status": "~off"
+    },
+    {
+      "id": "5bf5",
+      "name": "kfgdsdag",
+      "company": "asdgasdg",
+      "phone": "(000) 134-1356",
+      "email": "uwerytweg@bvv.vcb",
+      "country": "Vietnam",
+      "status": "~off"
+    },
+    {
+      "id": "a84f",
+      "name": "cvnmghsdh",
+      "company": "rtyiey",
+      "phone": "(134) 462-2724",
+      "email": "jdfgsr@vbxv.zcv",
+      "country": "Thailand",
+      "status": "on"
+    },
+    {
+      "id": "65ce",
+      "name": "rtwyaga",
+      "company": "asfdghg",
+      "phone": "(151) 135-1236",
+      "email": "bgdfh@fsgagd.adg",
+      "country": "Malaysia",
+      "status": "~off"
+    },
+    {
+      "id": "9794",
+      "name": "eytdhfgcb",
+      "company": "mnvhgjfy",
+      "phone": "(153) 326-1641",
+      "email": "qerwt@zvav.vzc",
+      "country": "Myanmar",
+      "status": "~off"
+    },
+    {
+      "id": "67ec",
+      "name": "iyutrewt",
+      "company": "lkjfgdhsg",
+      "phone": "(245) 246-1356",
+      "email": "ydghcvb@sdfg.xvb",
+      "country": "Vietnam",
       "status": "on"
     }
   ]

@@ -138,17 +138,32 @@ export class CustomerView {
       this.customersTable.removeChild(this.customersTable.firstChild)
     }
 
+    if (!customers.length) {
+      let emptyMessage = createElement('p', 'empty-message')
+      emptyMessage.innerHTML = 'There are no customers in the list'
+      this.customersTable.appendChild(emptyMessage)
+      this.previousBtn.classList.add('visibility-hidden')
+      this.nextBtn.classList.add('visibility-hidden')
+      return
+    }
+
     const activeCustomers = customers.filter(
       (customer) => customer.status === 'on'
     )
 
+    let _customers = customers
     const searchValue = this.searchInput.value.toLowerCase()
-    const _customers = search(customers, searchValue)
+    if (searchValue !== '') _customers = search(customers, searchValue)
 
+    let __customers = _customers
     const sortType = this.sortOption.value
-    const __customers = sort(_customers, sortType)
+    if (sortType !== 'none') __customers = sort(_customers, sortType)
 
     let count = __customers.length - pagination * 8 - 1
+    if (count === -1) {
+      pagination -= 1
+      count = __customers.length - pagination * 8 - 1
+    }
 
     for (let i = 0; i <= Math.min(count, 7); i++) {
       let customer = __customers[pagination * 8 + i]

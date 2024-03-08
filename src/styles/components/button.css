@@ -20,6 +20,15 @@
   background-color: #377dff;
 }
 
+.btn-primary:hover {
+  background-color: #5932ea;
+}
+
 .btn-secondary {
   background-color: #b5b7c0
+}
+
+.btn-secondary:hover {
+  background-color: #9197b3;
+  ;
 }
