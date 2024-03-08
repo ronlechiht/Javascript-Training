@@ -1,4 +1,9 @@
-import { snackbarDelay, errorMessageList } from '../../constants/constants'
+import {
+  snackbarDelay,
+  errorMessageList,
+  listEmptyMessage,
+  searchEmptyMessage,
+} from '../../constants/constants'
 
 import { validateForm } from '../../utils/validation'
 
@@ -133,17 +138,21 @@ export class CustomerView {
     }
   }
 
+  displayEmptyNotification(message) {
+    let emptyMessage = createElement('p', 'empty-message')
+    emptyMessage.innerHTML = message
+    this.customersTable.appendChild(emptyMessage)
+    this.previousBtn.classList.add('visibility-hidden')
+    this.nextBtn.classList.add('visibility-hidden')
+  }
+
   renderCustomersTable(customers, pagination) {
     while (this.customersTable.firstChild) {
       this.customersTable.removeChild(this.customersTable.firstChild)
     }
 
     if (!customers.length) {
-      let emptyMessage = createElement('p', 'empty-message')
-      emptyMessage.innerHTML = 'There are no customers in the list'
-      this.customersTable.appendChild(emptyMessage)
-      this.previousBtn.classList.add('visibility-hidden')
-      this.nextBtn.classList.add('visibility-hidden')
+      this.displayEmptyNotification(listEmptyMessage)
       return
     }
 
@@ -151,16 +160,20 @@ export class CustomerView {
       (customer) => customer.status === 'on'
     )
 
-    let _customers = customers
+    let _customers = JSON.parse(JSON.stringify(customers))
     const searchValue = this.searchInput.value.toLowerCase()
     if (searchValue !== '') _customers = search(customers, searchValue)
+    if (!_customers.length) {
+      this.displayEmptyNotification(searchEmptyMessage)
+      return
+    }
 
-    let __customers = _customers
+    let __customers = JSON.parse(JSON.stringify(_customers))
     const sortType = this.sortOption.value
     if (sortType !== 'none') __customers = sort(_customers, sortType)
 
     let count = __customers.length - pagination * 8 - 1
-    if (count === -1) {
+    if (count === -1 && pagination > 0) {
       pagination -= 1
       count = __customers.length - pagination * 8 - 1
     }

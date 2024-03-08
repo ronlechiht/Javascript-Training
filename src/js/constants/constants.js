@@ -27,3 +27,7 @@ export const errorMessageList = {
     required: 'The country field is required',
   },
 }
+
+export const listEmptyMessage = 'There are no customers in the list'
+export const searchEmptyMessage =
+  'There are no customers you are looking for in the list'

@@ -12,9 +12,7 @@ export function search(customers, searchValue) {
 }
 
 export function sort(customers, sortType) {
-  let _customers = customers
-
-  if (sortType === 'none') return _customers
+  let _customers = JSON.parse(JSON.stringify(customers))
 
   _customers.sort((a, b) => {
     let conditionA = a[sortType].toLowerCase(),
