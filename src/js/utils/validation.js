@@ -17,7 +17,7 @@ function validateEmail(email) {
   return 'invalid'
 }
 
-validationSchema = {
+const validationSchema = {
   name: [validateEmptiness],
   company: [validateEmptiness],
   phone: [validateEmptiness, validatePhoneNumber],
@@ -29,10 +29,10 @@ export function validateForm(customer) {
   let errors = {}
 
   for (let key in customer) {
-    if (this.validationSchema.hasOwnProperty(key)) {
+    if (validationSchema.hasOwnProperty(key)) {
       let error = ''
       const customerProperty = customer[key]
-      const validators = this.validationSchema[key]
+      const validators = validationSchema[key]
       for (let validator of validators) {
         error = validator(customerProperty)
         if (error !== '') break
