@@ -58,6 +58,8 @@ export class CustomerView {
     //Get customers table
     this.customersTable = document.querySelector('.table-body')
 
+    this.showingDataText = document.querySelector('.showing-data')
+
     //Get pagination
     this.previousBtn = document.querySelector('.previous-btn')
     this.nextBtn = document.querySelector('.next-btn')
@@ -183,7 +185,8 @@ export class CustomerView {
       count = __customers.length - pagination * 8 - 1
     }
 
-    for (let i = 0; i <= Math.min(count, 7); i++) {
+    let i = 0
+    for (i; i <= Math.min(count, 7); i++) {
       let customer = __customers[pagination * 8 + i]
 
       let customerRow = createElement('div', 'customer')
@@ -236,6 +239,15 @@ export class CustomerView {
       let customerDivider = createElement('div', 'customer-divider')
       this.customersTable.appendChild(customerDivider)
     }
+
+    this.showingDataText.innerHTML =
+      'Showing data ' +
+      (pagination * 8 + 1) +
+      ' to ' +
+      (pagination * 8 + i) +
+      ' of ' +
+      __customers.length +
+      ' entries'
 
     if (!pagination) this.previousBtn.classList.add('visibility-hidden')
     else this.previousBtn.classList.remove('visibility-hidden')

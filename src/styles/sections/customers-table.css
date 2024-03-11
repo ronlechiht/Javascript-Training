@@ -156,8 +156,11 @@
 }
 
 .table-footer {
-  padding: 30px 50px;
+  padding: 30px 40px;
   display: flex;
-  justify-content: end;
-  column-gap: 12px;
+  justify-content: space-between;
+}
+
+.showing-data {
+  color: #b5b7c0;
 }
