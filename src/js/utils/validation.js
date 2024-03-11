@@ -1,17 +1,17 @@
 import { validateRegex } from '../constants/constants'
 
-validateEmptiness = (string) => {
+const validateEmptiness = (string) => {
   if (string) return ''
   return 'required'
 }
 
-validatePhoneNumber = (phoneNumber) => {
+const validatePhoneNumber = (phoneNumber) => {
   const re = validateRegex.validatePhone
   if (re.test(phoneNumber)) return ''
   return 'invalid'
 }
 
-validateEmail = (email) => {
+const validateEmail = (email) => {
   const re = validateRegex.validateEmail
   if (re.test(email)) return ''
   return 'invalid'
