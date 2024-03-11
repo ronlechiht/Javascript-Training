@@ -6,20 +6,20 @@ export class CustomerModel {
     this.customers = {}
   }
 
-  async getAllCustomers() {
+  getAllCustomers = async () => {
     return await HttpService.get(customerApi)
   }
 
-  async addCustomer(data) {
+  addCustomer = async (data) => {
     await HttpService.post(customerApi, data)
   }
 
-  async editCustomer(id, data) {
+  editCustomer = async (id, data) => {
     const path = customerApi + '/' + id
     await HttpService.put(path, data)
   }
 
-  async deleteCustomer(id) {
+  deleteCustomer = async (id) => {
     const path = customerApi + '/' + id
     await HttpService.delete(path)
   }

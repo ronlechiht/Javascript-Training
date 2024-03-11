@@ -1,6 +1,6 @@
 export const snackbarDelay = 3000
 
-export const customerApi = process.env.API_URL
+export const customerApi = 'https://customers-json-server.vercel.app/customers'
 
 export const validateRegex = {
   validatePhone: /\(\d{3}\)\s\d{3}-\d{4}$/,

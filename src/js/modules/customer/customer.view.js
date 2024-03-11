@@ -64,13 +64,13 @@ export class CustomerView {
     this.pagination = 0
   }
 
-  displayModal() {
+  displayModal = () => {
     this.modal.classList.add('visibility-visible')
     this.addTitle.classList.add('visibility-visible')
     this.submitBtn.classList.add('visibility-visible')
   }
 
-  displayEditModal(customer) {
+  displayEditModal = (customer) => {
     this.modal.classList.add('visibility-visible')
     this.updateTitle.classList.add('visibility-visible')
     this.submitUpdateBtn.classList.add('visibility-visible')
@@ -82,13 +82,13 @@ export class CustomerView {
     this.status.checked = customer.status === 'on'
   }
 
-  displayRemoveModal(id) {
+  displayRemoveModal = (id) => {
     this.removeModal.classList.add('visibility-visible')
     this.removeTitle.classList.add('visibility-visible')
     this.acceptRemoveBtn.id = id
   }
 
-  hideModal() {
+  hideModal = () => {
     this.modal.classList.remove('visibility-visible')
     this.addTitle.classList.remove('visibility-visible')
     this.updateTitle.classList.remove('visibility-visible')
@@ -98,19 +98,19 @@ export class CustomerView {
     this.resetInput()
   }
 
-  hideRemoveModal() {
+  hideRemoveModal = () => {
     this.removeModal.classList.remove('visibility-visible')
     this.removeTitle.classList.remove('visibility-visible')
   }
 
-  errorMessageHide() {
+  errorMessageHide = () => {
     this.inputFields.forEach((inputField) => {
       inputField.classList.remove('error-field')
       inputField.nextElementSibling.innerHTML = ''
     })
   }
 
-  resetInput() {
+  resetInput = () => {
     this.inputFields.forEach((inputField) => {
       inputField.value = ''
     })
@@ -118,7 +118,7 @@ export class CustomerView {
     this.status.checked = false
   }
 
-  displaySnackbar(snackbar) {
+  displaySnackbar = (snackbar) => {
     document.querySelector(snackbar).classList.add('visibility-visible')
     setTimeout(
       () =>
@@ -127,7 +127,7 @@ export class CustomerView {
     )
   }
 
-  displayFormErrors(errors) {
+  displayFormErrors = (errors) => {
     for (let key in errors) {
       let customerProperty = key
       let errorType = errors[key]
@@ -138,7 +138,7 @@ export class CustomerView {
     }
   }
 
-  displayEmptyNotification(message) {
+  displayEmptyNotification = (message) => {
     let emptyMessage = createElement('p', 'empty-message')
     emptyMessage.innerHTML = message
     this.customersTable.appendChild(emptyMessage)
@@ -146,7 +146,7 @@ export class CustomerView {
     this.nextBtn.classList.add('visibility-hidden')
   }
 
-  renderGeneralInformation(customers) {
+  renderGeneralInformation = (customers) => {
     const activeCustomers = customers.filter(
       (customer) => customer.status === 'on'
     )
@@ -155,7 +155,7 @@ export class CustomerView {
     this.activeQuantity.innerHTML = activeCustomers.length
   }
 
-  renderCustomersTable(customers, pagination) {
+  renderCustomersTable = (customers, pagination) => {
     while (this.customersTable.firstChild) {
       this.customersTable.removeChild(this.customersTable.firstChild)
     }
@@ -167,7 +167,7 @@ export class CustomerView {
 
     let _customers = JSON.parse(JSON.stringify(customers))
     const searchValue = this.searchInput.value.toLowerCase()
-    if (searchValue !== '') _customers = search(customers, searchValue)
+    if (searchValue) _customers = search(customers, searchValue)
     if (!_customers.length) {
       this.displayEmptyNotification(searchEmptyMessage)
       return
@@ -178,7 +178,7 @@ export class CustomerView {
     if (sortType !== 'none') __customers = sort(_customers, sortType)
 
     let count = __customers.length - pagination * 8 - 1
-    if (count === -1 && pagination > 0) {
+    if (count < 0 && pagination > 0) {
       pagination -= 1
       count = __customers.length - pagination * 8 - 1
     }
@@ -237,20 +237,20 @@ export class CustomerView {
       this.customersTable.appendChild(customerDivider)
     }
 
-    if (pagination === 0) this.previousBtn.classList.add('visibility-hidden')
+    if (!pagination) this.previousBtn.classList.add('visibility-hidden')
     else this.previousBtn.classList.remove('visibility-hidden')
 
     if (count < 8) this.nextBtn.classList.add('visibility-hidden')
     else this.nextBtn.classList.remove('visibility-hidden')
   }
 
-  bindOpenModal() {
+  bindOpenModal = () => {
     this.addCustomerBtn.onclick = () => {
       this.displayModal()
     }
   }
 
-  bindCloseModal() {
+  bindCloseModal = () => {
     this.closeModalBtn.onclick = () => {
       this.hideModal()
     }
@@ -268,7 +268,7 @@ export class CustomerView {
     }
   }
 
-  getFormData() {
+  getFormData = () => {
     const formData = new FormData(this.form)
     const customer = [...formData.keys()].reduce((acc, key) => {
       acc[key] = formData.get(key)
@@ -286,7 +286,7 @@ export class CustomerView {
     return customer
   }
 
-  bindFirstLoad(handler) {
+  bindFirstLoad = (handler) => {
     try {
       handler()
     } catch (error) {
@@ -310,7 +310,7 @@ export class CustomerView {
     }
   }
 
-  bindEditCustomer(handler) {
+  bindEditCustomer = (handler) => {
     this.submitUpdateBtn.onclick = (event) => {
       event.preventDefault()
       const id = this.submitUpdateBtn.id
@@ -326,7 +326,7 @@ export class CustomerView {
     }
   }
 
-  bindDeleteCustomer(handler) {
+  bindDeleteCustomer = (handler) => {
     this.acceptRemoveBtn.onclick = () => {
       const id = this.acceptRemoveBtn.id
       try {
@@ -339,21 +339,21 @@ export class CustomerView {
     }
   }
 
-  bindSearchOnChanged(handler) {
+  bindSearchOnChanged = (handler) => {
     this.searchInput.onkeyup = () => {
       this.pagination = 0
       handler(this.pagination)
     }
   }
 
-  bindSortOnChanged(handler) {
+  bindSortOnChanged = (handler) => {
     this.sortOption.onchange = () => {
       this.pagination = 0
       handler(this.pagination)
     }
   }
 
-  bindPagination(handler) {
+  bindPagination = (handler) => {
     this.nextBtn.onclick = () => {
       this.pagination += 1
       handler(this.pagination)

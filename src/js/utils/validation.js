@@ -1,17 +1,17 @@
 import { validateRegex } from '../constants/constants'
 
-function validateEmptiness(string) {
-  if (string !== '') return ''
+validateEmptiness = (string) => {
+  if (string) return ''
   return 'required'
 }
 
-function validatePhoneNumber(phoneNumber) {
+validatePhoneNumber = (phoneNumber) => {
   const re = validateRegex.validatePhone
   if (re.test(phoneNumber)) return ''
   return 'invalid'
 }
 
-function validateEmail(email) {
+validateEmail = (email) => {
   const re = validateRegex.validateEmail
   if (re.test(email)) return ''
   return 'invalid'
@@ -25,7 +25,7 @@ const validationSchema = {
   country: [validateEmptiness],
 }
 
-export function validateForm(customer) {
+export const validateForm = (customer) => {
   let errors = {}
 
   for (let key in customer) {
@@ -35,9 +35,9 @@ export function validateForm(customer) {
       const validators = validationSchema[key]
       for (let validator of validators) {
         error = validator(customerProperty)
-        if (error !== '') break
+        if (error) break
       }
-      if (error !== '') errors[key] = error
+      if (error) errors[key] = error
     }
   }
 

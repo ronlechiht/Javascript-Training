@@ -1,4 +1,4 @@
-export function search(customers, searchValue) {
+export const search = (customers, searchValue) => {
   const _customers = customers.filter((customer) => {
     return (
       customer.name.toLowerCase().includes(searchValue) ||
@@ -11,7 +11,7 @@ export function search(customers, searchValue) {
   return _customers
 }
 
-export function sort(customers, sortType) {
+export const sort = (customers, sortType) => {
   let _customers = JSON.parse(JSON.stringify(customers))
 
   _customers.sort((a, b) => {

@@ -1,5 +1,5 @@
 export const HttpService = {
-  async get(path) {
+  get: async (path) => {
     return fetch(path, {
       method: 'GET',
       headers: {
@@ -8,7 +8,7 @@ export const HttpService = {
     }).then((value) => value.json())
   },
 
-  async post(path, data) {
+  post: async (path, data) => {
     await fetch(path, {
       method: 'POST',
       headers: {
@@ -18,7 +18,7 @@ export const HttpService = {
     })
   },
 
-  async put(path, data) {
+  put: async (path, data) => {
     await fetch(path, {
       method: 'PUT',
       headers: {
@@ -28,7 +28,7 @@ export const HttpService = {
     })
   },
 
-  async delete(path) {
+  delete: async (path) => {
     await fetch(path, {
       method: 'DELETE',
       headers: {
