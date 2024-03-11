@@ -172,6 +172,7 @@ export class CustomerView {
     if (searchValue) _customers = search(customers, searchValue)
     if (!_customers.length) {
       this.displayEmptyNotification(searchEmptyMessage)
+      this.showingDataText.innerHTML = ''
       return
     }
 
