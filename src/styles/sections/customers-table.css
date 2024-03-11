@@ -48,7 +48,7 @@
 }
 
 .search-input:hover {
-  box-shadow:0px 0px 0px 2px #7e7e7e inset;
+  box-shadow: 0px 0px 0px 2px #7e7e7e inset;
 }
 
 .search-input::placeholder {
@@ -69,7 +69,7 @@
 }
 
 .sort-customers:hover {
-  box-shadow:0px 0px 0px 2px #7e7e7e inset;
+  box-shadow: 0px 0px 0px 2px #7e7e7e inset;
 }
 
 .sort-option-list {
@@ -78,7 +78,8 @@
   color: #3d3c42;
 }
 
-.table-header, .customer {
+.table-header,
+.customer {
   display: grid;
   grid-template-columns: 19% 14% 17% 23% 15% 9% auto;
   align-items: center;
@@ -145,7 +146,7 @@
 
 .dropdown-menu > li:hover {
   cursor: pointer;
-  background-color: #292D32;
+  background-color: #292d32;
   color: #fff;
 }
 

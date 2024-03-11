@@ -118,7 +118,7 @@
 
 .slider-round:before {
   position: absolute;
-  content: '';
+  content: "";
   height: 20px;
   width: 20px;
   left: 3px;
@@ -140,7 +140,8 @@ input:checked + .slider-round:before {
   justify-self: right;
 }
 
-.submit-btn, .submit-update-btn {
+.submit-btn,
+.submit-update-btn {
   visibility: hidden;
 }
 

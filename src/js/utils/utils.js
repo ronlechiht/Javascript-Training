@@ -1,13 +1,13 @@
-const debounceDelay = 1000
+import { debounceDelay } from "../constants/constants";
 
-export const debounce = (mainFunction) => {
-  let timer
+export const debounce = (callback) => {
+  let timer;
 
   return function (...args) {
-    clearTimeout(timer)
+    clearTimeout(timer);
 
     timer = setTimeout(() => {
-      mainFunction(...args)
-    }, debounceDelay)
-  }
-}
+      callback(...args);
+    }, debounceDelay);
+  };
+};

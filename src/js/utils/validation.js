@@ -1,21 +1,21 @@
-import { validateRegex } from '../constants/constants'
+import { validateRegex } from "../constants/constants";
 
 const validateEmptiness = (string) => {
-  if (string) return ''
-  return 'required'
-}
+  if (string) return "";
+  return "required";
+};
 
 const validatePhoneNumber = (phoneNumber) => {
-  const re = validateRegex.validatePhone
-  if (re.test(phoneNumber)) return ''
-  return 'invalid'
-}
+  const re = validateRegex.validatePhone;
+  if (re.test(phoneNumber)) return "";
+  return "invalid";
+};
 
 const validateEmail = (email) => {
-  const re = validateRegex.validateEmail
-  if (re.test(email)) return ''
-  return 'invalid'
-}
+  const re = validateRegex.validateEmail;
+  if (re.test(email)) return "";
+  return "invalid";
+};
 
 const validationSchema = {
   name: [validateEmptiness],
@@ -23,23 +23,23 @@ const validationSchema = {
   phone: [validateEmptiness, validatePhoneNumber],
   email: [validateEmptiness, validateEmail],
   country: [validateEmptiness],
-}
+};
 
 export const validateForm = (customer) => {
-  let errors = {}
+  let errors = {};
 
   for (let key in customer) {
     if (validationSchema.hasOwnProperty(key)) {
-      let error = ''
-      const customerProperty = customer[key]
-      const validators = validationSchema[key]
+      let error = "";
+      const customerProperty = customer[key];
+      const validators = validationSchema[key];
       for (let validator of validators) {
-        error = validator(customerProperty)
-        if (error) break
+        error = validator(customerProperty);
+        if (error) break;
       }
-      if (error) errors[key] = error
+      if (error) errors[key] = error;
     }
   }
 
-  return errors
-}
+  return errors;
+};

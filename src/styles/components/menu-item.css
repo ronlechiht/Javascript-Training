@@ -10,7 +10,7 @@
 }
 
 .menu-item:hover {
-  box-shadow:0px 0px 0px 2px #5932ea inset;
+  box-shadow: 0px 0px 0px 2px #5932ea inset;
   cursor: pointer;
 }
 
@@ -25,5 +25,3 @@
   column-gap: 14px;
   align-items: center;
 }
-
-
