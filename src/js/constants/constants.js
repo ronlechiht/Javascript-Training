@@ -6,6 +6,8 @@ export const listEmptyMessage = 'There are no customers in the list'
 
 export const debounceDelay = 1000
 
+export const pageLimit = 8
+
 export const validateRegex = {
   validatePhone: /\(\d{3}\)\s\d{3}-\d{4}$/,
   validateEmail: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,

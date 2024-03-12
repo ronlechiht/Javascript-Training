@@ -2,6 +2,7 @@ import {
   snackbarDelay,
   errorMessageList,
   listEmptyMessage,
+  pageLimit,
   CUSTOMER_STATUS,
   SNACKBAR_STATUS,
   SNACKBAR_MSG,
@@ -39,8 +40,8 @@ export class CustomerView {
     this.status = this.form.querySelector('input[name="status"]')
 
     //Get button
-    this.submitBtn = this.form.querySelector('.submit-btn')
-    this.submitUpdateBtn = this.form.querySelector('.submit-update-btn')
+    this.submitBtn = this.form.querySelector('.btn-submit')
+    this.submitUpdateBtn = this.form.querySelector('.btn-submit-update')
     this.cancelBtn = this.form.querySelector('.cancel-btn')
     this.acceptRemoveBtn = this.removeModal.querySelector('.accept-remove-btn')
     this.denyRemoveBtn = this.removeModal.querySelector('.deny-remove-btn')
@@ -69,9 +70,10 @@ export class CustomerView {
     this.statusIcon = this.snackbar.querySelector('.status-icon')
     this.snackbarMsg = this.snackbar.querySelector('.snackbar-msg')
 
+    //Init params
     this.params = {
       _page: 1,
-      _limit: 8,
+      _limit: pageLimit,
     }
 
     this.bindOpenModal()
@@ -156,12 +158,6 @@ export class CustomerView {
     let emptyMessage = createElement('p', 'empty-message')
     emptyMessage.innerHTML = message
     this.customersTable.appendChild(emptyMessage)
-    this.previousBtn.classList.add('visibility-hidden')
-    this.nextBtn.classList.add('visibility-hidden')
-  }
-
-  renderGeneralInformation = (totalCount) => {
-    this.customersQuantity.innerHTML = totalCount
   }
 
   renderCustomersTable = (customers, totalCount) => {
@@ -174,14 +170,19 @@ export class CustomerView {
     if (!customers.length) {
       this.displayEmptyNotification(listEmptyMessage)
       this.showingDataText.innerHTML = ''
+      this.previousBtn.classList.add('visibility-hidden')
+      this.nextBtn.classList.add('visibility-hidden')
       return
     }
 
+    //Render customers list
     let i = 0
     for (i; i < customers.length; i++) {
       let customer = customers[i]
 
-      let customerRow = createElement('div', 'customer')
+      let customerRow = createElement('li', 'customer')
+
+      //Render customer information
       for (let key in customer) {
         if (key === 'id') continue
         if (key !== 'status') {
@@ -200,6 +201,7 @@ export class CustomerView {
         }
       }
 
+      //Render dropdown menu
       let dropdownMenuContainer = createElement(
         'div',
         'dropdown-menu-container',
@@ -210,28 +212,31 @@ export class CustomerView {
       dropdownMenuContainer.appendChild(dropdownBtn)
 
       let dropdownMenu = createElement('ul', 'dropdown-menu')
+
       let editOption = createElement('li', 'edit-customer')
       editOption.innerHTML = 'Edit'
       editOption.onclick = (e) => {
         e.target.parentNode.classList.remove('visibility-visible')
         this.displayEditModal(customer)
       }
+
       let removeOption = createElement('li', 'remove-customer')
       removeOption.innerHTML = 'Remove'
       removeOption.onclick = (e) => {
         e.target.parentNode.classList.remove('visibility-visible')
         this.displayRemoveModal(customer.id)
       }
+
       dropdownMenu.append(editOption, removeOption)
       dropdownMenuContainer.appendChild(dropdownMenu)
-
       customerRow.appendChild(dropdownMenuContainer)
-
       this.customersTable.appendChild(customerRow)
+
       let customerDivider = createElement('div', 'customer-divider')
       this.customersTable.appendChild(customerDivider)
     }
 
+    //Render table footer
     this.showingDataText.innerHTML =
       'Showing data ' +
       ((pagination - 1) * 8 + 1) +

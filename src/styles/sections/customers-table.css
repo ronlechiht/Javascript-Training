@@ -165,3 +165,7 @@
 .showing-data {
   color: #b5b7c0;
 }
+
+.pagination-btn > img:hover {
+  cursor: pointer;
+}

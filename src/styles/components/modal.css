@@ -140,12 +140,12 @@ input:checked + .slider-round:before {
   justify-self: right;
 }
 
-.submit-btn,
-.submit-update-btn {
+.btn-submit,
+.btn-submit-update {
   visibility: hidden;
 }
 
-.submit-update-btn {
+.btn-submit-update {
   position: absolute;
 }
 

@@ -1,93 +1,93 @@
 {
   "customers": [
     {
-      "name": "sdfasdfasfd",
-      "company": "asdfasdf",
+      "name": "Jane Cooper",
+      "company": "Microsoft",
       "phone": "(123) 456-7890",
-      "email": "zxcvzcv@sdfasdf.zcv",
+      "email": "jane@microsoft.com",
       "country": "Laos",
       "status": "~off",
       "id": "1705"
     },
     {
       "id": "1ff6",
-      "name": "hjgnbdfgnxcvnx",
-      "company": "cvndfghgfn",
+      "name": "Floyd Miles",
+      "company": "Yahoo",
       "phone": "(324) 213-1355",
-      "email": "xcvbsdfg@sdgsr.scb",
+      "email": "floyd@yahoo.com",
       "country": "Cambodia",
       "status": "~off"
     },
     {
       "id": "15ab",
-      "name": "cvbsgvdf",
-      "company": "dfgdfb",
+      "name": "Ronald Richards",
+      "company": "Adobe",
       "phone": "(123) 123-1234",
-      "email": "sdfgret@asda.zcv",
+      "email": "ronald@adobe.com",
       "country": "Myanmar",
       "status": "on"
     },
     {
       "id": "efdc",
-      "name": "vbncvbsdfg",
-      "company": "cvbzdfg",
+      "name": "Marvin McKinney",
+      "company": "Tesla",
       "phone": "(123) 151-1355",
-      "email": "sdfhvb@aseadf.zcv",
+      "email": "marvin@tesla.com",
       "country": "Laos",
       "status": "on"
     },
     {
       "id": "d27a",
-      "name": "nmdfghdfgb",
-      "company": "sfgsfdg",
+      "name": "Le Chi Ron",
+      "company": "Agility",
       "phone": "(099) 134-1355",
-      "email": "dfghd@sdfgg.xcb",
-      "country": "Thailand",
+      "email": "lechiron@gmail.com",
+      "country": "Vietnam",
       "status": "~off"
     },
     {
-      "name": "kfgdsdag",
-      "company": "asdgasdg",
+      "name": "Jerome Bell",
+      "company": "Google",
       "phone": "(000) 134-1356",
-      "email": "uwerytweg@bvv.vcb",
+      "email": "jerome@google.com",
       "country": "Vietnam",
       "status": "on",
       "id": "5bf5"
     },
     {
-      "name": "cvnmghsdh",
-      "company": "rtyiey",
+      "name": "Kathryn Murphy",
+      "company": "Microsoft",
       "phone": "(134) 462-2724",
-      "email": "jdfgsr@vbxv.zcv",
+      "email": "kathryn@microsoft.com",
       "country": "Thailand",
       "status": "~off",
       "id": "a84f"
     },
     {
-      "name": "eytdhfgcb",
-      "company": "mnvhgjfy",
+      "name": "Jacob Jones",
+      "company": "Yahoo",
       "phone": "(153) 326-1641",
-      "email": "qerwt@zvav.vzc",
+      "email": "jacob@yahoo.com",
       "country": "Myanmar",
       "status": "on",
       "id": "9794"
     },
     {
       "id": "67ec",
-      "name": "iyutrewt",
-      "company": "lkjfgdhsg",
+      "name": "Kristin Watson",
+      "company": "Facebook",
       "phone": "(245) 246-1356",
-      "email": "ydghcvb@sdfg.xvb",
+      "email": "kristin@facebook.com",
       "country": "Vietnam",
       "status": "on"
     },
     {
       "id": "0180",
-      "name": "asdfasdfasdf",
-      "company": "asdfsadf",
+      "name": "Ron Le Chi",
+      "company": "Agility",
       "phone": "(123) 134-1355",
-      "email": "asdfzv@asdfa.zcv",
-      "country": "Cambodia",
+      "email": "ronlechi@gmail.com",
+      "country": "Vietnam",
       "status": "~off"
     }
   ]
