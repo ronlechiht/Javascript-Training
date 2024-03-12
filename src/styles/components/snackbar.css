@@ -23,17 +23,15 @@
 .failed {
   visibility: visible;
   background-color: #ff715b;
-}
-
-.failed-icon {
-  background-image: url('../../assets/images/snackbar/failed.webp');
+  .status-icon {
+    background-image: url('../../assets/images/snackbar/failed.webp');
+  }
 }
 
 .success {
   visibility: visible;
   background-color: #00ac4f;
-}
-
-.success-icon {
-  background-image: url('../../assets/images/snackbar/successful.webp');
+  .status-icon {
+    background-image: url('../../assets/images/snackbar/successful.webp');
+  }
 }

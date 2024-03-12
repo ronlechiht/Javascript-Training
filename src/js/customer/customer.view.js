@@ -134,11 +134,9 @@ export class CustomerView {
 
   displaySnackbar = (status, message) => {
     this.snackbar.classList.add(status)
-    this.statusIcon.classList.add(status + '-icon')
     this.snackbarMsg.innerHTML = message
     setTimeout(() => {
       this.snackbarMsg.innerHTML = ''
-      this.statusIcon.classList.remove(status + '-icon')
       this.snackbar.classList.remove(status)
     }, snackbarDelay)
   }
