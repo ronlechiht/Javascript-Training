@@ -36,3 +36,15 @@ export const CUSTOMER_STATUS = {
   ON: 'on',
   OFF: '~off',
 }
+
+export const SNACKBAR_MSG = {
+  successAdd: 'Customer has been successfully added',
+  successEdit: 'Customer has been successfully updated',
+  successDelete: 'Customer has been successfully removed',
+  failed: 'Something went wrong',
+}
+
+export const SNACKBAR_STATUS = {
+  success: 'success',
+  failed: 'failed',
+}

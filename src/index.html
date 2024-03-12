@@ -13,25 +13,11 @@
 
   <body>
     <main>
-      <div class="modal add-update-modal">
-        <div class="snackbar failed add-update-failed">
-          <img src="./assets/images/snackbar/failed.webp" alt="failed icon" />
-          Something went wrong
-        </div>
-        <div class="snackbar successful add-successful">
-          <img
-            src="./assets/images/snackbar/successful.webp"
-            alt="successful icon"
-          />
-          Add customer sucessfully
-        </div>
-        <div class="snackbar successful update-successful">
-          <img
-            src="./assets/images/snackbar/successful.webp"
-            alt="successful icon"
-          />
-          Customer information has been successfully updated
-        </div>
+      <div class="snackbar">
+        <div class="status-icon"></div>
+        <p class="snackbar-msg"></p>
+      </div>
+      <div class="modal modal-add-update">
         <div class="modal-content">
           <div class="modal-header">
             <h3 class="modal-title add-title">Add Customer</h3>
@@ -112,18 +98,7 @@
           </form>
         </div>
       </div>
-      <div class="modal remove-modal">
-        <div class="snackbar failed remove-failed">
-          <img src="./assets/images/snackbar/failed.webp" alt="failed icon" />
-          Something went wrong
-        </div>
-        <div class="snackbar successful remove-successful">
-          <img
-            src="./assets/images/snackbar/successful.webp"
-            alt="successful icon"
-          />
-          Remove customer successfully
-        </div>
+      <div class="modal modal-remove">
         <div class="modal-content">
           <div class="modal-header">
             <h3 class="modal-title">Do you want to remove this customer?</h3>
@@ -236,7 +211,7 @@
       </div>
 
       <div class="main-container">
-        <div class="snackbar failed get-failed">
+        <div class="snackbar">
           <img src="./assets/images/snackbar/failed.webp" alt="failed icon" />
           Unable to load customer list
         </div>

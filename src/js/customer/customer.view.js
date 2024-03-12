@@ -3,6 +3,8 @@ import {
   errorMessageList,
   listEmptyMessage,
   CUSTOMER_STATUS,
+  SNACKBAR_STATUS,
+  SNACKBAR_MSG,
 } from '../constants/constants'
 
 import { validateForm } from '../utils/validation'
@@ -17,9 +19,9 @@ export class CustomerView {
     this.addCustomerBtn = document.querySelector('.add-customer-btn')
 
     //Get modal
-    this.modal = document.querySelector('.add-update-modal')
+    this.modal = document.querySelector('.modal-add-update')
     this.closeModalBtn = this.modal.querySelector('.modal-close-btn')
-    this.removeModal = document.querySelector('.remove-modal')
+    this.removeModal = document.querySelector('.modal-remove')
     this.closeRemoveModalBtn = this.removeModal.querySelector(
       '.remove-modal-close-btn',
     )
@@ -61,7 +63,11 @@ export class CustomerView {
     //Get pagination
     this.previousBtn = document.querySelector('.previous-btn')
     this.nextBtn = document.querySelector('.next-btn')
-    this.pagination = 0
+
+    //Get snackbar
+    this.snackbar = document.querySelector('.snackbar')
+    this.statusIcon = this.snackbar.querySelector('.status-icon')
+    this.snackbarMsg = this.snackbar.querySelector('.snackbar-msg')
 
     this.params = {
       _page: 1,
@@ -126,13 +132,15 @@ export class CustomerView {
     this.status.checked = false
   }
 
-  displaySnackbar = (snackbar) => {
-    document.querySelector(snackbar).classList.add('visibility-visible')
-    setTimeout(
-      () =>
-        document.querySelector(snackbar).classList.remove('visibility-visible'),
-      snackbarDelay,
-    )
+  displaySnackbar = (status, message) => {
+    this.snackbar.classList.add(status)
+    this.statusIcon.classList.add(status + '-icon')
+    this.snackbarMsg.innerHTML = message
+    setTimeout(() => {
+      this.snackbarMsg.innerHTML = ''
+      this.statusIcon.classList.remove(status + '-icon')
+      this.snackbar.classList.remove(status)
+    }, snackbarDelay)
   }
 
   displayFormErrors = (errors) => {
@@ -293,10 +301,10 @@ export class CustomerView {
 
       try {
         await handler(customer)
-        this.displaySnackbar('.add-successful')
+        this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successAdd)
         this.resetInput()
       } catch (error) {
-        this.displaySnackbar('.add-update-failed')
+        this.displaySnackbar(SNACKBAR_STATUS.failed, this.snackbarMsg.failed)
       }
     }
   }
@@ -310,9 +318,9 @@ export class CustomerView {
 
       try {
         await handler(customer, id)
-        this.displaySnackbar('.update-successful')
+        this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successEdit)
       } catch (error) {
-        this.displaySnackbar('.add-update-failed')
+        this.displaySnackbar(SNACKBAR_STATUS.failed, this.snackbarMsg.failed)
       }
     }
   }
@@ -323,9 +331,12 @@ export class CustomerView {
       try {
         await handler(id)
         this.hideRemoveModal()
-        this.displaySnackbar('.remove-successful')
+        this.displaySnackbar(
+          SNACKBAR_STATUS.success,
+          SNACKBAR_MSG.successDelete,
+        )
       } catch (error) {
-        this.displaySnackbar('.remove-failed')
+        this.displaySnackbar(SNACKBAR_STATUS.failed, this.snackbarMsg.failed)
       }
     }
   }
