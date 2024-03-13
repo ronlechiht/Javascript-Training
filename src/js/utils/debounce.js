@@ -1,4 +1,4 @@
-import { debounceDelay } from '../constants/constants'
+import { DEBOUNCE_DELAY } from '../constants/constants'
 
 export const debounce = (callback) => {
   let timer
@@ -8,6 +8,6 @@ export const debounce = (callback) => {
 
     timer = setTimeout(() => {
       callback(...args)
-    }, debounceDelay)
+    }, DEBOUNCE_DELAY)
   }
 }

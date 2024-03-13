@@ -1,11 +1,12 @@
 import {
-  snackbarDelay,
-  errorMessageList,
-  listEmptyMessage,
-  pageLimit,
+  SNACKBAR_DELAY,
+  LIST_ERROR_MSG,
+  LIST_EMPTY_MSG,
+  PAGE_LIMIT,
   CUSTOMER_STATUS,
   SNACKBAR_STATUS,
   SNACKBAR_MSG,
+  QUERY_PARAM_KEYS,
 } from '../constants/constants'
 
 import { validateForm } from '../utils/validation'
@@ -73,7 +74,7 @@ export class CustomerView {
     //Init params
     this.params = {
       _page: 1,
-      _limit: pageLimit,
+      _limit: PAGE_LIMIT,
     }
 
     this.bindOpenModal()
@@ -140,7 +141,7 @@ export class CustomerView {
     setTimeout(() => {
       this.snackbarMsg.innerHTML = ''
       this.snackbar.classList.remove(status)
-    }, snackbarDelay)
+    }, SNACKBAR_DELAY)
   }
 
   displayFormErrors = (errors) => {
@@ -150,7 +151,7 @@ export class CustomerView {
       let inputField = this.form.querySelector('.' + key)
       inputField.classList.add('error-field')
       let errorMessage = inputField.nextElementSibling
-      errorMessage.innerHTML = errorMessageList[customerProperty][errorType]
+      errorMessage.innerHTML = LIST_ERROR_MSG[customerProperty][errorType]
     }
   }
 
@@ -161,14 +162,14 @@ export class CustomerView {
   }
 
   renderCustomersTable = (customers, totalCount) => {
-    const pagination = this.params['_page']
+    const pagination = this.params[QUERY_PARAM_KEYS.page]
 
     while (this.customersTable.firstChild) {
       this.customersTable.removeChild(this.customersTable.firstChild)
     }
 
     if (!customers.length) {
-      this.displayEmptyNotification(listEmptyMessage)
+      this.displayEmptyNotification(LIST_EMPTY_MSG)
       this.showingDataText.innerHTML = ''
       this.previousBtn.classList.add('visibility-hidden')
       this.nextBtn.classList.add('visibility-hidden')
@@ -239,9 +240,9 @@ export class CustomerView {
     //Render table footer
     this.showingDataText.innerHTML =
       'Showing data ' +
-      ((pagination - 1) * pageLimit + 1) +
+      ((pagination - 1) * PAGE_LIMIT + 1) +
       ' to ' +
-      ((pagination - 1) * pageLimit + i) +
+      ((pagination - 1) * PAGE_LIMIT + i) +
       ' of ' +
       totalCount +
       ' entries'
@@ -249,7 +250,7 @@ export class CustomerView {
     if (pagination === 1) this.previousBtn.classList.add('visibility-hidden')
     else this.previousBtn.classList.remove('visibility-hidden')
 
-    if (totalCount - pagination * pageLimit <= 0)
+    if (totalCount - pagination * PAGE_LIMIT <= 0)
       this.nextBtn.classList.add('visibility-hidden')
     else this.nextBtn.classList.remove('visibility-hidden')
   }
@@ -284,7 +285,7 @@ export class CustomerView {
       acc[key] = formData.get(key)
       return acc
     }, {})
-    if (!customer.status) customer.status = CUSTOMER_STATUS.OFF
+    if (!customer.status) customer.status = CUSTOMER_STATUS.off
 
     this.hideErrorMessages()
     const errors = validateForm(customer)
@@ -346,26 +347,26 @@ export class CustomerView {
 
   bindSearchOnChanged = (handler) => {
     this.searchInput.onkeyup = () => {
-      this.params['name_like'] = this.searchInput.value
+      this.params[QUERY_PARAM_KEYS.search] = this.searchInput.value
       handler(this.params)
     }
   }
 
   bindSortOnChanged = (handler) => {
     this.sortOption.onchange = () => {
-      this.params['_sort'] = this.sortOption.value
+      this.params[QUERY_PARAM_KEYS.sort] = this.sortOption.value
       handler(this.params)
     }
   }
 
   bindPagination = (handler) => {
     this.nextBtn.onclick = () => {
-      this.params['_page'] += 1
+      this.params[QUERY_PARAM_KEYS.page] += 1
       handler(this.params)
     }
 
     this.previousBtn.onclick = () => {
-      this.params['_page'] -= 1
+      this.params[QUERY_PARAM_KEYS.page] -= 1
       handler(this.params)
     }
   }

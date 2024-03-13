@@ -1,4 +1,4 @@
-import { validateRegex } from '../constants/constants'
+import { VALIDATE_REGEX } from '../constants/constants'
 
 const validateEmptiness = (string) => {
   if (string) return ''
@@ -6,13 +6,13 @@ const validateEmptiness = (string) => {
 }
 
 const validatePhoneNumber = (phoneNumber) => {
-  const re = validateRegex.validatePhone
+  const re = VALIDATE_REGEX.phone
   if (re.test(phoneNumber)) return ''
   return 'invalid'
 }
 
 const validateEmail = (email) => {
-  const re = validateRegex.validateEmail
+  const re = VALIDATE_REGEX.email
   if (re.test(email)) return ''
   return 'invalid'
 }
