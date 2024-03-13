@@ -1,7 +1,5 @@
 export const snackbarDelay = 2 * 1000
 
-export const customerApi = process.env.API_URL
-
 export const listEmptyMessage = 'There are no customers in the list'
 
 export const debounceDelay = 1000

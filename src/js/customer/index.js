@@ -1,3 +1,3 @@
-export * from './customer.model.js'
-export * from './customer.view.js'
-export * from './customer.controller.js'
+export * from './customerModel.js'
+export * from './customerView.js'
+export * from './customerController.js'

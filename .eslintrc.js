@@ -20,5 +20,5 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {},
-  extends: ['some-other-config-you-use', 'prettier'],
+  extends: ['prettier'],
 }

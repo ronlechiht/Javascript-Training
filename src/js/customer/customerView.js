@@ -110,7 +110,7 @@ export class CustomerView {
     this.updateTitle.classList.remove('visibility-visible')
     this.submitBtn.classList.remove('visibility-visible')
     this.submitUpdateBtn.classList.remove('visibility-visible')
-    this.errorMessageHide()
+    this.hideErrorMessages()
     this.resetInput()
   }
 
@@ -119,7 +119,7 @@ export class CustomerView {
     this.removeTitle.classList.remove('visibility-visible')
   }
 
-  errorMessageHide = () => {
+  hideErrorMessages = () => {
     this.inputFields.forEach((inputField) => {
       inputField.classList.remove('error-field')
       inputField.nextElementSibling.innerHTML = ''
@@ -239,9 +239,9 @@ export class CustomerView {
     //Render table footer
     this.showingDataText.innerHTML =
       'Showing data ' +
-      ((pagination - 1) * 8 + 1) +
+      ((pagination - 1) * pageLimit + 1) +
       ' to ' +
-      ((pagination - 1) * 8 + i) +
+      ((pagination - 1) * pageLimit + i) +
       ' of ' +
       totalCount +
       ' entries'
@@ -249,7 +249,7 @@ export class CustomerView {
     if (pagination === 1) this.previousBtn.classList.add('visibility-hidden')
     else this.previousBtn.classList.remove('visibility-hidden')
 
-    if (totalCount - pagination * 8 <= 0)
+    if (totalCount - pagination * pageLimit <= 0)
       this.nextBtn.classList.add('visibility-hidden')
     else this.nextBtn.classList.remove('visibility-hidden')
   }
@@ -286,7 +286,7 @@ export class CustomerView {
     }, {})
     if (!customer.status) customer.status = CUSTOMER_STATUS.OFF
 
-    this.errorMessageHide()
+    this.hideErrorMessages()
     const errors = validateForm(customer)
 
     if (Object.keys(errors).length) {
@@ -307,7 +307,7 @@ export class CustomerView {
         this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successAdd)
         this.resetInput()
       } catch (error) {
-        this.displaySnackbar(SNACKBAR_STATUS.failed, this.snackbarMsg.failed)
+        this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
       }
     }
   }
@@ -323,7 +323,7 @@ export class CustomerView {
         await handler(customer, id)
         this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successEdit)
       } catch (error) {
-        this.displaySnackbar(SNACKBAR_STATUS.failed, this.snackbarMsg.failed)
+        this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
       }
     }
   }
@@ -339,7 +339,7 @@ export class CustomerView {
           SNACKBAR_MSG.successDelete,
         )
       } catch (error) {
-        this.displaySnackbar(SNACKBAR_STATUS.failed, this.snackbarMsg.failed)
+        this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
       }
     }
   }

@@ -1,4 +1,10 @@
 {
+  "general": [
+    {
+      "totalCustomers": 10,
+      "totalActiveCustomers": 5
+    }
+  ],
   "customers": [
     {
       "name": "Jane Cooper",
