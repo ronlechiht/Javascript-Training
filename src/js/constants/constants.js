@@ -8,7 +8,7 @@ export const PAGE_LIMIT = 8
 
 export const VALIDATE_REGEX = {
   phone: /\(\d{3}\)\s\d{3}-\d{4}$/,
-  phone: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+  email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
 }
 
 export const LIST_ERROR_MSG = {

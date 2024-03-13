@@ -2,7 +2,8 @@
   "general": [
     {
       "totalCustomers": 10,
-      "totalActiveCustomers": 5
+      "totalActiveCustomers": 5,
+      "id": "59e7"
     }
   ],
   "customers": [
@@ -11,45 +12,45 @@
       "company": "Microsoft",
       "phone": "(123) 456-7890",
       "email": "jane@microsoft.com",
-      "country": "Laos",
-      "status": "~off",
+      "country": "Malaysia",
+      "status": "on",
       "id": "1705"
     },
     {
-      "id": "1ff6",
       "name": "Floyd Miles",
       "company": "Yahoo",
       "phone": "(324) 213-1355",
       "email": "floyd@yahoo.com",
       "country": "Cambodia",
-      "status": "~off"
+      "status": "on",
+      "id": "1ff6"
     },
     {
-      "id": "15ab",
       "name": "Ronald Richards",
       "company": "Adobe",
       "phone": "(123) 123-1234",
       "email": "ronald@adobe.com",
       "country": "Myanmar",
-      "status": "on"
+      "status": "on",
+      "id": "15ab"
     },
     {
-      "id": "efdc",
       "name": "Marvin McKinney",
       "company": "Tesla",
       "phone": "(123) 151-1355",
       "email": "marvin@tesla.com",
       "country": "Laos",
-      "status": "on"
+      "status": "on",
+      "id": "efdc"
     },
     {
-      "id": "d27a",
       "name": "Le Chi Ron",
       "company": "Agility",
       "phone": "(099) 134-1355",
       "email": "lechiron@gmail.com",
       "country": "Vietnam",
-      "status": "~off"
+      "status": "on",
+      "id": "d27a"
     },
     {
       "name": "Jerome Bell",
@@ -66,7 +67,7 @@
       "phone": "(134) 462-2724",
       "email": "kathryn@microsoft.com",
       "country": "Thailand",
-      "status": "~off",
+      "status": "on",
       "id": "a84f"
     },
     {

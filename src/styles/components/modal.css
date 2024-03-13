@@ -25,14 +25,9 @@
 }
 
 .modal-title {
-  visibility: hidden;
   font-size: 36px;
   font-weight: 600;
   line-height: 54px;
-}
-
-.update-title {
-  position: absolute;
 }
 
 .modal-close-btn:hover {
@@ -135,18 +130,8 @@ input:checked + .slider-round:before {
   transform: translateX(26px);
 }
 
-.submit-btn-group {
-  display: flex;
+.btn-submit {
   justify-self: right;
-}
-
-.btn-submit,
-.btn-submit-update {
-  visibility: hidden;
-}
-
-.btn-submit-update {
-  position: absolute;
 }
 
 .remove-btn-group {

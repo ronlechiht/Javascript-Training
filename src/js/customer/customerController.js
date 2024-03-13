@@ -5,8 +5,10 @@ export class CustomerController {
     this.customerModel = customerModel
     this.customerView = customerView
 
-    this.customerView.bindAddCustomer(this.handleAddCustomer)
-    this.customerView.bindEditCustomer(this.handleEditCustomer)
+    this.customerView.bindSubmitModal(
+      this.handleAddCustomer,
+      this.handleEditCustomer,
+    )
     this.customerView.bindDeleteCustomer(this.handleDeleteCustomer)
     this.customerView.bindSearchOnChanged(debounce(this.displayCustomersTable))
     this.customerView.bindSortOnChanged(this.displayCustomersTable)

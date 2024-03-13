@@ -29,9 +29,7 @@ export class CustomerView {
     )
 
     //Get modal title
-    this.addTitle = this.modal.querySelector('.add-title')
-    this.updateTitle = this.modal.querySelector('.update-title')
-    this.removeTitle = this.removeModal.querySelector('.modal-title')
+    this.modalTitle = this.modal.querySelector('.modal-title')
 
     //Get submit form
     this.form = this.modal.querySelector('.submit-form')
@@ -42,8 +40,8 @@ export class CustomerView {
 
     //Get button
     this.submitBtn = this.form.querySelector('.btn-submit')
-    this.submitUpdateBtn = this.form.querySelector('.btn-submit-update')
-    this.cancelBtn = this.form.querySelector('.cancel-btn')
+    /*this.submitUpdateBtn = this.form.querySelector('.btn-submit-update')*/
+    this.cancelBtn = this.form.querySelector('.btn-cancel')
     this.acceptRemoveBtn = this.removeModal.querySelector('.accept-remove-btn')
     this.denyRemoveBtn = this.removeModal.querySelector('.deny-remove-btn')
 
@@ -77,21 +75,21 @@ export class CustomerView {
       _limit: PAGE_LIMIT,
     }
 
+    this.customerID = null
+
     this.bindOpenModal()
     this.bindCloseModal()
   }
 
-  displayModal = () => {
+  displayAddModal = () => {
     this.modal.classList.add('visibility-visible')
-    this.addTitle.classList.add('visibility-visible')
-    this.submitBtn.classList.add('visibility-visible')
+    this.modalTitle.innerHTML = 'Add Customer'
   }
 
   displayEditModal = (customer) => {
     this.modal.classList.add('visibility-visible')
-    this.updateTitle.classList.add('visibility-visible')
-    this.submitUpdateBtn.classList.add('visibility-visible')
-    this.submitUpdateBtn.id = customer.id
+    this.modalTitle.innerHTML = 'Update Customer'
+    this.customerID = customer.id
     for (let inputField of this.inputFields) {
       let key = inputField.name
       inputField.value = customer[key]
@@ -101,23 +99,17 @@ export class CustomerView {
 
   displayRemoveModal = (id) => {
     this.removeModal.classList.add('visibility-visible')
-    this.removeTitle.classList.add('visibility-visible')
-    this.acceptRemoveBtn.id = id
+    this.customerID = id
   }
 
   hideModal = () => {
     this.modal.classList.remove('visibility-visible')
-    this.addTitle.classList.remove('visibility-visible')
-    this.updateTitle.classList.remove('visibility-visible')
-    this.submitBtn.classList.remove('visibility-visible')
-    this.submitUpdateBtn.classList.remove('visibility-visible')
     this.hideErrorMessages()
     this.resetInput()
   }
 
   hideRemoveModal = () => {
     this.removeModal.classList.remove('visibility-visible')
-    this.removeTitle.classList.remove('visibility-visible')
   }
 
   hideErrorMessages = () => {
@@ -257,7 +249,8 @@ export class CustomerView {
 
   bindOpenModal = () => {
     this.addCustomerBtn.onclick = () => {
-      this.displayModal()
+      this.customerID = null
+      this.displayAddModal()
     }
   }
 
@@ -297,41 +290,46 @@ export class CustomerView {
     return customer
   }
 
-  bindAddCustomer(handler) {
-    this.submitBtn.onclick = async (event) => {
+  bindSubmitModal = (handlerAdd, handlerEdit) => {
+    this.submitBtn.onclick = (event) => {
       event.preventDefault()
-      const customer = this.getFormData()
-      if (!customer) return
 
-      try {
-        await handler(customer)
-        this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successAdd)
-        this.resetInput()
-      } catch (error) {
-        this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
+      if (!this.customerID) {
+        this.bindAddCustomer(handlerAdd)
+      } else {
+        this.bindEditCustomer(handlerEdit)
       }
     }
   }
 
-  bindEditCustomer = (handler) => {
-    this.submitUpdateBtn.onclick = async (event) => {
-      event.preventDefault()
-      const id = this.submitUpdateBtn.id
-      const customer = this.getFormData()
-      if (!customer) return
+  bindAddCustomer = async (handler) => {
+    const customer = this.getFormData()
+    if (!customer) return
 
-      try {
-        await handler(customer, id)
-        this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successEdit)
-      } catch (error) {
-        this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
-      }
+    try {
+      await handler(customer)
+      this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successAdd)
+      this.resetInput()
+    } catch (error) {
+      this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
+    }
+  }
+
+  bindEditCustomer = async (handler) => {
+    const customer = this.getFormData()
+    if (!customer) return
+
+    try {
+      await handler(customer, this.customerID)
+      this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successEdit)
+    } catch (error) {
+      this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
     }
   }
 
   bindDeleteCustomer = (handler) => {
     this.acceptRemoveBtn.onclick = async () => {
-      const id = this.acceptRemoveBtn.id
+      const id = this.customerID
       try {
         await handler(id)
         this.hideRemoveModal()
