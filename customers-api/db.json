@@ -1,8 +1,8 @@
 {
   "general": [
     {
-      "totalCustomers": 10,
-      "totalActiveCustomers": 5,
+      "totalCustomers": 20,
+      "totalActiveCustomers": 10,
       "id": "59e7"
     }
   ],
@@ -96,6 +96,96 @@
       "country": "Vietnam",
       "status": "~off",
       "id": "0180"
+    },
+    {
+      "name": "Alice Nguyen",
+      "company": "Samsung",
+      "phone": "(123) 456-7890",
+      "email": "alice@samsung.com",
+      "country": "Cambodia",
+      "status": "on",
+      "id": "1716"
+    },
+    {
+      "name": "Peter Lee",
+      "company": "LG",
+      "phone": "(987) 654-3210",
+      "email": "peter@lg.com",
+      "country": "Laos",
+      "status": "on",
+      "id": "1717"
+    },
+    {
+      "name": "Karen Tan",
+      "company": "Sony",
+      "phone": "(456) 789-0123",
+      "email": "karen@sony.com",
+      "country": "Malaysia",
+      "status": "~off",
+      "id": "1718"
+    },
+    {
+      "name": "Ryan Lim",
+      "company": "Panasonic",
+      "phone": "(234) 567-8901",
+      "email": "ryan@panasonic.com",
+      "country": "Myanmar",
+      "status": "on",
+      "id": "1719"
+    },
+    {
+      "name": "Lisa Wang",
+      "company": "Toshiba",
+      "phone": "(678) 901-2345",
+      "email": "lisa@toshiba.com",
+      "country": "Thailand",
+      "status": "~off",
+      "id": "1720"
+    },
+    {
+      "name": "Kevin Phan",
+      "company": "Sharp",
+      "phone": "(890) 123-4567",
+      "email": "kevin@sharp.com",
+      "country": "Vietnam",
+      "status": "~off",
+      "id": "1721"
+    },
+    {
+      "name": "Cindy Tran",
+      "company": "Hitachi",
+      "phone": "(345) 678-9012",
+      "email": "cindy@hitachi.com",
+      "country": "Cambodia",
+      "status": "~off",
+      "id": "1722"
+    },
+    {
+      "name": "Alex Wong",
+      "company": "Nikon",
+      "phone": "(901) 234-5678",
+      "email": "alex@nikon.com",
+      "country": "Laos",
+      "status": "on",
+      "id": "1723"
+    },
+    {
+      "name": "Michelle Koh",
+      "company": "Canon",
+      "phone": "(567) 890-1234",
+      "email": "michelle@canon.com",
+      "country": "Malaysia",
+      "status": "on",
+      "id": "1724"
+    },
+    {
+      "name": "David Tran",
+      "company": "Fujifilm",
+      "phone": "(678) 901-2345",
+      "email": "david@fujifilm.com",
+      "country": "Myanmar",
+      "status": "~off",
+      "id": "1725"
     }
   ]
 }
