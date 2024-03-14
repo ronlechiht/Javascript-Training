@@ -13,7 +13,7 @@
       "phone": "(123) 456-7890",
       "email": "jane@microsoft.com",
       "country": "Malaysia",
-      "status": "on",
+      "status": "~off",
       "id": "1705"
     },
     {
@@ -31,7 +31,7 @@
       "phone": "(123) 123-1234",
       "email": "ronald@adobe.com",
       "country": "Myanmar",
-      "status": "on",
+      "status": "~off",
       "id": "15ab"
     },
     {
@@ -49,7 +49,7 @@
       "phone": "(099) 134-1355",
       "email": "lechiron@gmail.com",
       "country": "Vietnam",
-      "status": "on",
+      "status": "~off",
       "id": "d27a"
     },
     {
@@ -67,7 +67,7 @@
       "phone": "(134) 462-2724",
       "email": "kathryn@microsoft.com",
       "country": "Thailand",
-      "status": "on",
+      "status": "~off",
       "id": "a84f"
     },
     {
@@ -80,22 +80,22 @@
       "id": "9794"
     },
     {
-      "id": "67ec",
       "name": "Kristin Watson",
       "company": "Facebook",
       "phone": "(245) 246-1356",
       "email": "kristin@facebook.com",
       "country": "Vietnam",
-      "status": "on"
+      "status": "~off",
+      "id": "67ec"
     },
     {
-      "id": "0180",
       "name": "Ron Le Chi",
       "company": "Agility",
       "phone": "(123) 134-1355",
       "email": "ronlechi@gmail.com",
       "country": "Vietnam",
-      "status": "~off"
+      "status": "on",
+      "id": "0180"
     }
   ]
 }

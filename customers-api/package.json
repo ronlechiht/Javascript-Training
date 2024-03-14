@@ -1,0 +1,16 @@
+{
+  "name": "customer-api",
+  "version": "1.0.0",
+  "description": "fake api customers",
+  "main": "api/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon api/server.js"
+  },
+  "dependencies": {
+    "json-server": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "latest"
+  }
+}
