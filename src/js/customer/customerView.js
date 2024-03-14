@@ -13,7 +13,7 @@ import { validateForm } from '../utils/validation'
 
 import { createElement } from '../utils/dom'
 
-import { createDropdownBtn } from '../utils/dropdown'
+import { createDropdownBtn, createDropdownMenu } from '../utils/dropdown'
 
 export class CustomerView {
   constructor() {
@@ -75,6 +75,7 @@ export class CustomerView {
       _limit: PAGE_LIMIT,
     }
 
+    //Customer ID for edit, delete feature
     this.customerID = null
 
     this.bindOpenModal()
@@ -153,9 +154,24 @@ export class CustomerView {
     this.customersTable.appendChild(emptyMessage)
   }
 
-  renderCustomersTable = (customers, totalCount) => {
-    const pagination = this.params[QUERY_PARAM_KEYS.page]
+  renderTableFooter = (currentIndex, totalCount) => {
+    const currentPage = this.params[QUERY_PARAM_KEYS.page]
+    const firstRecord = (currentPage - 1) * PAGE_LIMIT + 1
+    const lastRecord = (currentPage - 1) * PAGE_LIMIT + currentIndex
 
+    this.showingDataText.innerHTML = `
+    Showing data ${firstRecord} to ${lastRecord} of ${totalCount} entries
+    `
+
+    if (currentPage === 1) this.previousBtn.classList.add('visibility-hidden')
+    else this.previousBtn.classList.remove('visibility-hidden')
+
+    if (totalCount - currentPage * PAGE_LIMIT <= 0)
+      this.nextBtn.classList.add('visibility-hidden')
+    else this.nextBtn.classList.remove('visibility-hidden')
+  }
+
+  renderCustomersTable = (customers, totalCount) => {
     while (this.customersTable.firstChild) {
       this.customersTable.removeChild(this.customersTable.firstChild)
     }
@@ -204,23 +220,12 @@ export class CustomerView {
       dropdownBtn.id = customer.id
       dropdownMenuContainer.appendChild(dropdownBtn)
 
-      let dropdownMenu = createElement('ul', 'dropdown-menu')
+      let dropdownMenu = createDropdownMenu(
+        customer,
+        this.displayEditModal,
+        this.displayRemoveModal,
+      )
 
-      let editOption = createElement('li', 'edit-customer')
-      editOption.innerHTML = 'Edit'
-      editOption.onclick = (e) => {
-        e.target.parentNode.classList.remove('visibility-visible')
-        this.displayEditModal(customer)
-      }
-
-      let removeOption = createElement('li', 'remove-customer')
-      removeOption.innerHTML = 'Remove'
-      removeOption.onclick = (e) => {
-        e.target.parentNode.classList.remove('visibility-visible')
-        this.displayRemoveModal(customer.id)
-      }
-
-      dropdownMenu.append(editOption, removeOption)
       dropdownMenuContainer.appendChild(dropdownMenu)
       customerRow.appendChild(dropdownMenuContainer)
       this.customersTable.appendChild(customerRow)
@@ -230,21 +235,7 @@ export class CustomerView {
     }
 
     //Render table footer
-    this.showingDataText.innerHTML =
-      'Showing data ' +
-      ((pagination - 1) * PAGE_LIMIT + 1) +
-      ' to ' +
-      ((pagination - 1) * PAGE_LIMIT + i) +
-      ' of ' +
-      totalCount +
-      ' entries'
-
-    if (pagination === 1) this.previousBtn.classList.add('visibility-hidden')
-    else this.previousBtn.classList.remove('visibility-hidden')
-
-    if (totalCount - pagination * PAGE_LIMIT <= 0)
-      this.nextBtn.classList.add('visibility-hidden')
-    else this.nextBtn.classList.remove('visibility-hidden')
+    this.renderTableFooter(i, totalCount)
   }
 
   bindOpenModal = () => {

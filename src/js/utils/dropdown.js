@@ -26,13 +26,24 @@ export const createDropdownBtn = () => {
   return dropdownBtn
 }
 
-export const createDropdownMenu = () => {
+export const createDropdownMenu = (
+  customer,
+  openEditModal,
+  openRemoveModal,
+) => {
   let dropdownMenu = createElement('ul', 'dropdown-menu')
   let editOption = createElement('li', 'edit-customer')
   editOption.innerHTML = 'Edit'
-  editOption.onclick = 'openEditModal()'
+  editOption.onclick = (e) => {
+    e.target.parentNode.classList.remove('visibility-visible')
+    openEditModal(customer)
+  }
   let removeOption = createElement('li', 'remove-customer')
   removeOption.innerHTML = 'Remove'
+  removeOption.onclick = (e) => {
+    e.target.parentNode.classList.remove('visibility-visible')
+    openRemoveModal(customer.id)
+  }
   dropdownMenu.append(editOption, removeOption)
   return dropdownMenu
 }

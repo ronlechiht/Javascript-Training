@@ -12,11 +12,19 @@ This is used to practice JavaScript skill.
 
 - Clone project : git clone https://github.com/ronlechiht/Javascript-Training.git
 
+- Move in practice folder: cd Javascript-Training
+
 - Checkout branch : git checkout main
 
-- Install packages `npm install`
+- Install packages: `npm install`
+
+- Move in customers-api folder: cd customers-api
+
+- Install packages: `npm install`
 
 - Start server: `npm run start-server`
+
+- Move out src folder: cd ..
 
 - Start project: `npm start`
 

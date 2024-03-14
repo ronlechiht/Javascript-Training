@@ -13,7 +13,7 @@
       "phone": "(123) 456-7890",
       "email": "jane@microsoft.com",
       "country": "Malaysia",
-      "status": "~off",
+      "status": "on",
       "id": "1705"
     },
     {
@@ -22,7 +22,7 @@
       "phone": "(324) 213-1355",
       "email": "floyd@yahoo.com",
       "country": "Cambodia",
-      "status": "on",
+      "status": "~off",
       "id": "1ff6"
     },
     {
@@ -31,7 +31,7 @@
       "phone": "(123) 123-1234",
       "email": "ronald@adobe.com",
       "country": "Myanmar",
-      "status": "~off",
+      "status": "on",
       "id": "15ab"
     },
     {
@@ -40,7 +40,7 @@
       "phone": "(123) 151-1355",
       "email": "marvin@tesla.com",
       "country": "Laos",
-      "status": "on",
+      "status": "~off",
       "id": "efdc"
     },
     {
@@ -49,7 +49,7 @@
       "phone": "(099) 134-1355",
       "email": "lechiron@gmail.com",
       "country": "Vietnam",
-      "status": "~off",
+      "status": "on",
       "id": "d27a"
     },
     {
@@ -58,7 +58,7 @@
       "phone": "(000) 134-1356",
       "email": "jerome@google.com",
       "country": "Vietnam",
-      "status": "on",
+      "status": "~off",
       "id": "5bf5"
     },
     {
@@ -67,7 +67,7 @@
       "phone": "(134) 462-2724",
       "email": "kathryn@microsoft.com",
       "country": "Thailand",
-      "status": "~off",
+      "status": "on",
       "id": "a84f"
     },
     {
@@ -76,7 +76,7 @@
       "phone": "(153) 326-1641",
       "email": "jacob@yahoo.com",
       "country": "Myanmar",
-      "status": "on",
+      "status": "~off",
       "id": "9794"
     },
     {
@@ -85,7 +85,7 @@
       "phone": "(245) 246-1356",
       "email": "kristin@facebook.com",
       "country": "Vietnam",
-      "status": "~off",
+      "status": "on",
       "id": "67ec"
     },
     {
@@ -94,7 +94,7 @@
       "phone": "(123) 134-1355",
       "email": "ronlechi@gmail.com",
       "country": "Vietnam",
-      "status": "on",
+      "status": "~off",
       "id": "0180"
     }
   ]
