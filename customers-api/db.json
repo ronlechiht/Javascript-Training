@@ -1,0 +1,101 @@
+{
+  "general": [
+    {
+      "totalCustomers": 10,
+      "totalActiveCustomers": 5,
+      "id": "59e7"
+    }
+  ],
+  "customers": [
+    {
+      "name": "Jane Cooper",
+      "company": "Microsoft",
+      "phone": "(123) 456-7890",
+      "email": "jane@microsoft.com",
+      "country": "Malaysia",
+      "status": "on",
+      "id": "1705"
+    },
+    {
+      "name": "Floyd Miles",
+      "company": "Yahoo",
+      "phone": "(324) 213-1355",
+      "email": "floyd@yahoo.com",
+      "country": "Cambodia",
+      "status": "~off",
+      "id": "1ff6"
+    },
+    {
+      "name": "Ronald Richards",
+      "company": "Adobe",
+      "phone": "(123) 123-1234",
+      "email": "ronald@adobe.com",
+      "country": "Myanmar",
+      "status": "on",
+      "id": "15ab"
+    },
+    {
+      "name": "Marvin McKinney",
+      "company": "Tesla",
+      "phone": "(123) 151-1355",
+      "email": "marvin@tesla.com",
+      "country": "Laos",
+      "status": "~off",
+      "id": "efdc"
+    },
+    {
+      "name": "Le Chi Ron",
+      "company": "Agility",
+      "phone": "(099) 134-1355",
+      "email": "lechiron@gmail.com",
+      "country": "Vietnam",
+      "status": "on",
+      "id": "d27a"
+    },
+    {
+      "name": "Jerome Bell",
+      "company": "Google",
+      "phone": "(000) 134-1356",
+      "email": "jerome@google.com",
+      "country": "Vietnam",
+      "status": "~off",
+      "id": "5bf5"
+    },
+    {
+      "name": "Kathryn Murphy",
+      "company": "Microsoft",
+      "phone": "(134) 462-2724",
+      "email": "kathryn@microsoft.com",
+      "country": "Thailand",
+      "status": "on",
+      "id": "a84f"
+    },
+    {
+      "name": "Jacob Jones",
+      "company": "Yahoo",
+      "phone": "(153) 326-1641",
+      "email": "jacob@yahoo.com",
+      "country": "Myanmar",
+      "status": "~off",
+      "id": "9794"
+    },
+    {
+      "name": "Kristin Watson",
+      "company": "Facebook",
+      "phone": "(245) 246-1356",
+      "email": "kristin@facebook.com",
+      "country": "Vietnam",
+      "status": "on",
+      "id": "67ec"
+    },
+    {
+      "name": "Ron Le Chi",
+      "company": "Agility",
+      "phone": "(123) 134-1355",
+      "email": "ronlechi@gmail.com",
+      "country": "Vietnam",
+      "status": "~off",
+      "id": "0180"
+    }
+  ]
+}

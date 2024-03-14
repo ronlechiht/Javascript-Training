@@ -12,18 +12,26 @@
   position: fixed;
   margin-top: 1%;
   margin-left: 60%;
+  z-index: 2;
+}
+
+.status-icon {
+  width: 36px;
+  height: 36px;
 }
 
 .failed {
+  visibility: visible;
   background-color: #ff715b;
+  .status-icon {
+    background-image: url('../../assets/images/snackbar/failed.webp');
+  }
 }
 
-.successful {
+.success {
+  visibility: visible;
   background-color: #00ac4f;
-}
-
-.update-successful {
-  background-color: #00ac4f;
-  margin: 0;
-  align-self: flex-end;
+  .status-icon {
+    background-image: url('../../assets/images/snackbar/successful.webp');
+  }
 }

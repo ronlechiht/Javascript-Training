@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -13,21 +13,14 @@
 
   <body>
     <main>
-      <div class="modal">
-        <div class="snackbar failed">
-          <img src="./assets/images/snackbar/failed.webp" alt="failed icon" />
-          Something went wrong
-        </div>
-        <div class="snackbar successful">
-          <img
-            src="./assets/images/snackbar/successful.webp"
-            alt="successful icon"
-          />
-          Add customer sucessfully
-        </div>
+      <div class="snackbar">
+        <div class="status-icon"></div>
+        <p class="snackbar-msg"></p>
+      </div>
+      <div class="modal modal-add-update">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title">add customer</h3>
+            <h3 class="modal-title"></h3>
             <img
               src="./assets/images/modal/close-btn.png"
               alt="modal close button"
@@ -36,7 +29,7 @@
           </div>
           <form class="submit-form">
             <div class="input-item">
-              <label for="name" class="input-label">
+              <label class="input-label">
                 customer name
                 <span class="required">*</span>
               </label>
@@ -44,7 +37,7 @@
               <p class="error-message name-message"></p>
             </div>
             <div class="input-item">
-              <label for="company" class="input-label">
+              <label class="input-label">
                 company
                 <span class="required">*</span>
               </label>
@@ -52,7 +45,7 @@
               <p class="error-message company-message"></p>
             </div>
             <div class="input-item">
-              <label for="phone" class="input-label">
+              <label class="input-label">
                 phone number
                 <span class="required">*</span>
               </label>
@@ -60,7 +53,7 @@
               <p class="error-message phone-message"></p>
             </div>
             <div class="input-item">
-              <label for="email" class="input-label">
+              <label class="input-label">
                 email
                 <span class="required">*</span>
               </label>
@@ -68,7 +61,7 @@
               <p class="error-message email-message"></p>
             </div>
             <div class="input-item">
-              <label for="country" class="input-label">
+              <label class="input-label">
                 country
                 <span class="required">*</span>
               </label>
@@ -84,15 +77,40 @@
               <p class="error-message country-message"></p>
             </div>
             <div class="input-item status-item">
-              <label for="status" class="input-label">status</label>
+              <label class="input-label">status</label>
               <label class="switch">
                 <input type="checkbox" name="status" />
                 <span class="slider-round"></span>
               </label>
             </div>
-            <button class="btn btn-primary submit-btn" type="submit">submit</button>
-            <button class="btn btn-secondary cancel-btn" type="button">cancel</div>
+            <button class="btn btn-primary btn-submit" type="submit">
+              submit
+            </button>
+            <button class="btn btn-secondary btn-cancel" type="button">
+              cancel
+            </button>
           </form>
+        </div>
+      </div>
+      <div class="modal modal-remove">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Do you want to remove this customer?</h3>
+            <img
+              src="./assets/images/modal/close-btn.png"
+              alt="modal close button"
+              class="remove-modal-close-btn"
+            />
+          </div>
+
+          <div class="remove-btn-group">
+            <button class="btn btn-primary accept-remove-btn" type="button">
+              yes
+            </button>
+            <button class="btn btn-secondary deny-remove-btn" type="button">
+              no
+            </button>
+          </div>
         </div>
       </div>
       <div class="nav-container">
@@ -187,12 +205,9 @@
       </div>
 
       <div class="main-container">
-        <div class="snackbar update-successful">
-          <img
-            src="./assets/images/snackbar/successful.webp"
-            alt="successful icon"
-          />
-          Customer information has been successfully updated
+        <div class="snackbar">
+          <img src="./assets/images/snackbar/failed.webp" alt="failed icon" />
+          Unable to load customer list
         </div>
         <div class="container general-information">
           <div class="total-customers">
@@ -267,20 +282,11 @@
               <div class="sort-customers">
                 <p class="sort-option-label">Sort by:</p>
                 <select class="sort-option-list">
-                  <option value="none" class="sort-option">
-                  </option>
-                  <option value="name" class="sort-option">
-                    Name
-                  </option>
-                  <option value="company" class="sort-option">
-                    Company
-                  </option>
-                  <option value="email" class="sort-option">
-                    Email
-                  </option>
-                  <option value="status" class="sort-option">
-                    Status
-                  </option>
+                  <option value="none" class="sort-option"></option>
+                  <option value="name" class="sort-option">Name</option>
+                  <option value="company" class="sort-option">Company</option>
+                  <option value="email" class="sort-option">Email</option>
+                  <option value="status" class="sort-option">Status</option>
                 </select>
               </div>
             </div>
@@ -294,19 +300,21 @@
               <h4 class="table-heading">country</h4>
               <h4 class="table-heading">status</h4>
             </div>
-            <div class="table-body">
-            </div>
+            <ul class="table-body"></ul>
             <div class="table-footer">
-              <img
-                src="./assets/images/customers-table/previous-pagination.png"
-                alt="previous button"
-                class="previous-btn"
-              />
-              <img
-                src="./assets/images/customers-table/next-pagination.png"
-                alt="next button"
-                class="next-btn"
-              />
+              <p class="showing-data"></p>
+              <div class="pagination-btn">
+                <img
+                  src="./assets/images/customers-table/previous-pagination.png"
+                  alt="previous button"
+                  class="previous-btn"
+                />
+                <img
+                  src="./assets/images/customers-table/next-pagination.png"
+                  alt="next button"
+                  class="next-btn"
+                />
+              </div>
             </div>
           </div>
         </div>

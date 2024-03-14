@@ -28,10 +28,13 @@
   font-size: 36px;
   font-weight: 600;
   line-height: 54px;
-  text-transform: capitalize;
 }
 
 .modal-close-btn:hover {
+  cursor: pointer;
+}
+
+.remove-modal-close-btn:hover {
   cursor: pointer;
 }
 
@@ -127,6 +130,13 @@ input:checked + .slider-round:before {
   transform: translateX(26px);
 }
 
-.submit-btn {
+.btn-submit {
   justify-self: right;
+}
+
+.remove-btn-group {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  column-gap: 60px;
 }
