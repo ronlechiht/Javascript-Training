@@ -158,6 +158,18 @@
   color: #b5b7c0;
 }
 
-.pagination-btn > img:hover {
-  cursor: pointer;
+.pagination-btn {
+  display: flex;
+  column-gap: 12px;
+}
+
+.previous-btn,
+.next-btn {
+  padding: 10px;
+  font-size: 12px;
+  line-height: 4px;
+  color: #404b52;
+  background-color: #eee;
+  border-radius: 4px;
+  font-weight: 800;
 }

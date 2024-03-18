@@ -65,9 +65,9 @@ export const SNACKBAR_STATUS = {
 }
 
 export const QUERY_PARAM_KEYS = {
-  page: '_page',
-  limit: '_limit',
-  search: 'name_like',
-  sort: '_sort',
-  order: '_order',
+  page: 'page',
+  limit: 'limit',
+  search: 'name',
+  sort: 'sortBy',
+  order: 'order',
 }

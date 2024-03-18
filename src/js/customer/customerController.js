@@ -35,6 +35,7 @@ export class CustomerController {
   displayCustomersTable = async (params) => {
     try {
       const customers = await this.customerModel.getCustomers(params)
+      this.customerView.enablePagination()
       this.customerView.renderCustomersTable(customers)
     } catch (error) {
       this.customerView.displaySnackbar(

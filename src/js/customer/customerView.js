@@ -71,10 +71,10 @@ export class CustomerView {
 
     //Init params
     this.params = {
-      _sort: LIST_CUSTOMER_FIELD.id,
-      _order: 'desc',
-      _page: 1,
-      _limit: PAGE_SIZE,
+      sortBy: LIST_CUSTOMER_FIELD.id,
+      order: 'desc',
+      page: 1,
+      limit: PAGE_SIZE,
     }
 
     //Customer ID for edit, delete feature
@@ -83,6 +83,16 @@ export class CustomerView {
     this.bindOpenModal()
     this.bindCloseModal()
     this.validateFormData()
+  }
+
+  disablePagination = () => {
+    this.previousBtn.disabled = true
+    this.nextBtn.disabled = true
+  }
+
+  enablePagination = () => {
+    this.previousBtn.disabled = false
+    this.nextBtn.disabled = false
   }
 
   displayAddModal = () => {
@@ -437,12 +447,14 @@ export class CustomerView {
   bindPagination = (handler) => {
     this.nextBtn.onclick = () => {
       this.params[QUERY_PARAM_KEYS.page] += 1
+      this.disablePagination()
       handler(this.params)
     }
 
     this.previousBtn.onclick = () => {
       if (this.params[QUERY_PARAM_KEYS.page] > 1) {
         this.params[QUERY_PARAM_KEYS.page] -= 1
+        this.disablePagination()
         handler(this.params)
       }
     }
