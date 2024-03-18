@@ -1,19 +1,19 @@
 import { VALIDATE_REGEX } from '../constants/constants'
 
 const validateEmptiness = (string) => {
-  if (string) return ''
+  if (string) return null
   return 'required'
 }
 
 const validatePhoneNumber = (phoneNumber) => {
   const re = VALIDATE_REGEX.phone
-  if (re.test(phoneNumber)) return ''
+  if (re.test(phoneNumber)) return null
   return 'invalid'
 }
 
 const validateEmail = (email) => {
   const re = VALIDATE_REGEX.email
-  if (re.test(email)) return ''
+  if (re.test(email)) return null
   return 'invalid'
 }
 
@@ -30,7 +30,7 @@ export const validateForm = (data) => {
 
   for (let key in data) {
     if (validationSchema.hasOwnProperty(key)) {
-      let error = ''
+      let error = null
       const customerProperty = data[key]
       const validators = validationSchema[key]
       for (let validator of validators) {
@@ -45,7 +45,7 @@ export const validateForm = (data) => {
 }
 
 export const validateField = (field, input) => {
-  let error = ''
+  let error = null
   if (validationSchema.hasOwnProperty(field)) {
     const customerProperty = input
     const validators = validationSchema[field]

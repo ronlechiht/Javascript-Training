@@ -69,4 +69,5 @@ export const QUERY_PARAM_KEYS = {
   limit: '_limit',
   search: 'name_like',
   sort: '_sort',
+  order: '_order',
 }

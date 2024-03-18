@@ -14,7 +14,7 @@
       "email": "jane@microsoft.com",
       "country": "Vietnam",
       "status": "on",
-      "id": "1705"
+      "id": 1
     },
     {
       "name": "Floyd Miles",
@@ -23,7 +23,7 @@
       "email": "floyd@yahoo.com",
       "country": "Laos",
       "status": "~off",
-      "id": "1ff6"
+      "id": 2
     },
     {
       "name": "Ronald Richards",
@@ -32,7 +32,7 @@
       "email": "ronald@adobe.com",
       "country": "Myanmar",
       "status": "on",
-      "id": "15ab"
+      "id": 3
     },
     {
       "name": "Marvin McKinney",
@@ -41,7 +41,7 @@
       "email": "marvin@tesla.com",
       "country": "Laos",
       "status": "~off",
-      "id": "efdc"
+      "id": 4
     },
     {
       "name": "Le Chi Ron",
@@ -50,7 +50,7 @@
       "email": "lechiron@gmail.com",
       "country": "Vietnam",
       "status": "on",
-      "id": "d27a"
+      "id": 5
     },
     {
       "name": "Jerome Bell",
@@ -59,7 +59,7 @@
       "email": "jerome@google.com",
       "country": "Vietnam",
       "status": "~off",
-      "id": "5bf5"
+      "id": 6
     },
     {
       "name": "Kathryn Murphy",
@@ -68,7 +68,7 @@
       "email": "kathryn@microsoft.com",
       "country": "Thailand",
       "status": "on",
-      "id": "a84f"
+      "id": 7
     },
     {
       "name": "Jacob Jones",
@@ -77,7 +77,7 @@
       "email": "jacob@yahoo.com",
       "country": "Myanmar",
       "status": "~off",
-      "id": "9794"
+      "id": 8
     },
     {
       "name": "Kristin Watson",
@@ -86,7 +86,7 @@
       "email": "kristin@facebook.com",
       "country": "Vietnam",
       "status": "on",
-      "id": "67ec"
+      "id": 9
     },
     {
       "name": "Ron Le Chi",
@@ -95,7 +95,7 @@
       "email": "ronlechi@gmail.com",
       "country": "Vietnam",
       "status": "~off",
-      "id": "0180"
+      "id": 10
     },
     {
       "name": "Alice Nguyen",
@@ -104,7 +104,7 @@
       "email": "alice@samsung.com",
       "country": "Cambodia",
       "status": "on",
-      "id": "1716"
+      "id": 11
     },
     {
       "name": "Peter Lee",
@@ -113,7 +113,7 @@
       "email": "peter@lg.com",
       "country": "Laos",
       "status": "on",
-      "id": "1717"
+      "id": 12
     },
     {
       "name": "Karen Tan",
@@ -122,7 +122,7 @@
       "email": "karen@sony.com",
       "country": "Malaysia",
       "status": "~off",
-      "id": "1718"
+      "id": 13
     },
     {
       "name": "Ryan Lim",
@@ -131,7 +131,7 @@
       "email": "ryan@panasonic.com",
       "country": "Myanmar",
       "status": "on",
-      "id": "1719"
+      "id": 14
     },
     {
       "name": "Lisa Wang",
@@ -140,7 +140,7 @@
       "email": "lisa@toshiba.com",
       "country": "Thailand",
       "status": "~off",
-      "id": "1720"
+      "id": 15
     },
     {
       "name": "Kevin Phan",
@@ -149,7 +149,7 @@
       "email": "kevin@sharp.com",
       "country": "Vietnam",
       "status": "~off",
-      "id": "1721"
+      "id": 16
     },
     {
       "name": "Cindy Tran",
@@ -158,7 +158,7 @@
       "email": "cindy@hitachi.com",
       "country": "Cambodia",
       "status": "~off",
-      "id": "1722"
+      "id": 17
     },
     {
       "name": "Alex Wong",
@@ -167,7 +167,7 @@
       "email": "alex@nikon.com",
       "country": "Laos",
       "status": "on",
-      "id": "1723"
+      "id": 18
     },
     {
       "name": "Michelle Koh",
@@ -176,7 +176,7 @@
       "email": "michelle@canon.com",
       "country": "Malaysia",
       "status": "on",
-      "id": "1724"
+      "id": 19
     },
     {
       "name": "David Tran",
@@ -185,7 +185,7 @@
       "email": "david@fujifilm.com",
       "country": "Myanmar",
       "status": "~off",
-      "id": "1725"
+      "id": 20
     }
   ]
 }

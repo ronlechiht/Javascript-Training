@@ -71,6 +71,8 @@ export class CustomerView {
 
     //Init params
     this.params = {
+      _sort: LIST_CUSTOMER_FIELD.id,
+      _order: 'desc',
       _page: 1,
       _limit: PAGE_SIZE,
     }
@@ -422,6 +424,12 @@ export class CustomerView {
   bindSortOnChanged = (handler) => {
     this.sortOption.onchange = () => {
       this.params[QUERY_PARAM_KEYS.sort] = this.sortOption.value
+      if (this.sortOption.value === LIST_CUSTOMER_FIELD.id) {
+        this.params[QUERY_PARAM_KEYS.order] = 'desc'
+      } else {
+        this.params[QUERY_PARAM_KEYS.order] = 'asc'
+      }
+
       handler(this.params)
     }
   }
