@@ -10,7 +10,8 @@ export class CustomerController {
       this.handleEditCustomer,
     )
     this.customerView.bindDeleteCustomer(this.handleDeleteCustomer)
-    this.customerView.bindSearchOnChanged(debounce(this.displayCustomersTable))
+    this.customerView.bindSearchDebounce(debounce(this.displayCustomersTable))
+    this.customerView.bindSearchOnChanged(this.displayCustomersTable)
     this.customerView.bindSortOnChanged(this.displayCustomersTable)
     this.customerView.bindPagination(this.displayCustomersTable)
     this.displayGeneralInformation()

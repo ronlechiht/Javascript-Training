@@ -177,7 +177,7 @@ export class CustomerView {
     }
 
     //Display empty notification
-    if (!customers.length) {
+    if (!customers.length || customers === 'Not found') {
       this.displayEmptyNotification(LIST_EMPTY_MSG)
       this.showingDataText.innerHTML = ''
       this.previousBtn.classList.add('visibility-hidden')
@@ -336,8 +336,15 @@ export class CustomerView {
     }
   }
 
-  bindSearchOnChanged = (handler) => {
+  bindSearchDebounce = (handler) => {
     this.searchInput.onkeyup = () => {
+      this.params[QUERY_PARAM_KEYS.search] = this.searchInput.value
+      handler(this.params)
+    }
+  }
+
+  bindSearchOnChanged = (handler) => {
+    this.searchInput.onchange = () => {
       this.params[QUERY_PARAM_KEYS.search] = this.searchInput.value
       handler(this.params)
     }
