@@ -227,6 +227,9 @@ export class CustomerView {
     this.showingDataText.innerHTML = `
     Showing data ${firstRecord} to ${lastRecord}
     `
+
+    this.previousBtn.classList.remove('visibility-hidden')
+    this.nextBtn.classList.remove('visibility-hidden')
   }
 
   renderCustomersTable = (customers) => {
