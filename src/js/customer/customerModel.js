@@ -7,15 +7,7 @@ export class CustomerModel {
   }
 
   getCustomers = async (params) => {
-    const res = await HttpService.get(this.customerApi, params)
-    const customers = await res.json()
-    const totalCount = res.headers.get('x-total-count')
-    return {
-      data: customers,
-      metadata: {
-        totalCount,
-      },
-    }
+    return HttpService.get(this.customerApi, params)
   }
 
   addCustomer = async (data) => {
@@ -32,9 +24,8 @@ export class CustomerModel {
 
   getGeneralInformation = async () => {
     const res = await HttpService.get(this.generalApi)
-    const generalInformation = await res.json()
-    const totalCustomers = generalInformation[0]['totalCustomers']
-    const totalActiveCustomers = generalInformation[0]['totalActiveCustomers']
+    const totalCustomers = res[0]['totalCustomers']
+    const totalActiveCustomers = res[0]['totalActiveCustomers']
     return { totalCustomers, totalActiveCustomers }
   }
 }

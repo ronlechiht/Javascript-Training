@@ -33,11 +33,8 @@ export class CustomerController {
 
   displayCustomersTable = async (params) => {
     try {
-      const {
-        data: customers,
-        metadata: { totalCount },
-      } = await this.customerModel.getCustomers(params)
-      this.customerView.renderCustomersTable(customers, totalCount)
+      const customers = await this.customerModel.getCustomers(params)
+      this.customerView.renderCustomersTable(customers)
     } catch (error) {
       this.customerView.displaySnackbar(
         SNACKBAR_STATUS.failed,
@@ -48,19 +45,19 @@ export class CustomerController {
 
   handleAddCustomer = async (customer) => {
     await this.customerModel.addCustomer(customer)
-    this.displayGeneralInformation()
-    this.displayCustomersTable(this.customerView.params)
+    await this.displayGeneralInformation()
+    await this.displayCustomersTable(this.customerView.params)
   }
 
   handleEditCustomer = async (customer, id) => {
     await this.customerModel.editCustomer(id, customer)
-    this.displayGeneralInformation()
-    this.displayCustomersTable(this.customerView.params)
+    await this.displayGeneralInformation()
+    await this.displayCustomersTable(this.customerView.params)
   }
 
   handleDeleteCustomer = async (id) => {
     await this.customerModel.deleteCustomer(id)
-    this.displayGeneralInformation()
-    this.displayCustomersTable(this.customerView.params)
+    await this.displayGeneralInformation()
+    await this.displayCustomersTable(this.customerView.params)
   }
 }

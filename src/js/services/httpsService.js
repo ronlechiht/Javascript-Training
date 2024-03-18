@@ -6,6 +6,7 @@ export default class HttpService {
       method,
       headers: {
         'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': true,
       },
       ...(data && {
         body: JSON.stringify(data),
@@ -18,7 +19,7 @@ export default class HttpService {
       const queryString = buildQueryString(params)
       path = path + queryString
     }
-    return this.request(path, 'GET')
+    return this.request(path, 'GET').then((value) => value.json())
   }
 
   static post = async (path, data) => {

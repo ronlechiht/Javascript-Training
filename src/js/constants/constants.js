@@ -4,7 +4,7 @@ export const LIST_EMPTY_MSG = 'There are no customers in the list'
 
 export const DEBOUNCE_DELAY = 1000
 
-export const PAGE_LIMIT = 8
+export const PAGE_SIZE = 8
 
 export const VALIDATE_REGEX = {
   phone: /\(\d{3}\)\s\d{3}-\d{4}$/,
@@ -50,8 +50,8 @@ export const SNACKBAR_STATUS = {
 }
 
 export const QUERY_PARAM_KEYS = {
-  page: '_page',
-  limit: '_limit',
-  search: 'name_like',
-  sort: '_sort',
+  page: 'page',
+  limit: 'limit',
+  search: 'name',
+  sort: 'sortBy',
 }

@@ -2,7 +2,7 @@ import {
   SNACKBAR_DELAY,
   LIST_ERROR_MSG,
   LIST_EMPTY_MSG,
-  PAGE_LIMIT,
+  PAGE_SIZE,
   CUSTOMER_STATUS,
   SNACKBAR_STATUS,
   SNACKBAR_MSG,
@@ -40,7 +40,6 @@ export class CustomerView {
 
     //Get button
     this.submitBtn = this.form.querySelector('.btn-submit')
-    /*this.submitUpdateBtn = this.form.querySelector('.btn-submit-update')*/
     this.cancelBtn = this.form.querySelector('.btn-cancel')
     this.acceptRemoveBtn = this.removeModal.querySelector('.accept-remove-btn')
     this.denyRemoveBtn = this.removeModal.querySelector('.deny-remove-btn')
@@ -71,9 +70,10 @@ export class CustomerView {
 
     //Init params
     this.params = {
-      _page: 1,
-      _limit: PAGE_LIMIT,
+      page: 1,
+      limit: PAGE_SIZE,
     }
+    this.maxPage = -1
 
     //Customer ID for edit, delete feature
     this.customerID = null
@@ -154,28 +154,29 @@ export class CustomerView {
     this.customersTable.appendChild(emptyMessage)
   }
 
-  renderTableFooter = (currentIndex, totalCount) => {
+  renderTableFooter = (currentIndex) => {
     const currentPage = this.params[QUERY_PARAM_KEYS.page]
-    const firstRecord = (currentPage - 1) * PAGE_LIMIT + 1
-    const lastRecord = (currentPage - 1) * PAGE_LIMIT + currentIndex
+    const firstRecord = (currentPage - 1) * PAGE_SIZE + 1
+    const lastRecord = (currentPage - 1) * PAGE_SIZE + currentIndex
 
     this.showingDataText.innerHTML = `
-    Showing data ${firstRecord} to ${lastRecord} of ${totalCount} entries
+    Showing data ${firstRecord} to ${lastRecord}
     `
-
-    if (currentPage === 1) this.previousBtn.classList.add('visibility-hidden')
-    else this.previousBtn.classList.remove('visibility-hidden')
-
-    if (totalCount - currentPage * PAGE_LIMIT <= 0)
-      this.nextBtn.classList.add('visibility-hidden')
-    else this.nextBtn.classList.remove('visibility-hidden')
   }
 
-  renderCustomersTable = (customers, totalCount) => {
+  renderCustomersTable = (customers) => {
+    //Disable next button in  last page
+    if (!customers.length && this.params[QUERY_PARAM_KEYS.page] > 1) {
+      this.params[QUERY_PARAM_KEYS.page] -= 1
+      return
+    }
+
+    //Remove customer in table if exist
     while (this.customersTable.firstChild) {
       this.customersTable.removeChild(this.customersTable.firstChild)
     }
 
+    //Display empty notification
     if (!customers.length) {
       this.displayEmptyNotification(LIST_EMPTY_MSG)
       this.showingDataText.innerHTML = ''
@@ -235,7 +236,7 @@ export class CustomerView {
     }
 
     //Render table footer
-    this.renderTableFooter(i, totalCount)
+    this.renderTableFooter(i)
   }
 
   bindOpenModal = () => {
@@ -299,8 +300,8 @@ export class CustomerView {
 
     try {
       await handler(customer)
+      this.hideModal()
       this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successAdd)
-      this.resetInput()
     } catch (error) {
       this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
     }
@@ -312,6 +313,7 @@ export class CustomerView {
 
     try {
       await handler(customer, this.customerID)
+      this.hideModal()
       this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successEdit)
     } catch (error) {
       this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
@@ -355,8 +357,10 @@ export class CustomerView {
     }
 
     this.previousBtn.onclick = () => {
-      this.params[QUERY_PARAM_KEYS.page] -= 1
-      handler(this.params)
+      if (this.params[QUERY_PARAM_KEYS.page] > 1) {
+        this.params[QUERY_PARAM_KEYS.page] -= 1
+        handler(this.params)
+      }
     }
   }
 }

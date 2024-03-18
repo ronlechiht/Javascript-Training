@@ -175,6 +175,7 @@ select {
   border: none;
   padding: 0;
   background-color: #fff;
+  outline: none;
 }
 
 button {
