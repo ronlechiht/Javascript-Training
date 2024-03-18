@@ -75,7 +75,7 @@
   display: grid;
   grid-template-columns: 19% 14% 17% 23% 15% 9% auto;
   align-items: center;
-  padding: 24px 22px 24px 38px;
+  padding: 24px 22px 24px 4%;
 }
 
 .table-heading {
@@ -149,7 +149,7 @@
 }
 
 .table-footer {
-  padding: 30px 40px;
+  padding: 30px 4%;
   display: flex;
   justify-content: space-between;
 }
@@ -172,4 +172,5 @@
   background-color: #eee;
   border-radius: 4px;
   font-weight: 800;
+  cursor: pointer;
 }
