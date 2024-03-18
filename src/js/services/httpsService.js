@@ -6,7 +6,6 @@ export default class HttpService {
       method,
       headers: {
         'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': true,
       },
       ...(data && {
         body: JSON.stringify(data),

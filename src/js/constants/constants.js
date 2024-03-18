@@ -32,9 +32,24 @@ export const LIST_ERROR_MSG = {
   },
 }
 
+export const LIST_CUSTOMER_FIELD = {
+  id: 'id',
+  name: 'name',
+  company: 'company',
+  phone: 'phone',
+  email: 'email',
+  country: 'country',
+  status: 'status',
+}
+
 export const CUSTOMER_STATUS = {
   on: 'on',
   off: '~off',
+}
+
+export const STATUS_HTML = {
+  on: 'Active',
+  off: 'Inactive',
 }
 
 export const SNACKBAR_MSG = {
@@ -50,8 +65,8 @@ export const SNACKBAR_STATUS = {
 }
 
 export const QUERY_PARAM_KEYS = {
-  page: 'page',
-  limit: 'limit',
-  search: 'name',
-  sort: 'sortBy',
+  page: '_page',
+  limit: '_limit',
+  search: 'name_like',
+  sort: '_sort',
 }

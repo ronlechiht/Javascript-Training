@@ -1,19 +1,19 @@
 import {
   SNACKBAR_DELAY,
+  LIST_CUSTOMER_FIELD,
   LIST_ERROR_MSG,
   LIST_EMPTY_MSG,
   PAGE_SIZE,
   CUSTOMER_STATUS,
+  STATUS_HTML,
   SNACKBAR_STATUS,
   SNACKBAR_MSG,
   QUERY_PARAM_KEYS,
 } from '../constants/constants'
 
-import { validateForm } from '../utils/validation'
+import { validateForm, validateField } from '../utils/validation'
 
 import { createElement } from '../utils/dom'
-
-import { createDropdownBtn, createDropdownMenu } from '../utils/dropdown'
 
 export class CustomerView {
   constructor() {
@@ -36,6 +36,7 @@ export class CustomerView {
 
     //Get input field
     this.inputFields = this.form.querySelectorAll('.input-field')
+    this.phoneInput = this.form.querySelector('input[name="phone"]')
     this.status = this.form.querySelector('input[name="status"]')
 
     //Get button
@@ -70,16 +71,16 @@ export class CustomerView {
 
     //Init params
     this.params = {
-      page: 1,
-      limit: PAGE_SIZE,
+      _page: 1,
+      _limit: PAGE_SIZE,
     }
-    this.maxPage = -1
 
     //Customer ID for edit, delete feature
     this.customerID = null
 
     this.bindOpenModal()
     this.bindCloseModal()
+    this.validateFormData()
   }
 
   displayAddModal = () => {
@@ -105,7 +106,7 @@ export class CustomerView {
 
   hideModal = () => {
     this.modal.classList.remove('visibility-visible')
-    this.hideErrorMessages()
+    this.hideFormErrors()
     this.resetInput()
   }
 
@@ -113,10 +114,27 @@ export class CustomerView {
     this.removeModal.classList.remove('visibility-visible')
   }
 
-  hideErrorMessages = () => {
+  displayFieldError = (inputField, error) => {
+    inputField.classList.add('error-field')
+    let errorMessage = inputField.nextElementSibling
+    errorMessage.innerHTML = LIST_ERROR_MSG[inputField.name][error]
+  }
+
+  displayFormErrors = (errors) => {
+    for (let key in errors) {
+      let inputField = this.form.querySelector('.' + key)
+      this.displayFieldError(inputField, errors[key])
+    }
+  }
+
+  hideFieldError = (inputField) => {
+    inputField.classList.remove('error-field')
+    inputField.nextElementSibling.innerHTML = ''
+  }
+
+  hideFormErrors = () => {
     this.inputFields.forEach((inputField) => {
-      inputField.classList.remove('error-field')
-      inputField.nextElementSibling.innerHTML = ''
+      this.hideFieldError(inputField)
     })
   }
 
@@ -137,21 +155,56 @@ export class CustomerView {
     }, SNACKBAR_DELAY)
   }
 
-  displayFormErrors = (errors) => {
-    for (let key in errors) {
-      let customerProperty = key
-      let errorType = errors[key]
-      let inputField = this.form.querySelector('.' + key)
-      inputField.classList.add('error-field')
-      let errorMessage = inputField.nextElementSibling
-      errorMessage.innerHTML = LIST_ERROR_MSG[customerProperty][errorType]
-    }
-  }
-
   displayEmptyNotification = (message) => {
     let emptyMessage = createElement('p', 'empty-message')
     emptyMessage.innerHTML = message
     this.customersTable.appendChild(emptyMessage)
+  }
+
+  renderDropdownBtn = () => {
+    let dropdownBtn = createElement('div', 'dropdown-btn')
+    let dot1 = createElement('div', 'dot')
+    let dot2 = createElement('div', 'dot')
+    let dot3 = createElement('div', 'dot')
+    dropdownBtn.append(dot1, dot2, dot3)
+    dropdownBtn.onclick = (e) => {
+      let clickedDropdownBtn = e.target.closest('.dropdown-btn')
+      if (!clickedDropdownBtn.nextElementSibling.classList[1]) {
+        //Hide another dropdown menu if exist
+        let existDropdownMenu = document.querySelector(
+          '.dropdown-menu.visibility-visible',
+        )
+        if (existDropdownMenu)
+          existDropdownMenu.classList.remove('visibility-visible')
+        //Display clicked dropdown menu
+        clickedDropdownBtn.nextElementSibling.classList.add(
+          'visibility-visible',
+        )
+      } else {
+        clickedDropdownBtn.nextElementSibling.classList.remove(
+          'visibility-visible',
+        )
+      }
+    }
+    return dropdownBtn
+  }
+
+  renderDropdownMenu = (customer) => {
+    let dropdownMenu = createElement('ul', 'dropdown-menu')
+    let editOption = createElement('li', 'edit-customer')
+    editOption.innerHTML = 'Edit'
+    editOption.onclick = (e) => {
+      e.target.parentNode.classList.remove('visibility-visible')
+      this.displayEditModal(customer)
+    }
+    let removeOption = createElement('li', 'remove-customer')
+    removeOption.innerHTML = 'Remove'
+    removeOption.onclick = (e) => {
+      e.target.parentNode.classList.remove('visibility-visible')
+      this.displayRemoveModal(customer.id)
+    }
+    dropdownMenu.append(editOption, removeOption)
+    return dropdownMenu
   }
 
   renderTableFooter = (currentIndex) => {
@@ -194,18 +247,18 @@ export class CustomerView {
 
       //Render customer information
       for (let key in customer) {
-        if (key === 'id') continue
-        if (key !== 'status') {
+        if (key === LIST_CUSTOMER_FIELD.id) continue
+        if (key !== LIST_CUSTOMER_FIELD.status) {
           let customerProperty = createElement('p')
           customerProperty.innerHTML = customer[key]
           customerRow.appendChild(customerProperty)
         } else {
           let customerStatus = createElement('p', 'status-tag')
-          if (customer.status === 'on') {
+          if (customer.status === CUSTOMER_STATUS.on) {
             customerStatus.classList.add('status-active')
-            customerStatus.innerHTML = 'Active'
+            customerStatus.innerHTML = STATUS_HTML.on
           } else {
-            customerStatus.innerHTML = 'Inactive'
+            customerStatus.innerHTML = STATUS_HTML.off
           }
           customerRow.appendChild(customerStatus)
         }
@@ -217,15 +270,11 @@ export class CustomerView {
         'dropdown-menu-container',
       )
 
-      let dropdownBtn = createDropdownBtn()
+      let dropdownBtn = this.renderDropdownBtn()
       dropdownBtn.id = customer.id
       dropdownMenuContainer.appendChild(dropdownBtn)
 
-      let dropdownMenu = createDropdownMenu(
-        customer,
-        this.displayEditModal,
-        this.displayRemoveModal,
-      )
+      let dropdownMenu = this.renderDropdownMenu(customer)
 
       dropdownMenuContainer.appendChild(dropdownMenu)
       customerRow.appendChild(dropdownMenuContainer)
@@ -237,6 +286,56 @@ export class CustomerView {
 
     //Render table footer
     this.renderTableFooter(i)
+  }
+
+  validateFieldData = (input) => {
+    const error = validateField(input.name, input.value)
+    if (error) {
+      this.displayFieldError(input, error)
+    } else {
+      this.hideFieldError(input)
+    }
+  }
+
+  validateFormData = () => {
+    for (let i = 0; i < this.inputFields.length; i++) {
+      if (this.inputFields[i].name === LIST_CUSTOMER_FIELD.country) {
+        this.inputFields[i].onchange = () =>
+          this.validateFieldData(this.inputFields[i])
+      } else {
+        this.inputFields[i].onblur = () =>
+          this.validateFieldData(this.inputFields[i])
+      }
+    }
+  }
+
+  getFormData = () => {
+    const formData = new FormData(this.form)
+    const customer = [...formData.keys()].reduce((acc, key) => {
+      acc[key] = formData.get(key)
+      return acc
+    }, {})
+    if (!customer.status) customer.status = CUSTOMER_STATUS.off
+
+    const errors = validateForm(customer)
+
+    if (Object.keys(errors).length) {
+      this.displayFormErrors(errors)
+      return
+    }
+    return customer
+  }
+
+  bindSubmitModal = (handlerAdd, handlerEdit) => {
+    this.submitBtn.onclick = (event) => {
+      event.preventDefault()
+
+      if (!this.customerID) {
+        this.bindAddCustomer(handlerAdd)
+      } else {
+        this.bindEditCustomer(handlerEdit)
+      }
+    }
   }
 
   bindOpenModal = () => {
@@ -261,36 +360,6 @@ export class CustomerView {
 
     this.denyRemoveBtn.onclick = () => {
       this.hideRemoveModal()
-    }
-  }
-
-  getFormData = () => {
-    const formData = new FormData(this.form)
-    const customer = [...formData.keys()].reduce((acc, key) => {
-      acc[key] = formData.get(key)
-      return acc
-    }, {})
-    if (!customer.status) customer.status = CUSTOMER_STATUS.off
-
-    this.hideErrorMessages()
-    const errors = validateForm(customer)
-
-    if (Object.keys(errors).length) {
-      this.displayFormErrors(errors)
-      return
-    }
-    return customer
-  }
-
-  bindSubmitModal = (handlerAdd, handlerEdit) => {
-    this.submitBtn.onclick = (event) => {
-      event.preventDefault()
-
-      if (!this.customerID) {
-        this.bindAddCustomer(handlerAdd)
-      } else {
-        this.bindEditCustomer(handlerEdit)
-      }
     }
   }
 

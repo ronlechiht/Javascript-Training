@@ -43,3 +43,17 @@ export const validateForm = (data) => {
 
   return errors
 }
+
+export const validateField = (field, input) => {
+  let error = ''
+  if (validationSchema.hasOwnProperty(field)) {
+    const customerProperty = input
+    const validators = validationSchema[field]
+    for (let validator of validators) {
+      error = validator(customerProperty)
+      if (error) break
+    }
+  }
+
+  return error
+}
