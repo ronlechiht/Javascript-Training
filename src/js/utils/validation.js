@@ -29,16 +29,8 @@ export const validateForm = (data) => {
   let errors = {}
 
   for (let key in data) {
-    if (validationSchema.hasOwnProperty(key)) {
-      let error = null
-      const customerProperty = data[key]
-      const validators = validationSchema[key]
-      for (let validator of validators) {
-        error = validator(customerProperty)
-        if (error) break
-      }
-      if (error) errors[key] = error
-    }
+    let error = validateField(key, data[key])
+    if (error) errors[key] = error
   }
 
   return errors

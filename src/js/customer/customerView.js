@@ -15,6 +15,8 @@ import { validateForm, validateField } from '../utils/validation'
 
 import { createElement } from '../utils/dom'
 
+import { formatPhoneNumber } from '../utils/formatPhoneNumber'
+
 export class CustomerView {
   constructor() {
     //Get add customer button
@@ -82,7 +84,12 @@ export class CustomerView {
 
     this.bindOpenModal()
     this.bindCloseModal()
+    this.formatToPhone()
     this.validateFormData()
+  }
+
+  formatToPhone = () => {
+    this.phoneInput.onkeyup = () => formatPhoneNumber(this.phoneInput)
   }
 
   disablePagination = () => {

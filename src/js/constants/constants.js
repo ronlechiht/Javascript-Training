@@ -20,8 +20,7 @@ export const LIST_ERROR_MSG = {
   },
   phone: {
     required: 'The phone number field is required',
-    invalid:
-      'The phone number invalid. Enter phone number in this format: (123) 456-7890',
+    invalid: 'The phone number invalid. Please enter ten digits',
   },
   email: {
     required: 'The email field is required',
