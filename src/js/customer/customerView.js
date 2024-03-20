@@ -92,7 +92,9 @@ export class CustomerView {
   }
 
   formatToPhone = () => {
-    this.phoneInput.onkeyup = () => formatPhoneNumber(this.phoneInput)
+    this.phoneInput.addEventListener('keyup', () =>
+      formatPhoneNumber(this.phoneInput),
+    )
   }
 
   disablePagination = () => {
@@ -197,7 +199,7 @@ export class CustomerView {
     let dot2 = createElement('div', 'dot')
     let dot3 = createElement('div', 'dot')
     dropdownBtn.append(dot1, dot2, dot3)
-    dropdownBtn.onclick = (e) => {
+    dropdownBtn.addEventListener('click', (e) => {
       let clickedDropdownBtn = e.target.closest('.dropdown-btn')
       if (!clickedDropdownBtn.nextElementSibling.classList[1]) {
         //Hide another dropdown menu if exist
@@ -215,7 +217,7 @@ export class CustomerView {
           'visibility-visible',
         )
       }
-    }
+    })
     return dropdownBtn
   }
 
@@ -223,16 +225,16 @@ export class CustomerView {
     let dropdownMenu = createElement('ul', 'dropdown-menu')
     let editOption = createElement('li', 'edit-customer')
     editOption.innerHTML = 'Edit'
-    editOption.onclick = (e) => {
+    editOption.addEventListener('click', (e) => {
       e.target.parentNode.classList.remove('visibility-visible')
       this.displayEditModal(customer)
-    }
+    })
     let removeOption = createElement('li', 'remove-customer')
     removeOption.innerHTML = 'Remove'
-    removeOption.onclick = (e) => {
+    removeOption.addEventListener('click', (e) => {
       e.target.parentNode.classList.remove('visibility-visible')
       this.displayRemoveModal(customer.id)
-    }
+    })
     dropdownMenu.append(editOption, removeOption)
     return dropdownMenu
   }
@@ -258,9 +260,7 @@ export class CustomerView {
     }
 
     //Remove customer in table if exist
-    while (this.customersTable.firstChild) {
-      this.customersTable.removeChild(this.customersTable.firstChild)
-    }
+    this.customersTable.innerHTML = ''
 
     //Display empty notification
     if (!customers.length || customers === 'Not found') {
@@ -333,11 +333,13 @@ export class CustomerView {
   validateFormData = () => {
     for (let i = 0; i < this.inputFields.length; i++) {
       if (this.inputFields[i].name === LIST_CUSTOMER_FIELD.country) {
-        this.inputFields[i].onchange = () =>
-          this.validateFieldData(this.inputFields[i])
+        this.inputFields[i].addEventListener('change', () =>
+          this.validateFieldData(this.inputFields[i]),
+        )
       } else {
-        this.inputFields[i].onblur = () =>
-          this.validateFieldData(this.inputFields[i])
+        this.inputFields[i].addEventListener('blur', () =>
+          this.validateFieldData(this.inputFields[i]),
+        )
       }
     }
   }
@@ -360,7 +362,7 @@ export class CustomerView {
   }
 
   bindSubmitModal = (handlerAdd, handlerEdit) => {
-    this.submitBtn.onclick = (event) => {
+    this.submitBtn.addEventListener('click', (event) => {
       event.preventDefault()
 
       if (!this.customerID) {
@@ -368,32 +370,26 @@ export class CustomerView {
       } else {
         this.bindEditCustomer(handlerEdit)
       }
-    }
+    })
   }
 
   bindOpenModal = () => {
-    this.addCustomerBtn.onclick = () => {
+    this.addCustomerBtn.addEventListener('click', () => {
       this.customerID = null
       this.displayAddModal()
-    }
+    })
   }
 
   bindCloseModal = () => {
-    this.closeModalBtn.onclick = () => {
-      this.hideModal()
-    }
+    this.closeModalBtn.addEventListener('click', () => this.hideModal())
 
-    this.cancelBtn.onclick = () => {
-      this.hideModal()
-    }
+    this.cancelBtn.addEventListener('click', () => this.hideModal())
 
-    this.closeRemoveModalBtn.onclick = () => {
-      this.hideRemoveModal()
-    }
+    this.closeRemoveModalBtn.addEventListener('click', () =>
+      this.hideRemoveModal(),
+    )
 
-    this.denyRemoveBtn.onclick = () => {
-      this.hideRemoveModal()
-    }
+    this.denyRemoveBtn.addEventListener('click', () => this.hideRemoveModal())
   }
 
   bindAddCustomer = async (handler) => {
@@ -427,7 +423,7 @@ export class CustomerView {
   }
 
   bindDeleteCustomer = (handler) => {
-    this.acceptRemoveBtn.onclick = async () => {
+    this.acceptRemoveBtn.addEventListener('click', async () => {
       const id = this.customerID
       this.displayLoading()
 
@@ -442,25 +438,25 @@ export class CustomerView {
         this.hideLoading()
         this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
       }
-    }
+    })
   }
 
   bindSearchDebounce = (handler) => {
-    this.searchInput.onkeyup = () => {
+    this.searchInput.addEventListener('keyup', () => {
       this.params[QUERY_PARAM_KEYS.search] = this.searchInput.value
       handler(this.params)
-    }
+    })
   }
 
   bindSearchOnChanged = (handler) => {
-    this.searchInput.onchange = () => {
+    this.searchInput.addEventListener('change', () => {
       this.params[QUERY_PARAM_KEYS.search] = this.searchInput.value
       handler(this.params)
-    }
+    })
   }
 
   bindSortOnChanged = (handler) => {
-    this.sortOption.onchange = () => {
+    this.sortOption.addEventListener('change', () => {
       this.params[QUERY_PARAM_KEYS.sort] = this.sortOption.value
       if (this.sortOption.value === LIST_CUSTOMER_FIELD.id) {
         this.params[QUERY_PARAM_KEYS.order] = 'desc'
@@ -469,22 +465,22 @@ export class CustomerView {
       }
 
       handler(this.params)
-    }
+    })
   }
 
   bindPagination = (handler) => {
-    this.nextBtn.onclick = () => {
+    this.nextBtn.addEventListener('click', () => {
       this.params[QUERY_PARAM_KEYS.page] += 1
       this.disablePagination()
       handler(this.params)
-    }
+    })
 
-    this.previousBtn.onclick = () => {
+    this.previousBtn.addEventListener('click', () => {
       if (this.params[QUERY_PARAM_KEYS.page] > 1) {
         this.params[QUERY_PARAM_KEYS.page] -= 1
         this.disablePagination()
         handler(this.params)
       }
-    }
+    })
   }
 }

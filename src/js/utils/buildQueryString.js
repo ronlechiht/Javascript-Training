@@ -1,7 +1,6 @@
 export const buildQueryString = (params) => {
   let queryString = '?'
-  Object.keys(params).map((key) => {
-    queryString = queryString + key + '=' + params[key] + '&'
-  })
+  const urlParams = new URLSearchParams(params)
+  queryString = queryString + urlParams
   return queryString
 }
