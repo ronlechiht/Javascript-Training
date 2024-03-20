@@ -9,6 +9,7 @@
 @import url('components/menu-item.css');
 @import url('components/status.css');
 @import url('components/container.css');
+@import url('components/loading.css');
 
 /* Import section */
 @import url('sections/dashboard.css');

@@ -10,8 +10,8 @@
   column-gap: 16px;
   width: fit-content;
   position: fixed;
-  margin-top: 1%;
-  margin-left: 60%;
+  align-self: flex-end;
+  margin-top: -40px;
   z-index: 2;
 }
 

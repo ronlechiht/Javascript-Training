@@ -77,6 +77,13 @@
   color: #ff0000;
 }
 
+.country {
+  appearance: none;
+  background-image: url(./../../assets/images/modal/select-arrow.png);
+  background-repeat: no-repeat;
+  background-position: right 20px top 50%;
+}
+
 .status-item {
   margin-top: 60px;
   display: flex;

@@ -71,6 +71,9 @@ export class CustomerView {
     this.statusIcon = this.snackbar.querySelector('.status-icon')
     this.snackbarMsg = this.snackbar.querySelector('.snackbar-msg')
 
+    //Get loading animation
+    this.loading = document.querySelector('.loading-popup')
+
     //Init params
     this.params = {
       sortBy: LIST_CUSTOMER_FIELD.id,
@@ -178,6 +181,14 @@ export class CustomerView {
     let emptyMessage = createElement('p', 'empty-message')
     emptyMessage.innerHTML = message
     this.customersTable.appendChild(emptyMessage)
+  }
+
+  displayLoading = () => {
+    this.loading.classList.add('visibility-visible')
+  }
+
+  hideLoading = () => {
+    this.loading.classList.remove('visibility-visible')
   }
 
   renderDropdownBtn = () => {
@@ -388,12 +399,14 @@ export class CustomerView {
   bindAddCustomer = async (handler) => {
     const customer = this.getFormData()
     if (!customer) return
+    this.displayLoading()
 
     try {
       await handler(customer)
       this.hideModal()
       this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successAdd)
     } catch (error) {
+      this.hideLoading()
       this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
     }
   }
@@ -401,12 +414,14 @@ export class CustomerView {
   bindEditCustomer = async (handler) => {
     const customer = this.getFormData()
     if (!customer) return
+    this.displayLoading()
 
     try {
       await handler(customer, this.customerID)
       this.hideModal()
       this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successEdit)
     } catch (error) {
+      this.hideLoading()
       this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
     }
   }
@@ -414,6 +429,8 @@ export class CustomerView {
   bindDeleteCustomer = (handler) => {
     this.acceptRemoveBtn.onclick = async () => {
       const id = this.customerID
+      this.displayLoading()
+
       try {
         await handler(id)
         this.hideRemoveModal()
@@ -422,6 +439,7 @@ export class CustomerView {
           SNACKBAR_MSG.successDelete,
         )
       } catch (error) {
+        this.hideLoading()
         this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
       }
     }

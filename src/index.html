@@ -13,10 +13,6 @@
 
   <body>
     <main>
-      <div class="snackbar">
-        <div class="status-icon"></div>
-        <p class="snackbar-msg"></p>
-      </div>
       <div class="modal modal-add-update">
         <div class="modal-content">
           <div class="modal-header">
@@ -205,9 +201,13 @@
       </div>
 
       <div class="main-container">
+        <div class="loading-popup">
+          <div class="loading"></div>
+          Loading
+        </div>
         <div class="snackbar">
-          <img src="./assets/images/snackbar/failed.webp" alt="failed icon" />
-          Unable to load customer list
+          <div class="status-icon"></div>
+          <p class="snackbar-msg"></p>
         </div>
         <div class="container general-information">
           <div class="total-customers">
