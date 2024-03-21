@@ -8,3 +8,5 @@ const customerApp = new CustomerController(
   new CustomerModel(),
   new CustomerView(),
 )
+
+customerApp()

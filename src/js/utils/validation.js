@@ -38,7 +38,7 @@ export const validateForm = (data) => {
 
 export const validateField = (field, input) => {
   let error = null
-  if (validationSchema.hasOwnProperty(field)) {
+  if (Object.prototype.hasOwnProperty.call(validationSchema, field)) {
     const customerProperty = input
     const validators = validationSchema[field]
     for (let validator of validators) {
