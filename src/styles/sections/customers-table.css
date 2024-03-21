@@ -174,3 +174,11 @@
   font-weight: 800;
   cursor: pointer;
 }
+
+.btn-pagination-previous:disabled,
+.btn-pagination-previous[disabled],
+.btn-pagination-next:disabled,
+.btn-pagination-next[disabled] {
+  opacity: 0.5;
+  cursor: unset;
+}

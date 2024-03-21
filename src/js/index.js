@@ -9,4 +9,4 @@ const customerApp = new CustomerController(
   new CustomerView(),
 )
 
-customerApp()
+customerApp

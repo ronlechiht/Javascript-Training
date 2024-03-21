@@ -18,7 +18,7 @@ export default class HttpService {
       const queryString = buildQueryString(params)
       path = path + queryString
     }
-    return this.request(path, 'GET').then((value) => value.json())
+    return this.request(path, 'GET')
   }
 
   static post = async (path, data) => {

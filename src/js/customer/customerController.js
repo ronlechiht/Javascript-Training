@@ -36,9 +36,15 @@ export class CustomerController {
     this.customerView.displayLoading()
     try {
       const customers = await this.customerModel.getCustomers(params)
-      this.customerView.enablePagination()
       this.customerView.hideLoading()
-      this.customerView.renderCustomersTable(customers)
+      //Display an empty notification list when there are no search results or no customers in the list
+      if (customers === 'Not found' || !customers.length) {
+        this.customerView.renderEmptyTable()
+      }
+      //Display table of customers
+      else {
+        this.customerView.renderCustomersTable(customers)
+      }
     } catch (error) {
       this.customerView.hideLoading()
       this.customerView.displaySnackbar(

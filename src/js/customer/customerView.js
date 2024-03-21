@@ -87,24 +87,14 @@ export class CustomerView {
 
     this.bindOpenModal()
     this.bindCloseModal()
-    this.formatToPhone()
+    this.bindFormatToPhone()
     this.validateFormData()
   }
 
-  formatToPhone = () => {
+  bindFormatToPhone = () => {
     this.phoneInput.addEventListener('keyup', () =>
       formatPhoneNumber(this.phoneInput),
     )
-  }
-
-  disablePagination = () => {
-    this.previousBtn.disabled = true
-    this.nextBtn.disabled = true
-  }
-
-  enablePagination = () => {
-    this.previousBtn.disabled = false
-    this.nextBtn.disabled = false
   }
 
   displayAddModal = () => {
@@ -248,26 +238,36 @@ export class CustomerView {
 
     this.previousBtn.classList.remove('element-hidden')
     this.nextBtn.classList.remove('element-hidden')
-  }
 
-  renderCustomersTable = (customers) => {
-    //Disable next button in  last page
-    if (!customers.length && this.params[QUERY_PARAM_KEYS.page] > 1) {
-      this.params[QUERY_PARAM_KEYS.page] -= 1
-      return
+    //Disable previous btn at page 1
+    if (currentPage === 1) {
+      this.previousBtn.disabled = true
+    } else {
+      this.previousBtn.disabled = false
     }
 
+    //Disable next btn at last page
+    if (currentIndex < PAGE_SIZE) {
+      this.nextBtn.disabled = true
+    } else {
+      this.nextBtn.disabled = false
+    }
+  }
+
+  renderEmptyTable = () => {
     //Remove customer in table if exist
     this.customersTable.innerHTML = ''
 
-    //Display empty notification
-    if (!customers.length || customers === 'Not found') {
-      this.displayEmptyNotification(LIST_EMPTY_MSG)
-      this.showingDataText.innerHTML = ''
-      this.previousBtn.classList.add('element-hidden')
-      this.nextBtn.classList.add('element-hidden')
-      return
-    }
+    //Display notification and hide table footer
+    this.displayEmptyNotification(LIST_EMPTY_MSG)
+    this.showingDataText.innerHTML = ''
+    this.previousBtn.classList.add('element-hidden')
+    this.nextBtn.classList.add('element-hidden')
+  }
+
+  renderCustomersTable = (customers) => {
+    //Remove customer in table if exist
+    this.customersTable.innerHTML = ''
 
     //Render customers list
     let i = 0
@@ -378,46 +378,41 @@ export class CustomerView {
     this.denyRemoveBtn.addEventListener('click', () => this.hideRemoveModal())
   }
 
-  bindSubmitModal = (handlerAdd, handlerEdit) => {
-    this.submitBtn.addEventListener('click', (event) => {
+  //Bind add customer or edit customer
+  bindSubmitModal = (addHandler, editHandler) => {
+    this.submitBtn.addEventListener('click', async (event) => {
       event.preventDefault()
 
+      const customer = this.getFormData()
+      if (!customer) return
+      this.displayLoading()
+
+      //Add customer
       if (!this.customerID) {
-        this.addCustomer(handlerAdd)
-      } else {
-        this.editCustomer(handlerEdit)
+        try {
+          await addHandler(customer)
+          this.hideModal()
+          this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successAdd)
+        } catch (error) {
+          this.hideLoading()
+          this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
+        }
+      }
+      //Edit customer
+      else {
+        try {
+          await editHandler(customer, this.customerID)
+          this.hideModal()
+          this.displaySnackbar(
+            SNACKBAR_STATUS.success,
+            SNACKBAR_MSG.successEdit,
+          )
+        } catch (error) {
+          this.hideLoading()
+          this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
+        }
       }
     })
-  }
-
-  addCustomer = async (handler) => {
-    const customer = this.getFormData()
-    if (!customer) return
-    this.displayLoading()
-
-    try {
-      await handler(customer)
-      this.hideModal()
-      this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successAdd)
-    } catch (error) {
-      this.hideLoading()
-      this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
-    }
-  }
-
-  editCustomer = async (handler) => {
-    const customer = this.getFormData()
-    if (!customer) return
-    this.displayLoading()
-
-    try {
-      await handler(customer, this.customerID)
-      this.hideModal()
-      this.displaySnackbar(SNACKBAR_STATUS.success, SNACKBAR_MSG.successEdit)
-    } catch (error) {
-      this.hideLoading()
-      this.displaySnackbar(SNACKBAR_STATUS.failed, SNACKBAR_MSG.failed)
-    }
   }
 
   bindDeleteCustomer = (handler) => {
@@ -469,16 +464,12 @@ export class CustomerView {
   bindPagination = (handler) => {
     this.nextBtn.addEventListener('click', () => {
       this.params[QUERY_PARAM_KEYS.page] += 1
-      this.disablePagination()
       handler(this.params)
     })
 
     this.previousBtn.addEventListener('click', () => {
-      if (this.params[QUERY_PARAM_KEYS.page] > 1) {
-        this.params[QUERY_PARAM_KEYS.page] -= 1
-        this.disablePagination()
-        handler(this.params)
-      }
+      this.params[QUERY_PARAM_KEYS.page] -= 1
+      handler(this.params)
     })
   }
 }

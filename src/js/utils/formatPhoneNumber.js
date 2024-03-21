@@ -1,3 +1,4 @@
+//Convert string 10 digits to number phone format
 export const formatPhoneNumber = (inputField) => {
   const input = inputField.value
   if (input.length === 10) {
