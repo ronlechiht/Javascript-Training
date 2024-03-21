@@ -24,17 +24,17 @@ export class CustomerView {
 
     //Get modal
     this.modal = document.querySelector('.modal-add-update')
-    this.closeModalBtn = this.modal.querySelector('.modal-close-btn')
+    this.closeModalBtn = this.modal.querySelector('.btn-close-modal')
     this.removeModal = document.querySelector('.modal-remove')
     this.closeRemoveModalBtn = this.removeModal.querySelector(
-      '.remove-modal-close-btn',
+      '.btn-close-remove-modal',
     )
 
     //Get modal title
     this.modalTitle = this.modal.querySelector('.modal-title')
 
     //Get submit form
-    this.form = this.modal.querySelector('.submit-form')
+    this.form = this.modal.querySelector('.form-submit')
 
     //Get input field
     this.inputFields = this.form.querySelectorAll('.input-field')
@@ -44,8 +44,8 @@ export class CustomerView {
     //Get button
     this.submitBtn = this.form.querySelector('.btn-submit')
     this.cancelBtn = this.form.querySelector('.btn-cancel')
-    this.acceptRemoveBtn = this.removeModal.querySelector('.accept-remove-btn')
-    this.denyRemoveBtn = this.removeModal.querySelector('.deny-remove-btn')
+    this.acceptRemoveBtn = this.removeModal.querySelector('.btn-accept-remove')
+    this.denyRemoveBtn = this.removeModal.querySelector('.btn-deny-remove')
 
     //Get general information
     this.customersQuantity = document.querySelector('.customers-quantity')
@@ -60,11 +60,11 @@ export class CustomerView {
     //Get customers table
     this.customersTable = document.querySelector('.table-body')
 
-    this.showingDataText = document.querySelector('.showing-data')
+    this.showingDataText = document.querySelector('.message-showing-data')
 
     //Get pagination
-    this.previousBtn = document.querySelector('.previous-btn')
-    this.nextBtn = document.querySelector('.next-btn')
+    this.previousBtn = document.querySelector('.btn-pagination-previous')
+    this.nextBtn = document.querySelector('.btn-pagination-next')
 
     //Get snackbar
     this.snackbar = document.querySelector('.snackbar')
@@ -108,12 +108,12 @@ export class CustomerView {
   }
 
   displayAddModal = () => {
-    this.modal.classList.add('visibility-visible')
+    this.modal.classList.add('element-visible')
     this.modalTitle.innerHTML = 'Add Customer'
   }
 
   displayEditModal = (customer) => {
-    this.modal.classList.add('visibility-visible')
+    this.modal.classList.add('element-visible')
     this.modalTitle.innerHTML = 'Update Customer'
     this.customerID = customer.id
     for (let inputField of this.inputFields) {
@@ -124,22 +124,22 @@ export class CustomerView {
   }
 
   displayRemoveModal = (id) => {
-    this.removeModal.classList.add('visibility-visible')
+    this.removeModal.classList.add('element-visible')
     this.customerID = id
   }
 
   hideModal = () => {
-    this.modal.classList.remove('visibility-visible')
+    this.modal.classList.remove('element-visible')
     this.hideFormErrors()
     this.resetInput()
   }
 
   hideRemoveModal = () => {
-    this.removeModal.classList.remove('visibility-visible')
+    this.removeModal.classList.remove('element-visible')
   }
 
   displayFieldError = (inputField, error) => {
-    inputField.classList.add('error-field')
+    inputField.classList.add('field-error')
     let errorMessage = inputField.nextElementSibling
     errorMessage.innerHTML = LIST_ERROR_MSG[inputField.name][error]
   }
@@ -152,7 +152,7 @@ export class CustomerView {
   }
 
   hideFieldError = (inputField) => {
-    inputField.classList.remove('error-field')
+    inputField.classList.remove('field-error')
     inputField.nextElementSibling.innerHTML = ''
   }
 
@@ -180,41 +180,39 @@ export class CustomerView {
   }
 
   displayEmptyNotification = (message) => {
-    let emptyMessage = createElement('p', 'empty-message')
+    let emptyMessage = createElement('p', 'message-empty')
     emptyMessage.innerHTML = message
     this.customersTable.appendChild(emptyMessage)
   }
 
   displayLoading = () => {
-    this.loading.classList.add('visibility-visible')
+    this.loading.classList.add('element-visible')
   }
 
   hideLoading = () => {
-    this.loading.classList.remove('visibility-visible')
+    this.loading.classList.remove('element-visible')
   }
 
   renderDropdownBtn = () => {
-    let dropdownBtn = createElement('div', 'dropdown-btn')
+    let dropdownBtn = createElement('div', 'btn-dropdown')
     let dot1 = createElement('div', 'dot')
     let dot2 = createElement('div', 'dot')
     let dot3 = createElement('div', 'dot')
     dropdownBtn.append(dot1, dot2, dot3)
     dropdownBtn.addEventListener('click', (e) => {
-      let clickedDropdownBtn = e.target.closest('.dropdown-btn')
+      let clickedDropdownBtn = e.target.closest('.btn-dropdown')
       if (!clickedDropdownBtn.nextElementSibling.classList[1]) {
         //Hide another dropdown menu if exist
         let existDropdownMenu = document.querySelector(
-          '.dropdown-menu.visibility-visible',
+          '.dropdown-menu.element-visible',
         )
         if (existDropdownMenu)
-          existDropdownMenu.classList.remove('visibility-visible')
+          existDropdownMenu.classList.remove('element-visible')
         //Display clicked dropdown menu
-        clickedDropdownBtn.nextElementSibling.classList.add(
-          'visibility-visible',
-        )
+        clickedDropdownBtn.nextElementSibling.classList.add('element-visible')
       } else {
         clickedDropdownBtn.nextElementSibling.classList.remove(
-          'visibility-visible',
+          'element-visible',
         )
       }
     })
@@ -226,13 +224,13 @@ export class CustomerView {
     let editOption = createElement('li', 'edit-customer')
     editOption.innerHTML = 'Edit'
     editOption.addEventListener('click', (e) => {
-      e.target.parentNode.classList.remove('visibility-visible')
+      e.target.parentNode.classList.remove('element-visible')
       this.displayEditModal(customer)
     })
     let removeOption = createElement('li', 'remove-customer')
     removeOption.innerHTML = 'Remove'
     removeOption.addEventListener('click', (e) => {
-      e.target.parentNode.classList.remove('visibility-visible')
+      e.target.parentNode.classList.remove('element-visible')
       this.displayRemoveModal(customer.id)
     })
     dropdownMenu.append(editOption, removeOption)
@@ -248,8 +246,8 @@ export class CustomerView {
     Showing data ${firstRecord} to ${lastRecord}
     `
 
-    this.previousBtn.classList.remove('visibility-hidden')
-    this.nextBtn.classList.remove('visibility-hidden')
+    this.previousBtn.classList.remove('element-hidden')
+    this.nextBtn.classList.remove('element-hidden')
   }
 
   renderCustomersTable = (customers) => {
@@ -266,8 +264,8 @@ export class CustomerView {
     if (!customers.length || customers === 'Not found') {
       this.displayEmptyNotification(LIST_EMPTY_MSG)
       this.showingDataText.innerHTML = ''
-      this.previousBtn.classList.add('visibility-hidden')
-      this.nextBtn.classList.add('visibility-hidden')
+      this.previousBtn.classList.add('element-hidden')
+      this.nextBtn.classList.add('element-hidden')
       return
     }
 
@@ -361,18 +359,6 @@ export class CustomerView {
     return customer
   }
 
-  bindSubmitModal = (handlerAdd, handlerEdit) => {
-    this.submitBtn.addEventListener('click', (event) => {
-      event.preventDefault()
-
-      if (!this.customerID) {
-        this.bindAddCustomer(handlerAdd)
-      } else {
-        this.bindEditCustomer(handlerEdit)
-      }
-    })
-  }
-
   bindOpenModal = () => {
     this.addCustomerBtn.addEventListener('click', () => {
       this.customerID = null
@@ -392,7 +378,19 @@ export class CustomerView {
     this.denyRemoveBtn.addEventListener('click', () => this.hideRemoveModal())
   }
 
-  bindAddCustomer = async (handler) => {
+  bindSubmitModal = (handlerAdd, handlerEdit) => {
+    this.submitBtn.addEventListener('click', (event) => {
+      event.preventDefault()
+
+      if (!this.customerID) {
+        this.addCustomer(handlerAdd)
+      } else {
+        this.editCustomer(handlerEdit)
+      }
+    })
+  }
+
+  addCustomer = async (handler) => {
     const customer = this.getFormData()
     if (!customer) return
     this.displayLoading()
@@ -407,7 +405,7 @@ export class CustomerView {
     }
   }
 
-  bindEditCustomer = async (handler) => {
+  editCustomer = async (handler) => {
     const customer = this.getFormData()
     if (!customer) return
     this.displayLoading()

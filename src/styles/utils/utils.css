@@ -1,15 +1,11 @@
-.display-block {
-  display: block;
-}
-
-.visibility-visible {
+.element-visible {
   visibility: visible;
 }
 
-.visibility-hidden {
+.element-hidden {
   visibility: hidden;
 }
 
-.error-field {
+.field-error {
   border-color: #ff0000;
 }

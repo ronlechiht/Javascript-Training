@@ -25,17 +25,17 @@
             <img
               src="./assets/images/modal/close-btn.png"
               alt="modal close button"
-              class="modal-close-btn"
+              class="btn-close-modal"
             />
           </div>
-          <form class="submit-form">
+          <form class="form-submit">
             <div class="input-item">
               <label class="input-label">
                 customer name
                 <span class="required">*</span>
               </label>
               <input type="text" name="name" class="input-field name" />
-              <p class="error-message name-message"></p>
+              <p class="message-error"></p>
             </div>
             <div class="input-item">
               <label class="input-label">
@@ -43,7 +43,7 @@
                 <span class="required">*</span>
               </label>
               <input type="text" name="company" class="input-field company" />
-              <p class="error-message company-message"></p>
+              <p class="message-error"></p>
             </div>
             <div class="input-item">
               <label class="input-label">
@@ -51,7 +51,7 @@
                 <span class="required">*</span>
               </label>
               <input type="text" name="phone" class="input-field phone" />
-              <p class="error-message phone-message"></p>
+              <p class="message-error"></p>
             </div>
             <div class="input-item">
               <label class="input-label">
@@ -59,7 +59,7 @@
                 <span class="required">*</span>
               </label>
               <input type="text" name="email" class="input-field email" />
-              <p class="error-message email-message"></p>
+              <p class="message-error"></p>
             </div>
             <div class="input-item">
               <label class="input-label">
@@ -75,9 +75,9 @@
                 <option value="Thailand">Thailand</option>
                 <option value="Vietnam">Vietnam</option>
               </select>
-              <p class="error-message country-message"></p>
+              <p class="message-error"></p>
             </div>
-            <div class="input-item status-item">
+            <div class="input-item input-status">
               <label class="input-label">status</label>
               <label class="switch">
                 <input type="checkbox" name="status" />
@@ -100,15 +100,15 @@
             <img
               src="./assets/images/modal/close-btn.png"
               alt="modal close button"
-              class="remove-modal-close-btn"
+              class="btn-close-remove-modal"
             />
           </div>
 
-          <div class="remove-btn-group">
-            <button class="btn btn-primary accept-remove-btn" type="button">
+          <div class="btn-remove-group">
+            <button class="btn btn-primary btn-accept-remove" type="button">
               yes
             </button>
-            <button class="btn btn-secondary deny-remove-btn" type="button">
+            <button class="btn btn-secondary btn-deny-remove" type="button">
               no
             </button>
           </div>
@@ -258,7 +258,7 @@
         </div>
 
         <div class="container customers-table-section">
-          <div class="section-header">
+          <div class="customers-table-header">
             <h3 class="customers-table-heading">all customers</h3>
             <div class="customers-tools-bar">
               <img
@@ -280,7 +280,7 @@
                   class="search-input"
                 />
               </div>
-              <div class="sort-customers">
+              <div class="sort-container">
                 <p class="sort-option-label">Sort by:</p>
                 <select class="sort-option-list">
                   <option value="id" class="sort-option"></option>
@@ -292,7 +292,7 @@
               </div>
             </div>
           </div>
-          <div class="section-body">
+          <div class="customers-table-body">
             <div class="table-header">
               <h4 class="table-heading">customer name</h4>
               <h4 class="table-heading">company</h4>
@@ -303,10 +303,10 @@
             </div>
             <ul class="table-body"></ul>
             <div class="table-footer">
-              <p class="showing-data"></p>
-              <div class="pagination-btn">
-                <button class="previous-btn">&lt;</button>
-                <button class="next-btn">&gt;</button>
+              <p class="message-showing-data"></p>
+              <div class="btn-pagination">
+                <button class="btn-pagination-previous">&lt;</button>
+                <button class="btn-pagination-next">&gt;</button>
               </div>
             </div>
           </div>
