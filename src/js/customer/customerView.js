@@ -72,7 +72,7 @@ export class CustomerView {
     this.snackbarMsg = this.snackbar.querySelector('.snackbar-msg')
 
     //Get loading animation
-    this.loading = document.querySelector('.loading-popup')
+    this.loading = document.querySelector('.overlay')
 
     //Init params
     this.params = {
