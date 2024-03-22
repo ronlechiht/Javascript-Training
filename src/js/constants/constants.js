@@ -56,6 +56,7 @@ export const SNACKBAR_MSG = {
   successEdit: 'Customer has been successfully updated',
   successDelete: 'Customer has been successfully removed',
   failed: 'Something went wrong',
+  lastPage: 'You are on the last page',
 }
 
 export const SNACKBAR_STATUS = {

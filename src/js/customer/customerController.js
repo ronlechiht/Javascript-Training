@@ -1,5 +1,9 @@
 import { debounce } from '../utils/debounce'
-import { SNACKBAR_STATUS, SNACKBAR_MSG } from '../constants/constants'
+import {
+  SNACKBAR_STATUS,
+  SNACKBAR_MSG,
+  QUERY_PARAM_KEYS,
+} from '../constants/constants'
 export class CustomerController {
   constructor(customerModel, customerView) {
     this.customerModel = customerModel
@@ -37,6 +41,19 @@ export class CustomerController {
     try {
       const customers = await this.customerModel.getCustomers(params)
       this.customerView.hideLoading()
+      //Next pagination unavailable at last page
+      if (
+        !customers.length &&
+        this.customerView.params[QUERY_PARAM_KEYS.page] > 1
+      ) {
+        this.customerView.params[QUERY_PARAM_KEYS.page] -= 1
+        this.customerView.displaySnackbar(
+          SNACKBAR_STATUS.failed,
+          SNACKBAR_MSG.lastPage,
+        )
+        this.customerView.nextBtn.disabled = true
+        return
+      }
       //Display an empty notification list when there are no search results or no customers in the list
       if (customers === 'Not found' || !customers.length) {
         this.customerView.renderEmptyTable()
@@ -68,6 +85,10 @@ export class CustomerController {
 
   handleDeleteCustomer = async (id) => {
     await this.customerModel.deleteCustomer(id)
+    //Load previous page if delete last customer
+    if (this.customerView.customersTable.children.length === 2) {
+      this.customerView.params[QUERY_PARAM_KEYS.page] -= 1
+    }
     await this.displayGeneralInformation()
     await this.displayCustomersTable(this.customerView.params)
   }
